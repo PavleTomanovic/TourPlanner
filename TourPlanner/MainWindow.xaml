@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Tour Planner" MinHeight="600" MinWidth="820">
 
-    </Grid>
+    <Window.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Margin" Value="1,1,1,1"></Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <local:Task_Overview>
+
+    </local:Task_Overview>
+
 </Window>
