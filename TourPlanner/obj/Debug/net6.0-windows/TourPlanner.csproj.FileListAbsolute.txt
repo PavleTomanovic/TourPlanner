@@ -20,8 +20,6 @@ C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\ob
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Task_Overview.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Task_Overview.baml
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.exe
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.deps.json
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.runtimeconfig.json
@@ -46,3 +44,5 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.pdb
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.baml

@@ -2,12 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Task_Overview.xaml.cs">
+    <Compile Update="TaskSection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Task_Overview.xaml">
+    <Page Update="TaskSection.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

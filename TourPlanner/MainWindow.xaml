@@ -13,8 +13,8 @@
         </Style>
     </Window.Resources>
 
-    <local:Task_Overview>
+    <local:TaskSection>
 
-    </local:Task_Overview>
+    </local:TaskSection>
 
 </Window>
