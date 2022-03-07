@@ -98,11 +98,12 @@
             <ListBoxItem Content = "Task 4" />
             <ListBoxItem Content = "Task 5" />
         </ListBox>
-        <Label  Grid.Column="1" Grid.Row="1" Margin="10,5" Content="Title" AutomationProperties.IsColumnHeader="True"/>
+
+        <Label  Grid.Column="1" Grid.Row="1" Margin="10,5" Content="{Binding Title}"  AutomationProperties.IsColumnHeader="True"/>
 
 
         <Border  Grid.RowSpan="2" Grid.Column="1" Grid.Row="2" Style="{StaticResource box}">
-            <TextBlock TextWrapping = "Wrap" Text="Description:" />
+            <TextBlock TextWrapping = "Wrap" Text="{Binding Description}" />
         </Border>
         <Label   Grid.Column="2" Grid.Row="1"  >Route</Label>
         <Border  Grid.RowSpan="2" Grid.Column="2" Grid.Row="2" Style="{StaticResource box}">
@@ -110,7 +111,7 @@
         </Border>
 
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Style="{StaticResource box}">
-            <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding record}" >
+            <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding Record}" AutoGenerateColumns="False">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#232323"/>
@@ -118,16 +119,14 @@
                         <Setter Property="BorderThickness" Value="0,0,1,2"/>
                         <Setter Property="BorderBrush" Value="White"/>
                         <Setter Property="Foreground" Value="White"/>
-
                     </Style>
                 </DataGrid.Resources>
-
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date and Time" Binding="{Binding date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}" Width="150"/>
-                    <DataGridTextColumn Header="Duration" Binding="{Binding duration}" Width="150"/>
-                    <DataGridTextColumn Header="Difficulty" Binding="{Binding difficulty}" Width="150"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding rating}" Width="150"/>
-                    <DataGridTextColumn Header="Comment" Binding="{Binding comment}" Width="*"/>
+                    <DataGridTextColumn Header="Date and Time" Binding="{Binding Date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}" Width="150"/>
+                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="150"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="150"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="150"/>
+                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

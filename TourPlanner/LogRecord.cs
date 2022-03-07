@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace TourPlanner
 {
+    public class Task
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public List<LogRecord> LogRecords { get; set; }
+    }
     public class LogRecord
     {
-
-        public string recordID { get; set; }
-        public DateTime date { get; set; }
-        public string duration { get; set; }        //days
-        public string difficulty { get; set; }      //from one one to five
-        public string rating { get; set; }          //five star rating
-        public string comment { get; set; }
+        public LogRecord(DateTime date, string durration, string difficulty, string rating, string comment)
+        {
+            Date = date;
+            Duration = durration;
+            Difficulty = difficulty;
+            Rating = rating;
+            Comment = comment;
+        }
+        // public string recordID { get; set; }
+        public DateTime Date { get; set; }
+        public string Duration { get; set; }        //days
+        public string Difficulty { get; set; }      //from one one to five
+        public string Rating { get; set; }          //five star rating
+        public string Comment { get; set; }
 
 
     }
