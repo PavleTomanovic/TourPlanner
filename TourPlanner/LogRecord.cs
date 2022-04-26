@@ -28,7 +28,5 @@ namespace TourPlanner
         public string Difficulty { get; set; }      //from one one to five
         public string Rating { get; set; }          //five star rating
         public string Comment { get; set; }
-
-
     }
 }

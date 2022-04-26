@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SWEN>
+  <Database>
+    <Source></Source>
+    <InitialCatalog></InitialCatalog>
+    <UserName></UserName>
+    <Password></Password>
+  </Database>
+  <HttpRequest>
+	<Url>http://www.mapquestapi.com/directions/v2/route</Url>
+	<Key>K0JVN5xNvWjQcUkc0Du1DhgaVnx4bGsC</Key>
+  </HttpRequest>
+</SWEN>
