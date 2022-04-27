@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using TourPlanner.BussinesLayer;
 using System.Data;
+using TourPlanner.DTO;
+using TourPlanner.Util;
 
 namespace TourPlanner.DataAccessLayer
 {
@@ -22,6 +24,7 @@ namespace TourPlanner.DataAccessLayer
             }
         }
 
+        //CONNECTION
         public SqlConnection Connect()
         {
             try
@@ -49,8 +52,6 @@ namespace TourPlanner.DataAccessLayer
                 throw new Exception("Datenbankverbindung konnte nicht erstellt werden: \n" + ex.Message);
             }
         }
-
-
         public SqlConnection Connection()
         {
             if (connection != null && connection.State == ConnectionState.Open)
@@ -62,8 +63,6 @@ namespace TourPlanner.DataAccessLayer
                 return Connect();
             }
         }
-
-
         public void closeConnection()
         {
             if (connection != null && connection.State == ConnectionState.Open)
@@ -73,6 +72,106 @@ namespace TourPlanner.DataAccessLayer
                     connection.Close();
                 }
                 catch (Exception) { }
+            }
+        }
+
+        //FUNCTIONS
+
+
+        public void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", HttpResponseDTO.Route.Name);
+                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Description);
+                    command.Parameters.AddWithValue("@P3", HttpResponseDTO.Route.From);
+                    command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
+                    command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
+                    command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
+                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime.ToString());
+                    command.Parameters.AddWithValue("@P8", imageUrl);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl, string routeId)
+        {
+
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", HttpResponseDTO.Route.Name);
+                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Description);
+                    command.Parameters.AddWithValue("@P3", HttpResponseDTO.Route.From);
+                    command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
+                    command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
+                    command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
+                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime.ToString());
+                    command.Parameters.AddWithValue("@P8", imageUrl);
+                    command.Parameters.AddWithValue("@P9", routeId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public void ExecuteDeleteRoute(string query, string tourId)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", tourId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
             }
         }
     }

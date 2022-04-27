@@ -11,6 +11,6 @@ namespace TourPlanner.DataAccessLayer
     public interface IHttpRequest
     {
         HttpResponseDTO GetRoutes(HttpDTO httpDTO);
-        FileInfo GetRouteImage(HttpDTO httpDTO);
+        string GetRouteImage(HttpDTO httpDTO);
     }
 }

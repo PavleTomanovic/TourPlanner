@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SWEN>
   <Database>
-    <Source></Source>
-    <InitialCatalog></InitialCatalog>
-    <UserName></UserName>
-    <Password></Password>
+      <Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
+      <InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
+      <UserName>9/awpxXVgKRQqP1e43atfw==</UserName>
+	  <Password>QNE5pr0wOWWmfCxjmaM38A==</Password>
   </Database>
   <HttpRequest>
-	<Url>http://www.mapquestapi.com/directions/v2/route</Url>
-	<Key>K0JVN5xNvWjQcUkc0Du1DhgaVnx4bGsC</Key>
+	  <Url>nbP0zpyz1fFJvgXDQv7FEoWLWT6CF0JCMm1YRXfccMsbQV+y0CXFDHw0rQ7CBlhs</Url>
+	  <MapUrl>iz11KDnXvN9zZESwpfuhY0AX/e1c5Yui1h5USs1JNF4F4vTl54eDio6sHDnoGPEA</MapUrl>
+	  <Key>/Nfd/4r1qkv0bQSU4hXD3LAI8ZgiwptcIKvpAq/cvsCRTqZfr2zIUw==</Key>
   </HttpRequest>
+  <Sql>
+	  <Insert>INSERT INTO [TourPlanner].[dbo].[Tour_Table] ([TourName], [TourDescription], [TourFrom], [TourTo], [TourTransport], [TourDistance], [TourTime], [TourImage]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8);</Insert>
+	  <SelectAll>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAll>
+	  <Delete>DELETE FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</Delete>
+	  <Update>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourName] = @P1, [TourDescription] = @P2, [TourFrom] = @P3, [TourTo] = @P4, [TourTransport] = @P5, [TourDistance] = @P6, [TourTime] = @P7, [TourImage] = @P8 WHERE [TourId] = @P9</Update>
+  </Sql>
 </SWEN>

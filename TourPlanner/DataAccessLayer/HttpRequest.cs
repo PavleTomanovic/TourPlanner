@@ -35,27 +35,24 @@ namespace TourPlanner.DataAccessLayer
                 throw new Exception("GetRoutes function not working");
                 return responseDTO;
             }
-            
         }
 
-        public FileInfo GetRouteImage(HttpDTO httpDTO)
+        public string GetRouteImage(HttpDTO httpDTO)
         {
-            
             try
             {
                 using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
                 {
-                    client.BaseAddress = new Uri("https://open.mapquestapi.com/staticmap/v5/map");
+                    client.BaseAddress = new Uri(httpDTO.MapUrl);
                     HttpResponseMessage response = client.GetAsync("?start=" + httpDTO.From + "&end=" + httpDTO.To + "&routeArc=true&size=600,400@2x&key=" + httpDTO.Key).Result;
                     response.EnsureSuccessStatusCode();
 
                     byte[] result = response.Content.ReadAsByteArrayAsync().Result;
                     Console.WriteLine(result);
-                    string image = @"C:\Temp\TourImages\image" + DateTime.Now.ToString("hhmmssffffff") + ".jpg";
+                    string image = @"C:\Temp\TourPlanner\TourImages\image" + DateTime.Now.ToString("hhmmssffffff") + ".jpg";
                     File.WriteAllBytes(image, result);
-                    FileInfo imageUrl = new FileInfo(image);
 
-                    return imageUrl;
+                    return image;
                 }
             }
             catch

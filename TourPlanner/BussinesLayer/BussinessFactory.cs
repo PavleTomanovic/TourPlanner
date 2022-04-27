@@ -15,6 +15,7 @@ namespace TourPlanner.BussinesLayer
         private static BussinessFactory instance = new BussinessFactory();
         public DatabaseDTO DatabaseDTO { get; set; }
         public HttpDTO HttpDTO { get; set; }
+        public SqlDTO SqlDTO { get; set; }
 
         public BussinessFactory()
         {
@@ -35,6 +36,8 @@ namespace TourPlanner.BussinesLayer
         private void readValues()
         {
             readDatabase();
+            readHttp();
+            readSql();
         }
         private void readDatabase()
         {
@@ -51,7 +54,18 @@ namespace TourPlanner.BussinesLayer
             HttpDTO = new HttpDTO();
 
             HttpDTO.Url = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/HttpRequest/Url"));
+            HttpDTO.MapUrl = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/HttpRequest/MapUrl"));
             HttpDTO.Key = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/HttpRequest/Key"));
+        }
+
+        private void readSql()
+        {
+            SqlDTO = new SqlDTO();
+
+            SqlDTO.Insert = xmlReader.getSingleNodeString("SWEN/Sql/Insert");
+            SqlDTO.SelectAll = xmlReader.getSingleNodeString("SWEN/Sql/SelectAll");
+            SqlDTO.Delete = xmlReader.getSingleNodeString("SWEN/Sql/Delete");
+            SqlDTO.Update = xmlReader.getSingleNodeString("SWEN/Sql/Update");
         }
 
         public static BussinessFactory Instance
