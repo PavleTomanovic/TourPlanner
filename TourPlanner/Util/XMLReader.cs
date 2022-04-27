@@ -16,44 +16,6 @@ namespace TourPlanner.Util
             this.doc = new XmlDocument();
             this.doc.Load(xmlPath);
         }
-
-        public string getElement(string element)
-        {
-            XmlNodeList elementsByTagName = this.doc.DocumentElement.GetElementsByTagName(element);
-
-            if (elementsByTagName.Count != 1)
-            {
-                return null;
-            }
-
-            return elementsByTagName[0].InnerXml;
-        }
-
-        public string getAttribute(string element, string attribute)
-        {
-            XmlNodeList elementsByTagName = this.doc.DocumentElement.GetElementsByTagName(element);
-
-            if (elementsByTagName.Count != 1)
-            {
-                return null;
-            }
-
-            return elementsByTagName[0].Attributes[attribute].Value;
-        }
-
-        public XmlNodeList getElements(string element)
-        {
-            XmlNodeList elementsByTagName = this.doc.DocumentElement.GetElementsByTagName(element);
-
-
-            if (elementsByTagName.Count < 1)
-            {
-                return null;
-            }
-
-            return elementsByTagName;
-        }
-
         public string getSingleNodeString(string element)
         {
             XmlNode node = this.doc.SelectSingleNode(element);
@@ -70,20 +32,5 @@ namespace TourPlanner.Util
 
             return node.InnerText;
         }
-
-        public int getSingleNodeInt(string element)
-        {
-            try
-            {
-                XmlNode node = this.doc.SelectSingleNode(element);
-                return Int32.Parse(node.InnerXml);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("XML Fehler beim Einlesen von " + element + "\n" + e.Message);
-            }
-        }
-
-        
     }
 }

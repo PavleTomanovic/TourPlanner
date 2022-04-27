@@ -28,13 +28,11 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.pdb
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.AssemblyReference.cache
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Task_Overview.g.cs
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.cache
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.lref
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.baml
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\Task_Overview.baml
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.g.resources
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfoInputs.cache
@@ -46,3 +44,14 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.g.cs
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
