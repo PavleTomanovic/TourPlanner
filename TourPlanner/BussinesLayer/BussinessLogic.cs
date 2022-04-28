@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TourPlanner.DataAccessLayer;
 using TourPlanner.DTO;
 using TourPlanner.Util;
+using TourPlanner.Documents;
 
 namespace TourPlanner.BussinesLayer
 {
@@ -17,10 +18,11 @@ namespace TourPlanner.BussinesLayer
         private IDatabaseConnection conn;
         private IHttpRequest req;
         private IDocumentCreation doc;
+        private IImportExport impexp;
 
         public void CreateRoute(string from, string to, string name, string description, string transport)
         {
-            HttpDTO httpDTO = new HttpDTO();
+            HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
             HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
             httpResponseDTO.Route.Name = name;
@@ -40,7 +42,7 @@ namespace TourPlanner.BussinesLayer
 
         public void ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
         {
-            HttpDTO httpDTO = new HttpDTO();
+            HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
             HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
             httpResponseDTO.Route.Name = name;
@@ -97,7 +99,7 @@ namespace TourPlanner.BussinesLayer
 
         public void CreateRouteReport(string routeId)
         {
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRouteReport, routeId);
+            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -125,7 +127,7 @@ namespace TourPlanner.BussinesLayer
         }
         public void CreateSummarizeReport(string routeId)
         {
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRouteReport, routeId);
+            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -153,6 +155,43 @@ namespace TourPlanner.BussinesLayer
                 {
                     LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 }
+            }
+        }
+
+        public void ImportRouteFromFile(string filename)
+        {
+            FileInfo file = new FileInfo(filename);
+
+            if(file.Extension != "xml")
+            {
+                LoggerToFile.LogError("ImportFromFile: File is not in right format");
+            }
+            else
+            {
+                HttpResponseDTO httpResponseDTO = impexp.ImportFile(filename);
+                conn.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+            }
+        }
+
+        public void ExportRouteToFile(string filename, string routeId)
+        {
+            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+
+            foreach(DataRow row in dataTable.Rows)
+            {
+                HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
+
+                httpResponseDTO.Route.Id = row["TourId"].ToString();
+                httpResponseDTO.Route.Name = row["TourName"].ToString();
+                httpResponseDTO.Route.Description = row["TourDescription"].ToString();
+                httpResponseDTO.Route.From = row["TourFrom"].ToString();
+                httpResponseDTO.Route.To = row["TourTo"].ToString();
+                httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
+                httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
+                httpResponseDTO.Route.FormattedTime = row["TourTime"].ToString();
+                httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
+
+                impexp.ExportFile(filename, httpResponseDTO);
             }
         }
     }

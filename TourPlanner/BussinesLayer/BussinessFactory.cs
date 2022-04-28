@@ -69,7 +69,7 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.InsertLog = xmlReader.getSingleNodeString("SWEN/Sql/InsertLog");
             SqlDTO.DeleteLog = xmlReader.getSingleNodeString("SWEN/Sql/DeleteLog");
             SqlDTO.UpdateLog = xmlReader.getSingleNodeString("SWEN/Sql/UpdateLog");
-            SqlDTO.SelectRouteReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectRouteReport");
+            SqlDTO.SelectRoute = xmlReader.getSingleNodeString("SWEN/Sql/SelectRoute");
             SqlDTO.SelectLogReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectLogReport");
         }
 

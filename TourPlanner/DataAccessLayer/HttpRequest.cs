@@ -48,7 +48,6 @@ namespace TourPlanner.DataAccessLayer
                     response.EnsureSuccessStatusCode();
 
                     byte[] result = response.Content.ReadAsByteArrayAsync().Result;
-                    Console.WriteLine(result);
                     string image = @"C:\Temp\TourPlanner\TourImages\image" + DateTime.Now.ToString("hhmmssffffff") + ".jpg";
                     File.WriteAllBytes(image, result);
 
