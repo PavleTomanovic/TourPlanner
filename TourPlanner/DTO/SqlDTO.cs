@@ -12,5 +12,10 @@ namespace TourPlanner.DTO
         public string? SelectAll { get; set; }
         public string? Delete { get; set; }
         public string? Update { get; set; }
+        public string? InsertLog { get; set; }
+        public string? DeleteLog { get; set; }
+        public string? UpdateLog { get; set; }
+        public string? SelectRouteReport { get; set; }
+        public string? SelectLogReport { get; set; }
     }
 }

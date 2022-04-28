@@ -78,7 +78,7 @@ namespace TourPlanner.DataAccessLayer
         //FUNCTIONS
 
 
-        public void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl)
+        public void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO)
         {
             SqlCommand command = null;
 
@@ -96,7 +96,7 @@ namespace TourPlanner.DataAccessLayer
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
                     command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
                     command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime.ToString());
-                    command.Parameters.AddWithValue("@P8", imageUrl);
+                    command.Parameters.AddWithValue("@P8", HttpResponseDTO.Route.ImageUrl);
 
                     int result = command.ExecuteNonQuery();
                 }
@@ -112,7 +112,7 @@ namespace TourPlanner.DataAccessLayer
             }
         }
 
-        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl, string routeId)
+        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO)
         {
 
             SqlCommand command = null;
@@ -130,9 +130,9 @@ namespace TourPlanner.DataAccessLayer
                     command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
                     command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
-                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime.ToString());
-                    command.Parameters.AddWithValue("@P8", imageUrl);
-                    command.Parameters.AddWithValue("@P9", routeId);
+                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime);
+                    command.Parameters.AddWithValue("@P8", HttpResponseDTO.Route.ImageUrl);
+                    command.Parameters.AddWithValue("@P9", HttpResponseDTO.Route.Id);
 
                     int result = command.ExecuteNonQuery();
                 }
@@ -170,6 +170,126 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public void ExecuteInsertLog(string query, TourLogDTO tourLogDTO, string routeId)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", tourLogDTO.DateTime);
+                    command.Parameters.AddWithValue("@P2", tourLogDTO.Comment);
+                    command.Parameters.AddWithValue("@P3", tourLogDTO.Difficulty);
+                    command.Parameters.AddWithValue("@P4", tourLogDTO.TotalTime);
+                    command.Parameters.AddWithValue("@P5", tourLogDTO.Rating);
+                    command.Parameters.AddWithValue("@P6", routeId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public void ExecuteModifyLog(string query, TourLogDTO tourLogDTO)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", tourLogDTO.Comment);
+                    command.Parameters.AddWithValue("@P2", tourLogDTO.Difficulty);
+                    command.Parameters.AddWithValue("@P3", tourLogDTO.TotalTime);
+                    command.Parameters.AddWithValue("@P4", tourLogDTO.Rating);
+                    command.Parameters.AddWithValue("@P5", tourLogDTO.LogId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public void ExecuteDeleteLog(string query, string logId)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", logId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
+        public DataTable ExecuteSelect(string query, string id)
+        {
+            SqlDataReader reader = null;
+            SqlCommand command = null;
+            DataTable results = null;
+
+            try
+            {
+                results = new DataTable("Results");
+                command = new SqlCommand(query, Instance.Connection());
+                command.Parameters.AddWithValue("@P1", id);
+                reader = command.ExecuteReader();
+                results.Load(reader);
+                return results;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return results;
+            }
+            finally
+            {
+                try { reader.Close(); }
+                catch { }
+
                 try { command.Dispose(); }
                 catch { }
             }

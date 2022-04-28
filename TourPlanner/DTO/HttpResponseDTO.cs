@@ -15,14 +15,16 @@ namespace TourPlanner.DTO
 
     public class RouteDTO
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string From { get; set; }
         public string To { get; set; }
         public string Transport { get; set; }
         [JsonProperty("distance")]
-        public float Distance { get; set; }
+        public string Distance { get; set; }
         [JsonProperty("formattedTime")]
         public string FormattedTime { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

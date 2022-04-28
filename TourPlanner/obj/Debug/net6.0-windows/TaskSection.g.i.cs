@@ -69,7 +69,7 @@ namespace TourPlanner {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TourPlanner;component/tasksection.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TourPlanner;V1.0.0.0;component/tasksection.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TaskSection.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

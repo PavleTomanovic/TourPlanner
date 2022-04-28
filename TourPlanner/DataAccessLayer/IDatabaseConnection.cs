@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,12 @@ namespace TourPlanner.DataAccessLayer
         SqlConnection Connect();
         SqlConnection Connection();
         void closeConnection();
-        void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl);
-        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO, string imageUrl, string routeId);
+        void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO);
+        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO);
         void ExecuteDeleteRoute(string query, string tourId);
+        void ExecuteInsertLog(string query, TourLogDTO tourLogDTO, string routeId);
+        void ExecuteDeleteLog(string query, string logId);
+        public void ExecuteModifyLog(string query, TourLogDTO tourLogDTO);
+        DataTable ExecuteSelect(string query, string id);
     }
 }

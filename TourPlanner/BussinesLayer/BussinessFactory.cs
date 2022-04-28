@@ -66,6 +66,11 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.SelectAll = xmlReader.getSingleNodeString("SWEN/Sql/SelectAll");
             SqlDTO.Delete = xmlReader.getSingleNodeString("SWEN/Sql/Delete");
             SqlDTO.Update = xmlReader.getSingleNodeString("SWEN/Sql/Update");
+            SqlDTO.InsertLog = xmlReader.getSingleNodeString("SWEN/Sql/InsertLog");
+            SqlDTO.DeleteLog = xmlReader.getSingleNodeString("SWEN/Sql/DeleteLog");
+            SqlDTO.UpdateLog = xmlReader.getSingleNodeString("SWEN/Sql/UpdateLog");
+            SqlDTO.SelectRouteReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectRouteReport");
+            SqlDTO.SelectLogReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectLogReport");
         }
 
         public static BussinessFactory Instance
