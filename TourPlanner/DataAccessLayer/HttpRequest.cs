@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TourPlanner.DTO;
 using TourPlanner.Util;
+using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.DataAccessLayer
 {
@@ -30,9 +31,9 @@ namespace TourPlanner.DataAccessLayer
                     return responseDTO;
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                throw new Exception("GetRoutes function not working");
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 return responseDTO;
             }
         }
@@ -48,15 +49,16 @@ namespace TourPlanner.DataAccessLayer
                     response.EnsureSuccessStatusCode();
 
                     byte[] result = response.Content.ReadAsByteArrayAsync().Result;
-                    string image = @"C:\Temp\TourPlanner\TourImages\image" + DateTime.Now.ToString("hhmmssffffff") + ".jpg";
+                    string image = BussinessFactory.Instance.DirectoryDTO.ImagesPath + DateTime.Now.ToString("hhmmssffffff") + ".jpg";
                     File.WriteAllBytes(image, result);
 
                     return image;
                 }
             }
-            catch
+            catch (Exception e)
             {
-                throw new Exception("GetRouteImage function not working");
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return null;
             }
         }
     }

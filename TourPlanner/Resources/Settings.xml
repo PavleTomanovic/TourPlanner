@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SWEN>
+  <Directory>
+	  <LogPath>C:\Temp\TourPlanner\Log\</LogPath>
+	  <ReportPath>C:\Temp\TourPlanner\Reports\</ReportPath>
+	  <ImagesPath>C:\Temp\TourPlanner\TourImages\</ImagesPath>
+	  <ExportPath>C:\Temp\TourPlanner\Export\</ExportPath>
+  </Directory>
   <Database>
       <Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
       <InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>

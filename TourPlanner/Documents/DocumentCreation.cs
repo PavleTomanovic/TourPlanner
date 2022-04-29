@@ -15,7 +15,7 @@ namespace TourPlanner.BussinesLayer
     {
         public void RouteReportCreation(HttpResponseDTO HttpResponseDTO)
         {
-            PdfWriter writer = new PdfWriter(@"C:\Temp\TourPlanner\Reports\" + DateTime.Now.ToString("fff") + HttpResponseDTO.Route.Id + "_" + HttpResponseDTO.Route.Name + ".pdf");
+            PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fff") + HttpResponseDTO.Route.Id + "_" + HttpResponseDTO.Route.Name + ".pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
@@ -59,7 +59,7 @@ namespace TourPlanner.BussinesLayer
 
         public void RouteSummarizeReportCreation(double time, double rating, string distance)
         {
-            PdfWriter writer = new PdfWriter(@"C:\Temp\TourPlanner\Reports\" + DateTime.Now.ToString("fffff") + "RouteSummarize" + ".pdf");
+            PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fffff") + "RouteSummarize" + ".pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 

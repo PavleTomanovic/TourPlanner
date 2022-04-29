@@ -16,6 +16,7 @@ namespace TourPlanner.BussinesLayer
         public DatabaseDTO DatabaseDTO { get; set; }
         public HttpDTO HttpDTO { get; set; }
         public SqlDTO SqlDTO { get; set; }
+        public DirectoryDTO DirectoryDTO { get; set; }
 
         public BussinessFactory()
         {
@@ -38,6 +39,7 @@ namespace TourPlanner.BussinesLayer
             readDatabase();
             readHttp();
             readSql();
+            readDirectory();
         }
         private void readDatabase()
         {
@@ -71,6 +73,16 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.UpdateLog = xmlReader.getSingleNodeString("SWEN/Sql/UpdateLog");
             SqlDTO.SelectRoute = xmlReader.getSingleNodeString("SWEN/Sql/SelectRoute");
             SqlDTO.SelectLogReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectLogReport");
+        }
+
+        private void readDirectory()
+        {
+            DirectoryDTO = new DirectoryDTO();
+
+            DirectoryDTO.LogPath = xmlReader.getSingleNodeString("SWEN/Directory/LogPath");
+            DirectoryDTO.ReportPath = xmlReader.getSingleNodeString("SWEN/Directory/ReportPath");
+            DirectoryDTO.ImagesPath = xmlReader.getSingleNodeString("SWEN/Directory/ImagesPath");
+            DirectoryDTO.ExportPath = xmlReader.getSingleNodeString("SWEN/Directory/ExportPath");
         }
 
         public static BussinessFactory Instance

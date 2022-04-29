@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.Util
 {
@@ -11,7 +12,7 @@ namespace TourPlanner.Util
     {
         public static void LogError(string message)
         {
-            string fileName = @"C:\Temp\TourPlanner\Log\" + DateTime.Now.ToString("dd_MM_yyyy") + ".txt";
+            string fileName = BussinessFactory.Instance.DirectoryDTO.LogPath + DateTime.Now.ToString("dd_MM_yyyy") + ".txt";
             StreamWriter file = new StreamWriter(fileName, true);
             file.Write(DateTime.Now + "\t");
             file.WriteLine(message);
