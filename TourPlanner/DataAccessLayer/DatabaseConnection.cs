@@ -294,5 +294,32 @@ namespace TourPlanner.DataAccessLayer
                 catch { }
             }
         }
+
+        public void ExecuteFavorite(string query, string routeId)
+        {
+            SqlCommand command = null;
+
+            try
+            {
+                using (command = Connection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@P1", routeId);
+
+                    int result = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+            }
+            finally
+            {
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
     }
 }

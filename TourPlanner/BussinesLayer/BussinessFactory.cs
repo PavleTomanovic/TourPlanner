@@ -22,10 +22,10 @@ namespace TourPlanner.BussinesLayer
         {
             try
             {
-                string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+                string? path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
                 string file = new Uri(path + @"\Resource\" + "Settings.xml").LocalPath;
                 xmlReader = new XMLReader(file);
-                readValues();
+                ReadValues();
             }
             catch (Exception e)
             {
@@ -34,14 +34,14 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        private void readValues()
+        private void ReadValues()
         {
-            readDatabase();
-            readHttp();
-            readSql();
-            readDirectory();
+            ReadDatabase();
+            ReadHttp();
+            ReadSql();
+            ReadDirectory();
         }
-        private void readDatabase()
+        private void ReadDatabase()
         {
             DatabaseDTO = new DatabaseDTO();
 
@@ -51,7 +51,7 @@ namespace TourPlanner.BussinesLayer
             DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database/Password"));
         }
 
-        private void readHttp()
+        private void ReadHttp()
         {
             HttpDTO = new HttpDTO();
 
@@ -60,7 +60,7 @@ namespace TourPlanner.BussinesLayer
             HttpDTO.Key = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/HttpRequest/Key"));
         }
 
-        private void readSql()
+        private void ReadSql()
         {
             SqlDTO = new SqlDTO();
 
@@ -68,6 +68,7 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.SelectAll = xmlReader.getSingleNodeString("SWEN/Sql/SelectAll");
             SqlDTO.Delete = xmlReader.getSingleNodeString("SWEN/Sql/Delete");
             SqlDTO.Update = xmlReader.getSingleNodeString("SWEN/Sql/Update");
+            SqlDTO.UpdateFavorite = xmlReader.getSingleNodeString("SWEN/Sql/UpdateFavorite");
             SqlDTO.InsertLog = xmlReader.getSingleNodeString("SWEN/Sql/InsertLog");
             SqlDTO.DeleteLog = xmlReader.getSingleNodeString("SWEN/Sql/DeleteLog");
             SqlDTO.UpdateLog = xmlReader.getSingleNodeString("SWEN/Sql/UpdateLog");
@@ -75,7 +76,7 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.SelectLogReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectLogReport");
         }
 
-        private void readDirectory()
+        private void ReadDirectory()
         {
             DirectoryDTO = new DirectoryDTO();
 

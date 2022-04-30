@@ -15,11 +15,12 @@ namespace TourPlanner.DataAccessLayer
         SqlConnection Connection();
         void closeConnection();
         void ExecuteInsertRoute(string query, HttpResponseDTO HttpResponseDTO);
-        public void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO);
+        void ExecuteUpdateRoute(string query, HttpResponseDTO HttpResponseDTO);
         void ExecuteDeleteRoute(string query, string tourId);
         void ExecuteInsertLog(string query, TourLogDTO tourLogDTO, string routeId);
         void ExecuteDeleteLog(string query, string logId);
-        public void ExecuteModifyLog(string query, TourLogDTO tourLogDTO);
+        void ExecuteModifyLog(string query, TourLogDTO tourLogDTO);
         DataTable ExecuteSelect(string query, string id);
+        void ExecuteFavorite(string query, string routeId);
     }
 }

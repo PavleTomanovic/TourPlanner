@@ -194,5 +194,10 @@ namespace TourPlanner.BussinesLayer
                 impexp.ExportFile(filename, httpResponseDTO);
             }
         }
+
+        public void MakeRouteFavorite(string routeId)
+        {
+            conn.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
+        }
     }
 }

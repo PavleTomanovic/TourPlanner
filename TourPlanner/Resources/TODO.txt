@@ -1,0 +1,26 @@
+﻿	
+	TODO - Angabe
+
+	1. tours are managed in a list
+	2. tour logs are managed in a list
+	3. validated user-input
+	4. full-text search in tour- and tour-log data
+	5. automatically computed tour attributes 
+		a. popularity (derived from number of logs)
+		b. child-friendliness (derived from recorded difficulty values, total times and distance)
+	
+	
+	TODO to finish :)
+	
+	1. MVVM use
+	2. Unit Tests
+	3. Connect logic and UI
+	4. Protocoll
+	5. ? implement at least one design pattern (and mention it in the protocol) ?
+	
+	
+	
+	Credentials to log on database:
+	
+	username: t.samaha
+	password: tahasamaha

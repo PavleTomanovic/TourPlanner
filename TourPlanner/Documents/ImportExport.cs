@@ -13,7 +13,7 @@ namespace TourPlanner.Documents
 {
     public class ImportExport : IImportExport
     {
-        private IHttpRequest req;
+        private IHttpRequest Req;
         private XMLReader xmlReader;
 
         public HttpResponseDTO ImportFile(string filename)
@@ -24,9 +24,9 @@ namespace TourPlanner.Documents
             httpDTO.From = xmlReader.getSingleNodeString("Route/From");
             httpDTO.To = xmlReader.getSingleNodeString("Route/To");
 
-            HttpResponseDTO httpResponseDTO = req.GetRoutes(httpDTO);
+            HttpResponseDTO httpResponseDTO = Req.GetRoutes(httpDTO);
 
-            httpResponseDTO.Route.ImageUrl = req.GetRouteImage(httpDTO);
+            httpResponseDTO.Route.ImageUrl = Req.GetRouteImage(httpDTO);
             httpResponseDTO.Route.Name = xmlReader.getSingleNodeString("Route/Name");
             httpResponseDTO.Route.Description = xmlReader.getSingleNodeString("Route/Description");
             httpResponseDTO.Route.From = xmlReader.getSingleNodeString("Route/From");
