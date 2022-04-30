@@ -21,6 +21,7 @@ namespace TourPlanner.DataAccessLayer
         void ExecuteDeleteLog(string query, string logId);
         void ExecuteModifyLog(string query, TourLogDTO tourLogDTO);
         DataTable ExecuteSelect(string query, string id);
+        DataTable ExecuteSelectAllRoutes(string query);
         void ExecuteFavorite(string query, string routeId);
     }
 }

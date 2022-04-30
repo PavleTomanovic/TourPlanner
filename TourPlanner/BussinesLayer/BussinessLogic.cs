@@ -97,6 +97,35 @@ namespace TourPlanner.BussinesLayer
             conn.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
+        public List<String> SelectAllRoutes()
+        {
+            List<String> routeNames = new List<String>();
+
+            try
+            {
+                DataTable dataTable = conn.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    try
+                    {
+                        //Check what is better here: TourName or TourId
+                        string routeName = row["TourName"].ToString();
+                        routeNames.Add(routeName);
+                    }
+                    catch (Exception e)
+                    {
+                        LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                    }
+                }
+                return routeNames;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return routeNames;
+            }
+        }
+
         public void CreateRouteReport(string routeId)
         {
             DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);

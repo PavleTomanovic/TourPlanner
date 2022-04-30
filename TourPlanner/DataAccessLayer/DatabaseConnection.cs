@@ -265,6 +265,35 @@ namespace TourPlanner.DataAccessLayer
             }
         }
 
+        public DataTable ExecuteSelectAllRoutes(string query)
+        {
+            SqlDataReader reader = null;
+            SqlCommand command = null;
+            DataTable results = null;
+
+            try
+            {
+                results = new DataTable("Results");
+                command = new SqlCommand(query, Instance.Connection());
+                reader = command.ExecuteReader();
+                results.Load(reader);
+                return results;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return results;
+            }
+            finally
+            {
+                try { reader.Close(); }
+                catch { }
+
+                try { command.Dispose(); }
+                catch { }
+            }
+        }
+
         public DataTable ExecuteSelect(string query, string id)
         {
             SqlDataReader reader = null;

@@ -21,6 +21,6 @@
 	
 	
 	Credentials to log on database:
-	
+	Servername: DESKTOP-HGFN4B9\SQLEXPRESS
 	username: t.samaha
 	password: tahasamaha
