@@ -228,5 +228,84 @@ namespace TourPlanner.BussinesLayer
         {
             conn.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
         }
+
+        public string CheckRoutePopularity(string routeId)
+        {
+            string result;
+
+            DataTable dataTableLogs = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+            int totalRows = dataTableLogs.Rows.Count;
+
+            if(totalRows == 0)
+            {
+                result = "Not popular route";
+            }
+            else if(totalRows > 0 && totalRows < 5)
+            {
+                result = "Popular route";
+            }
+            else
+            {
+                result = "Very popular route";
+            }
+
+            return result;
+        }
+
+        public string CheckRouteChildFriendliness(string routeId)
+        {
+            string result = "No info";
+            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                try
+                {
+                    int distance = Int32.Parse(row["TourDistance"].ToString());
+                    int avgTime = 0;
+                    int avgDifficulty = 0;
+
+                    DataTable dataTableLogs = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+                    int totalRows = dataTableLogs.Rows.Count;
+
+                    foreach (DataRow rowLog in dataTableLogs.Rows)
+                    {
+                        avgTime += Int32.Parse(row["TotalTime"].ToString());
+                        avgDifficulty += Int32.Parse(row["Difficulty"].ToString());
+                    }
+
+                    double finalTime = avgTime / totalRows;
+                    double finalDifficulty = avgDifficulty / totalRows;
+
+                    if(distance < 200)
+                    {
+                        if(finalTime < 120)
+                        {
+                            if(finalDifficulty < 5)
+                            {
+                                result = "Child-friendly";
+                            }
+                            else
+                            {
+                                result = "Not child-friendly";
+                            }
+                        }
+                        else
+                        {
+                            result = "Not child-friendly";
+                        }
+                    }
+                    else
+                    {
+                        result = "Not child-friendly";
+                    }
+                }
+                catch (Exception e)
+                {
+                    LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                }
+            }
+            return result;
+        }
     }
 }

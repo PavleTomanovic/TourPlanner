@@ -1,13 +1,10 @@
 ﻿	
 	TODO - Angabe
 
-	1. tours are managed in a list
+	1. tours are managed in a list   (Done, but check what is better RouteName or RouteId)
 	2. tour logs are managed in a list
 	3. validated user-input
 	4. full-text search in tour- and tour-log data
-	5. automatically computed tour attributes 
-		a. popularity (derived from number of logs)
-		b. child-friendliness (derived from recorded difficulty values, total times and distance)
 	
 	
 	TODO to finish :)
