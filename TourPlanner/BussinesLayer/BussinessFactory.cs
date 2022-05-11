@@ -45,10 +45,10 @@ namespace TourPlanner.BussinesLayer
         {
             DatabaseDTO = new DatabaseDTO();
 
-            DatabaseDTO.Source = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database/Source"));
-            DatabaseDTO.InitialCatalog = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database/InitialCatalog"));
-            DatabaseDTO.UserName = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database/UserName"));
-            DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database/Password"));
+            DatabaseDTO.Source = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Source"));
+            DatabaseDTO.InitialCatalog = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/InitialCatalog"));
+            DatabaseDTO.UserName = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/UserName"));
+            DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Password"));
         }
 
         private void ReadHttp()
