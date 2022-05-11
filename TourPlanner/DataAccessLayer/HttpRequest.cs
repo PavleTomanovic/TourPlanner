@@ -45,7 +45,7 @@ namespace TourPlanner.DataAccessLayer
                 using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
                 {
                     client.BaseAddress = new Uri(httpDTO.MapUrl);
-                    HttpResponseMessage response = client.GetAsync("?start=" + httpDTO.From + "&end=" + httpDTO.To + "&routeArc=true&size=600,400@2x&key=" + httpDTO.Key).Result;
+                    HttpResponseMessage response = client.GetAsync("?start=" + httpDTO.From + "&end=" + httpDTO.To + "&size=600,400&key=" + httpDTO.Key).Result;
                     response.EnsureSuccessStatusCode();
 
                     byte[] result = response.Content.ReadAsByteArrayAsync().Result;
