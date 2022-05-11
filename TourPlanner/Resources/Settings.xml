@@ -6,12 +6,18 @@
 	  <ImagesPath>C:\Temp\TourPlanner\TourImages\</ImagesPath>
 	  <ExportPath>C:\Temp\TourPlanner\Export\</ExportPath>
   </Directory>
-  <Database>
+  <Database_Pavle>
       <Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
       <InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
       <UserName>9/awpxXVgKRQqP1e43atfw==</UserName>
 	  <Password>QNE5pr0wOWWmfCxjmaM38A==</Password>
-  </Database>
+  </Database_Pavle>
+  <Database_Taha>
+      <Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
+	  <InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
+	  <UserName></UserName>
+      <Password></Password>
+  </Database_Taha>
   <HttpRequest>
 	  <Url>nbP0zpyz1fFJvgXDQv7FEoWLWT6CF0JCMm1YRXfccMsbQV+y0CXFDHw0rQ7CBlhs</Url>
 	  <MapUrl>iz11KDnXvN9zZESwpfuhY0AX/e1c5Yui1h5USs1JNF4F4vTl54eDio6sHDnoGPEA</MapUrl>

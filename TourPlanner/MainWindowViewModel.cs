@@ -2,11 +2,14 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using TourPlanner.BussinesLayer;
 
 namespace TourPlanner
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        IBussinesLogic bussinesLogic;
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnProbertyChanged(string name)
         {
@@ -14,6 +17,7 @@ namespace TourPlanner
                 return;
             PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+
 
         string title = "No Title";
         string description = "No Description";

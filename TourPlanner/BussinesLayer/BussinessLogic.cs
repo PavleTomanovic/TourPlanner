@@ -13,7 +13,7 @@ using TourPlanner.Documents;
 
 namespace TourPlanner.BussinesLayer
 {
-    public class BussinessLogic
+    public class BussinessLogic : IBussinesLogic
     {
         private IDatabaseConnection conn;
         private IHttpRequest req;
