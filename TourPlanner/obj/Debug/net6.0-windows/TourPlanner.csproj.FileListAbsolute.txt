@@ -76,3 +76,35 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Resources\Settings.xml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.barcodes.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.forms.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.io.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.kernel.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.layout.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.pdfa.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.sign.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.styledxmlparser.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.svg.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.commons.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itextsharp.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml

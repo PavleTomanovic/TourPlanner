@@ -1,33 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SWEN>
-  <Directory>
-	  <LogPath>C:\Temp\TourPlanner\Log\</LogPath>
-	  <ReportPath>C:\Temp\TourPlanner\Reports\</ReportPath>
-	  <ImagesPath>C:\Temp\TourPlanner\TourImages\</ImagesPath>
-	  <ExportPath>C:\Temp\TourPlanner\Export\</ExportPath>
-  </Directory>
-  <Database>
-      <Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
-      <InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
-      <UserName>9/awpxXVgKRQqP1e43atfw==</UserName>
-	  <Password>QNE5pr0wOWWmfCxjmaM38A==</Password>
-  </Database>
-  <HttpRequest>
-	  <Url>nbP0zpyz1fFJvgXDQv7FEoWLWT6CF0JCMm1YRXfccMsbQV+y0CXFDHw0rQ7CBlhs</Url>
-	  <MapUrl>iz11KDnXvN9zZESwpfuhY0AX/e1c5Yui1h5USs1JNF4F4vTl54eDio6sHDnoGPEA</MapUrl>
-	  <Key>/Nfd/4r1qkv0bQSU4hXD3LAI8ZgiwptcIKvpAq/cvsCRTqZfr2zIUw==</Key>
-  </HttpRequest>
-  <Sql>
-	  <Insert>INSERT INTO [TourPlanner].[dbo].[Tour_Table] ([TourName], [TourDescription], [TourFrom], [TourTo], [TourTransport], [TourDistance], [TourTime], [TourImage]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8);</Insert>
-	  <SelectAll>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAll>
-	  <Delete>DELETE FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</Delete>
-	  <Update>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourName] = @P1, [TourDescription] = @P2, [TourFrom] = @P3, [TourTo] = @P4, [TourTransport] = @P5, [TourDistance] = @P6, [TourTime] = @P7, [TourImage] = @P8 WHERE [TourId] = @P9</Update>
-	  <UpdateFavorite>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourFavorite] = 'Yes' WHERE [TourId] = @P1</UpdateFavorite>
-	  <InsertLog>INSERT INTO [TourPlanner].[dbo].[Log_Table] ([DateTime], [Comment], [Difficulty], [TotalTime], [Rating], [RouteId]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6)</InsertLog>
-	  <DeleteLog>DELETE FROM [TourPlanner].[dbo].[Log_Table] WHERE [LogId] = @P1</DeleteLog>
-	  <UpdateLog>UPDATE [TourPlanner].[dbo].[Log_Table] SET [Comment] = @P1, [Difficulty] = @P2, [TotalTime] = @P3, [Rating] = @P4 WHERE [LogId] = @P5</UpdateLog>
-	  <SelectRoute>SELECT * FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</SelectRoute>
-	  <SelectLogReport>SELECT * FROM [TourPlanner].[dbo].[Log_Table] WHERE [RouteId] = @P1</SelectLogReport>
-	  <SelectAllRoutes>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAllRoutes>
-  </Sql>
+	<Directory>
+		<LogPath>C:\Temp\TourPlanner\Log\</LogPath>
+		<ReportPath>C:\Temp\TourPlanner\Reports\</ReportPath>
+		<ImagesPath>C:\Temp\TourPlanner\TourImages\</ImagesPath>
+		<ExportPath>C:\Temp\TourPlanner\Export\</ExportPath>
+	</Directory>
+	<Database_Pavle>
+		<Source>+BbnsMDw5KDdsGGBF3eUeeXkOHo43IouZBFYd3aHiu4=</Source>
+		<InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
+		<UserName>9/awpxXVgKRQqP1e43atfw==</UserName>
+		<Password>QNE5pr0wOWWmfCxjmaM38A==</Password>
+	</Database_Pavle>
+	<Database_Taha>
+		<Source>RdO7FEQ8hF0r1tgZsOERmg==</Source>
+		<InitialCatalog>r339xcYuezNjtnSmyJQL2Q==</InitialCatalog>
+		<UserName></UserName>
+		<Password></Password>
+	</Database_Taha>
+	<HttpRequest>
+		<Url>nbP0zpyz1fFJvgXDQv7FEoWLWT6CF0JCMm1YRXfccMsbQV+y0CXFDHw0rQ7CBlhs</Url>
+		<MapUrl>iz11KDnXvN9zZESwpfuhY0AX/e1c5Yui1h5USs1JNF4F4vTl54eDio6sHDnoGPEA</MapUrl>
+		<Key>/Nfd/4r1qkv0bQSU4hXD3LAI8ZgiwptcIKvpAq/cvsCRTqZfr2zIUw==</Key>
+	</HttpRequest>
+	<Sql>
+		<Insert>INSERT INTO [TourPlanner].[dbo].[Tour_Table] ([TourName], [TourDescription], [TourFrom], [TourTo], [TourTransport], [TourDistance], [TourTime], [TourImage]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6,@P7,@P8);</Insert>
+		<SelectAll>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAll>
+		<Delete>DELETE FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</Delete>
+		<Update>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourName] = @P1, [TourDescription] = @P2, [TourFrom] = @P3, [TourTo] = @P4, [TourTransport] = @P5, [TourDistance] = @P6, [TourTime] = @P7, [TourImage] = @P8 WHERE [TourId] = @P9</Update>
+		<UpdateFavorite>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourFavorite] = 'Yes' WHERE [TourId] = @P1</UpdateFavorite>
+		<InsertLog>INSERT INTO [TourPlanner].[dbo].[Log_Table] ([DateTime], [Comment], [Difficulty], [TotalTime], [Rating], [RouteId]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6)</InsertLog>
+		<DeleteLog>DELETE FROM [TourPlanner].[dbo].[Log_Table] WHERE [LogId] = @P1</DeleteLog>
+		<UpdateLog>UPDATE [TourPlanner].[dbo].[Log_Table] SET [Comment] = @P1, [Difficulty] = @P2, [TotalTime] = @P3, [Rating] = @P4 WHERE [LogId] = @P5</UpdateLog>
+		<SelectRoute>SELECT * FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</SelectRoute>
+		<SelectLogReport>SELECT * FROM [TourPlanner].[dbo].[Log_Table] WHERE [RouteId] = @P1</SelectLogReport>
+		<SelectAllRoutes>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAllRoutes>
+	</Sql>
 </SWEN>

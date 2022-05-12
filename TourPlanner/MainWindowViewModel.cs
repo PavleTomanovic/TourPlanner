@@ -8,8 +8,6 @@ namespace TourPlanner
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        IBussinesLogic bussinesLogic;
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnProbertyChanged(string name)
         {
@@ -57,6 +55,8 @@ namespace TourPlanner
                 new LogRecord(new DateTime(2022, 6, 14, 06, 30, 00),"4","2","4","It's alright")
 
             };
+
+
 
         }
 
