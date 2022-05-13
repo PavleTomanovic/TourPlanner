@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TourPlanner"
+        xmlns:m="clr-namespace:TourPlanner.Models"
+        xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         mc:Ignorable="d"
         Title="NewTourWindow" Height="300" Width="300">
+
+    <Window.Resources>
+        <vm:TourChangesView x:Key="changesView"/>
+    </Window.Resources>
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -16,17 +21,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <Label>Tourname</Label>
-        <TextBox  Grid.Column="1" Margin="0,0,0,10" Text="{Binding Tourname}"/>
-        <Label Grid.Row="1">From:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding From}" />
-        <Label Grid.Row="2">Destination</Label>
-        <TextBox Grid.Row="2" Grid.Column="1"  Margin="0,0,0,10" Text="{Binding Destination}"/>
-        <Label Grid.Row="3">Description</Label>
-        <TextBox Grid.Row="3" Grid.Column="1"  Margin="0,0,0,10" Text="{Binding Description}"/>
-        <Button Grid.Row="4" Grid.Column="1" Click="CreateTourButton" Width="100">Create Tour</Button>
+        <Label Content="Tourname"/>
+        <TextBox  Grid.Column="1" Margin="10,0,0,10" Text="{Binding Tourname, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label  Grid.Row="1" Content="From"/>
+        <TextBox  Grid.Row="1" Grid.Column="1" Margin="10,0,0,10" Text="{Binding From, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="2" Content="Destination"/>
+        <TextBox Grid.Row="2" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding To, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="3" Content="Transport"/>
+        <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Transport, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="4" Content="Description"/>
+        <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Create Tour"  Command="{Binding ParameterCommand}"/>
     </Grid>
 </Window>
