@@ -11,10 +11,18 @@ using TourPlanner.Util;
 
 namespace TourPlanner.Documents
 {
-    public class ImportExport : IImportExport
+    public class ImportExport
     {
-        private IHttpRequest Req;
         private XMLReader xmlReader;
+
+        private static ImportExport instance = new ImportExport();
+        public static ImportExport Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
         public HttpResponseDTO ImportFile(string filename)
         {
@@ -24,9 +32,9 @@ namespace TourPlanner.Documents
             httpDTO.From = xmlReader.getSingleNodeString("Route/From");
             httpDTO.To = xmlReader.getSingleNodeString("Route/To");
 
-            HttpResponseDTO httpResponseDTO = Req.GetRoutes(httpDTO);
+            HttpResponseDTO httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
 
-            httpResponseDTO.Route.ImageUrl = Req.GetRouteImage(httpDTO);
+            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
             httpResponseDTO.Route.Name = xmlReader.getSingleNodeString("Route/Name");
             httpResponseDTO.Route.Description = xmlReader.getSingleNodeString("Route/Description");
             httpResponseDTO.Route.From = xmlReader.getSingleNodeString("Route/From");

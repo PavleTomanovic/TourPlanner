@@ -16,10 +16,6 @@ namespace TourPlanner.BussinesLayer
     public class BussinessLogic
     {
         private static BussinessLogic logicInstance = new BussinessLogic();
-        private IDatabaseConnection conn;
-        private IHttpRequest req;
-        private IDocumentCreation doc;
-        private IImportExport impexp;
 
         public void CreateRoute(string from, string to, string name, string description, string transport)
         {
@@ -49,8 +45,8 @@ namespace TourPlanner.BussinesLayer
             httpDTO.From = from;
             httpDTO.To = to;
 
-            httpResponseDTO = req.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = req.GetRouteImage(httpDTO);
+            httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
+            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
             httpResponseDTO.Route.Name = name;
             httpResponseDTO.Route.Description = description;
@@ -59,12 +55,12 @@ namespace TourPlanner.BussinesLayer
             httpResponseDTO.Route.Transport = transport;
             httpResponseDTO.Route.Id = routeId;
 
-            conn.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+            DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
         }
 
         public void DeleteRoute(string routeId)
         {
-            conn.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
+            DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
         }
 
         public void CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId)
@@ -77,7 +73,7 @@ namespace TourPlanner.BussinesLayer
             tourLogDTO.TotalTime = totalTime;
             tourLogDTO.Rating = rating;
 
-            conn.ExecuteInsertLog(BussinessFactory.Instance.SqlDTO.InsertLog, tourLogDTO, routeId);
+            DatabaseConnection.Instance.ExecuteInsertLog(BussinessFactory.Instance.SqlDTO.InsertLog, tourLogDTO, routeId);
         }
 
         public void ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId)
@@ -90,12 +86,12 @@ namespace TourPlanner.BussinesLayer
             tourLogDTO.Rating = rating;
             tourLogDTO.LogId = logId;
 
-            conn.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
+            DatabaseConnection.Instance.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
         }
 
         public void Deletelog(string logId)
         {
-            conn.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
+            DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
         public List<String> SelectAllRoutes()
@@ -104,7 +100,7 @@ namespace TourPlanner.BussinesLayer
 
             try
             {
-                DataTable dataTable = conn.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
+                DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
                 foreach (DataRow row in dataTable.Rows)
                 {
                     try
@@ -129,7 +125,7 @@ namespace TourPlanner.BussinesLayer
 
         public void CreateRouteReport(string routeId)
         {
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -147,7 +143,7 @@ namespace TourPlanner.BussinesLayer
                     httpResponseDTO.Route.FormattedTime = row["TourTime"].ToString();
                     httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
 
-                    doc.RouteReportCreation(httpResponseDTO);
+                    DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
                 }
                 catch (Exception e)
                 {
@@ -157,7 +153,7 @@ namespace TourPlanner.BussinesLayer
         }
         public void CreateSummarizeReport(string routeId)
         {
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -167,7 +163,7 @@ namespace TourPlanner.BussinesLayer
                     int avgTime = 0;
                     int avgRating = 0;
 
-                    DataTable dataTableLogs = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+                    DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
                     int totalRows = dataTableLogs.Rows.Count;
 
                     foreach(DataRow rowLog in dataTableLogs.Rows)
@@ -179,7 +175,7 @@ namespace TourPlanner.BussinesLayer
                     double finalTime = avgTime / totalRows;
                     double finalRating = avgRating / totalRows;
 
-                    doc.RouteSummarizeReportCreation(finalTime, finalRating, distance);
+                    DocumentCreation.Instance.RouteSummarizeReportCreation(finalTime, finalRating, distance);
                 }
                 catch (Exception e)
                 {
@@ -198,14 +194,14 @@ namespace TourPlanner.BussinesLayer
             }
             else
             {
-                HttpResponseDTO httpResponseDTO = impexp.ImportFile(filename);
-                conn.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+                HttpResponseDTO httpResponseDTO = ImportExport.Instance.ImportFile(filename);
+                DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
             }
         }
 
         public void ExportRouteToFile(string filename, string routeId)
         {
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach(DataRow row in dataTable.Rows)
             {
@@ -221,20 +217,20 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.FormattedTime = row["TourTime"].ToString();
                 httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
 
-                impexp.ExportFile(filename, httpResponseDTO);
+                ImportExport.Instance.ExportFile(filename, httpResponseDTO);
             }
         }
 
         public void MakeRouteFavorite(string routeId)
         {
-            conn.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
+            DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
         }
 
         public string CheckRoutePopularity(string routeId)
         {
             string result;
 
-            DataTable dataTableLogs = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+            DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
             int totalRows = dataTableLogs.Rows.Count;
 
             if(totalRows == 0)
@@ -256,7 +252,7 @@ namespace TourPlanner.BussinesLayer
         public string CheckRouteChildFriendliness(string routeId)
         {
             string result = "No info";
-            DataTable dataTable = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
             foreach (DataRow row in dataTable.Rows)
             {
@@ -266,7 +262,7 @@ namespace TourPlanner.BussinesLayer
                     int avgTime = 0;
                     int avgDifficulty = 0;
 
-                    DataTable dataTableLogs = conn.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+                    DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
                     int totalRows = dataTableLogs.Rows.Count;
 
                     foreach (DataRow rowLog in dataTableLogs.Rows)

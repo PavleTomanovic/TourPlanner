@@ -11,8 +11,16 @@ using TourPlanner.DTO;
 
 namespace TourPlanner.BussinesLayer
 {
-    public class DocumentCreation : IDocumentCreation
+    public class DocumentCreation
     {
+        private static DocumentCreation instance = new DocumentCreation();
+        public static DocumentCreation Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public void RouteReportCreation(HttpResponseDTO HttpResponseDTO)
         {
             PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fff") + HttpResponseDTO.Route.Id + "_" + HttpResponseDTO.Route.Name + ".pdf");
