@@ -34,14 +34,14 @@ namespace TourPlanner.BussinesLayer
                     .SetFontColor(ColorConstants.BLACK);
             document.Add(tableHeader);
             Table table = new Table(UnitValue.CreatePercentArray(8)).UseAllAvailableWidth();
-            table.AddHeaderCell(getHeaderCell("Id"));
-            table.AddHeaderCell(getHeaderCell("Name"));
-            table.AddHeaderCell(getHeaderCell("Description"));
-            table.AddHeaderCell(getHeaderCell("From"));
-            table.AddHeaderCell(getHeaderCell("To"));
-            table.AddHeaderCell(getHeaderCell("Transport"));
-            table.AddHeaderCell(getHeaderCell("Distance"));
-            table.AddHeaderCell(getHeaderCell("Time"));
+            table.AddHeaderCell(GetHeaderCell("Id"));
+            table.AddHeaderCell(GetHeaderCell("Name"));
+            table.AddHeaderCell(GetHeaderCell("Description"));
+            table.AddHeaderCell(GetHeaderCell("From"));
+            table.AddHeaderCell(GetHeaderCell("To"));
+            table.AddHeaderCell(GetHeaderCell("Transport"));
+            table.AddHeaderCell(GetHeaderCell("Distance"));
+            table.AddHeaderCell(GetHeaderCell("Time"));
             table.SetFontSize(14).SetBackgroundColor(ColorConstants.WHITE);
             table.AddCell(HttpResponseDTO.Route.Id);
             table.AddCell(HttpResponseDTO.Route.Name);
@@ -78,9 +78,9 @@ namespace TourPlanner.BussinesLayer
                     .SetFontColor(ColorConstants.BLACK);
             document.Add(tableHeader);
             Table table = new Table(UnitValue.CreatePercentArray(3)).UseAllAvailableWidth();
-            table.AddHeaderCell(getHeaderCell("Average Time"));
-            table.AddHeaderCell(getHeaderCell("Average Rating"));
-            table.AddHeaderCell(getHeaderCell("Distance"));
+            table.AddHeaderCell(GetHeaderCell("Average Time"));
+            table.AddHeaderCell(GetHeaderCell("Average Rating"));
+            table.AddHeaderCell(GetHeaderCell("Distance"));
             table.SetFontSize(14).SetBackgroundColor(ColorConstants.WHITE);
             table.AddCell(time.ToString());
             table.AddCell(rating.ToString());
@@ -90,7 +90,7 @@ namespace TourPlanner.BussinesLayer
             document.Close();
         }
 
-        private static Cell getHeaderCell(String s)
+        private static Cell GetHeaderCell(String s)
         {
             return new Cell().Add(new Paragraph(s)).SetBold().SetBackgroundColor(ColorConstants.GRAY);
         }
