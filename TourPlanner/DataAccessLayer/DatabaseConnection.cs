@@ -11,7 +11,7 @@ using TourPlanner.Util;
 
 namespace TourPlanner.DataAccessLayer
 {
-    public class DatabaseConnection : IDatabaseConnection
+    public class DatabaseConnection
     {
         private static DatabaseConnection instance = new DatabaseConnection();
         private SqlConnection connection;
@@ -107,7 +107,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -143,7 +143,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -170,7 +170,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -202,7 +202,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -233,7 +233,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -260,7 +260,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -286,10 +286,10 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { reader.Close(); }
+                try { reader?.Close(); }
                 catch { }
 
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -316,10 +316,10 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { reader.Close(); }
+                try { reader?.Close(); }
                 catch { }
 
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }
@@ -346,7 +346,7 @@ namespace TourPlanner.DataAccessLayer
             }
             finally
             {
-                try { command.Dispose(); }
+                try { command?.Dispose(); }
                 catch { }
             }
         }

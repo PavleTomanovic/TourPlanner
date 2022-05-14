@@ -13,8 +13,16 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.DataAccessLayer
 {
-    public class HttpRequest : IHttpRequest
+    public class HttpRequest
     {
+        private static HttpRequest instance = new HttpRequest();
+        public static HttpRequest Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public HttpResponseDTO GetRoutes(HttpDTO httpDTO)
         {
             HttpResponseDTO responseDTO = new HttpResponseDTO();

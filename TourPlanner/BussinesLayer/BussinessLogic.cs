@@ -26,19 +26,19 @@ namespace TourPlanner.BussinesLayer
             HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
             HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
+            httpDTO.From = from;
+            httpDTO.To = to;
+
+            httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
+            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
+
             httpResponseDTO.Route.Name = name;
             httpResponseDTO.Route.Description = description;
             httpResponseDTO.Route.From = from;
             httpResponseDTO.Route.To = to;
             httpResponseDTO.Route.Transport = transport;
 
-            httpDTO.From = from;
-            httpDTO.To = to;
-
-            httpResponseDTO = req.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = req.GetRouteImage(httpDTO);
-
-            conn.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+            DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
         }
 
         public void ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
@@ -46,18 +46,18 @@ namespace TourPlanner.BussinesLayer
             HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
             HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
+            httpDTO.From = from;
+            httpDTO.To = to;
+
+            httpResponseDTO = req.GetRoutes(httpDTO);
+            httpResponseDTO.Route.ImageUrl = req.GetRouteImage(httpDTO);
+
             httpResponseDTO.Route.Name = name;
             httpResponseDTO.Route.Description = description;
             httpResponseDTO.Route.From = from;
             httpResponseDTO.Route.To = to;
             httpResponseDTO.Route.Transport = transport;
             httpResponseDTO.Route.Id = routeId;
-
-            httpDTO.From = from;
-            httpDTO.To = to;
-
-            httpResponseDTO = req.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = req.GetRouteImage(httpDTO);
 
             conn.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
         }
