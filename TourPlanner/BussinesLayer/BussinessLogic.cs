@@ -13,8 +13,9 @@ using TourPlanner.Documents;
 
 namespace TourPlanner.BussinesLayer
 {
-    public class BussinessLogic : IBussinesLogic
+    public class BussinessLogic
     {
+        private static BussinessLogic logicInstance = new BussinessLogic();
         private IDatabaseConnection conn;
         private IHttpRequest req;
         private IDocumentCreation doc;
@@ -306,6 +307,13 @@ namespace TourPlanner.BussinesLayer
                 }
             }
             return result;
+        }
+        public static BussinessLogic LogicInstance
+        {
+            get
+            {
+                return logicInstance;
+            }
         }
     }
 }

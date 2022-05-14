@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Commands;
+using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels
 {
@@ -20,6 +21,7 @@ namespace TourPlanner.ViewModels
             this._from = "";
             this._to = "";
             this._description = "";
+            this._transport = "";
             this.ParameterCommand = new ParameterCommand(this);
         }
         public void OnProbertyChanged(string name)
@@ -79,7 +81,7 @@ namespace TourPlanner.ViewModels
             {
                 if (value == _transport)
                     return;
-                _description = value;
+                _transport = value;
                 OnProbertyChanged(nameof(Transport));
             }
         }
@@ -90,6 +92,7 @@ namespace TourPlanner.ViewModels
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
+                BussinessLogic.LogicInstance.CreateRoute(From, To, Tourname, Description, Transport);
                 MessageBox.Show($"Tourname: {Tourname}\nFrom: {From} \nTo: {To} \nDescription: {Description}\nTransport Type: {Transport}");
         }
     }

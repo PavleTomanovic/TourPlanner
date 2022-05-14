@@ -23,7 +23,7 @@ namespace TourPlanner.BussinesLayer
             try
             {
                 string? path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-                string file = new Uri(path + @"\Resource\" + "Settings.xml").LocalPath;
+                string file = new Uri(path + @"\Resources\" + "Settings.xml").LocalPath;
                 xmlReader = new XMLReader(file);
                 ReadValues();
             }

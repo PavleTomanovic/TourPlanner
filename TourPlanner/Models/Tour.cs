@@ -6,12 +6,14 @@ namespace TourPlanner.Models
     {
         private string _tourname;
         private string _from;
+        private string _to;
         private string _destination;
         private string _description;
         public Tour()
         {
             this._tourname = "";
             this._from = "";
+            this._to = "";
             this._destination = "";
             this._description = "";
         }
@@ -44,6 +46,17 @@ namespace TourPlanner.Models
                     return;
                 _from = value;
                 OnProbertyChanged(nameof(From));
+            }
+        }
+        public string To
+        {
+            get => _to;
+            set
+            {
+                if (value == _to)
+                    return;
+                _to = value;
+                OnProbertyChanged(nameof(To));
             }
         }
         public string Destination
