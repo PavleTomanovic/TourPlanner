@@ -1,87 +1,32 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner.Models
 {
-    public class Tour : INotifyPropertyChanged
+    public class Tour : MainWindowViewModel
     {
-        private string _tourname;
-        private string _from;
-        private string _to;
-        private string _destination;
-        private string _description;
-        public Tour()
+        private string _curTourName = string.Empty;
+        public string CurTourName
         {
-            this._tourname = "";
-            this._from = "";
-            this._to = "";
-            this._destination = "";
-            this._description = "";
-        }
-
-
-        public void OnProbertyChanged(string name)
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-
-        public string Tourname
-        {
-            get => _tourname;
+            get { return _curTourName; }
             set
             {
-                if (value == _tourname)
-                    return;
-                _tourname = value;
-                OnProbertyChanged(nameof(Tourname));
+                if (value != this._curTourName)
+                    _curTourName = value;
+                this.OnProbertyChanged("CurTourName");
             }
         }
-        public string From
+        private string _curDescription = string.Empty;
+        public string CurDescription
         {
-            get => _from;
+            get { return _curDescription; }
             set
             {
-                if (value == _from)
-                    return;
-                _from = value;
-                OnProbertyChanged(nameof(From));
+                if (value != this._curDescription)
+                    _curDescription = value;
+                this.OnProbertyChanged("CurDescription");
             }
         }
-        public string To
-        {
-            get => _to;
-            set
-            {
-                if (value == _to)
-                    return;
-                _to = value;
-                OnProbertyChanged(nameof(To));
-            }
-        }
-        public string Destination
-        {
-            get => _destination;
-            set
-            {
-                if (value == _destination)
-                    return;
-                _destination = value;
-                OnProbertyChanged(nameof(Destination));
-            }
-        }
-        public string Description
-        {
-            get => _description;
-            set
-            {
-                if (value == _description)
-                    return;
-                _description = value;
-                OnProbertyChanged(nameof(Description));
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
     }
 }

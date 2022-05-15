@@ -17,7 +17,7 @@ namespace TourPlanner.BussinesLayer
     {
         private static BussinessLogic logicInstance = new BussinessLogic();
 
-        public void CreateRoute(string from, string to, string name, string description, string transport)
+        public void CreateRoute(string name, string from, string to, string transport, string description)
         {
             HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
             HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
@@ -166,7 +166,7 @@ namespace TourPlanner.BussinesLayer
                     DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
                     int totalRows = dataTableLogs.Rows.Count;
 
-                    foreach(DataRow rowLog in dataTableLogs.Rows)
+                    foreach (DataRow rowLog in dataTableLogs.Rows)
                     {
                         avgTime += Int32.Parse(row["TotalTime"].ToString());
                         avgRating += Int32.Parse(row["Rating"].ToString());
@@ -188,7 +188,7 @@ namespace TourPlanner.BussinesLayer
         {
             FileInfo file = new FileInfo(filename);
 
-            if(file.Extension != "xml")
+            if (file.Extension != "xml")
             {
                 LoggerToFile.LogError("ImportFromFile: File is not in right format");
             }
@@ -203,7 +203,7 @@ namespace TourPlanner.BussinesLayer
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
@@ -233,11 +233,11 @@ namespace TourPlanner.BussinesLayer
             DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
             int totalRows = dataTableLogs.Rows.Count;
 
-            if(totalRows == 0)
+            if (totalRows == 0)
             {
                 result = "Not popular route";
             }
-            else if(totalRows > 0 && totalRows < 5)
+            else if (totalRows > 0 && totalRows < 5)
             {
                 result = "Popular route";
             }
@@ -274,11 +274,11 @@ namespace TourPlanner.BussinesLayer
                     double finalTime = avgTime / totalRows;
                     double finalDifficulty = avgDifficulty / totalRows;
 
-                    if(distance < 200)
+                    if (distance < 200)
                     {
-                        if(finalTime < 120)
+                        if (finalTime < 120)
                         {
-                            if(finalDifficulty < 5)
+                            if (finalDifficulty < 5)
                             {
                                 result = "Child-friendly";
                             }

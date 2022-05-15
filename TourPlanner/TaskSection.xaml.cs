@@ -10,6 +10,8 @@ namespace TourPlanner
     /// </summary>
     public partial class TaskSection : Page
     {
+        public static NewTourWindow popup = new NewTourWindow();
+
         public TaskSection()
         {
             InitializeComponent();
@@ -17,9 +19,9 @@ namespace TourPlanner
 
         private void New_Tour(object sender, RoutedEventArgs e)
         {
-            NewTourWindow popup = new NewTourWindow();
             popup.Show();
         }
+
         private void Edit_Tour(object sender, RoutedEventArgs e)
         {
         }

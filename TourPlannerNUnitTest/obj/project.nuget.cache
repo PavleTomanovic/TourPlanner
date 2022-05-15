@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "WdTbW0Q2/VXpx3f3DluTXwlSSAsSE+eDldKz8UrFiEOGklnwIpXH5MR9KFm41M3OPv1SKy4lPJwcdcMLMGpTRA==",
+  "dgSpecHash": "05LD/T7gd0pw9Ws7Mos9699T005QEH8sZOCyo9Aj7IvBwBZyDbixK7Ozu4V+oXc1OtDOr8YcP2tNaAzWNOqQCw==",
   "success": false,
-  "projectFilePath": "C:\\Users\\p.tomanovic\\source\\repos\\TourPlanner\\TourPlannerNUnitTest\\TourPlannerNUnitTest.csproj",
+  "projectFilePath": "C:\\Taha\\Computer Science\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\TourPlannerNUnitTest\\TourPlannerNUnitTest.csproj",
   "expectedPackageFiles": [],
   "logs": [
     {
       "code": "NU1201",
       "level": "Error",
-      "message": "Project TourPlanner is not compatible with net6.0 (.NETCoreApp,Version=v6.0). Project TourPlanner supports: net6.0-windows7.0 (.NETCoreApp,Version=v6.0)",
+      "message": "Das Projekt TourPlanner ist nicht mit net6.0 (.NETCoreApp,Version=v6.0) kompatibel. Das Projekt TourPlanner unterstützt Folgendes: net6.0-windows7.0 (.NETCoreApp,Version=v6.0)",
       "libraryId": "TourPlanner",
       "targetGraphs": [
         "net6.0"

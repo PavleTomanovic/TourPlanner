@@ -92,8 +92,11 @@ namespace TourPlanner.ViewModels
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
-                BussinessLogic.LogicInstance.CreateRoute(From, To, Tourname, Description, Transport);
-                MessageBox.Show($"Tourname: {Tourname}\nFrom: {From} \nTo: {To} \nDescription: {Description}\nTransport Type: {Transport}");
+            {
+                BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Description, Transport);
+                TaskSection.popup.Close();
+                MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created");
+            }
         }
     }
 }
