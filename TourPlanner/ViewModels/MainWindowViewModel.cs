@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels
 {
@@ -20,11 +23,11 @@ namespace TourPlanner.ViewModels
              //Instatiate a new Task object and give it information
 
              Record = new ObservableCollection<LogRecord>()
-             {
-                 new LogRecord(new DateTime(2022, 12, 20, 12, 45, 00),"6","1","5","I have to go there again!"),
-                 new LogRecord(new DateTime(2022, 6, 14, 06, 30, 00),"4","2","4","It's alright")
+              {
+                  new LogRecord(new DateTime(2022, 12, 20, 12, 45, 00),"6","1","5","I have to go there again!"),
+                  new LogRecord(new DateTime(2022, 6, 14, 06, 30, 00),"4","2","4","It's alright")
 
-             };
+              };
 
          }*/
     }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-
+using TourPlanner.Models;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner
 {
@@ -31,6 +32,12 @@ namespace TourPlanner
         private void Exit_Program(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        private void itemBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (ListBox)sender;
+            var name = item.SelectedItem as string;
+            MessageBox.Show(name + "\n");
         }
     }
 }
