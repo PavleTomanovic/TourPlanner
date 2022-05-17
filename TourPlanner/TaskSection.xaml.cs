@@ -33,11 +33,5 @@ namespace TourPlanner
         {
             Application.Current.Shutdown();
         }
-        private void itemBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = (ListBox)sender;
-            var name = item.SelectedItem as string;
-            MessageBox.Show(name + "\n");
-        }
     }
 }

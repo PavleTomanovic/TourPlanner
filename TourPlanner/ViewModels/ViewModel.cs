@@ -26,7 +26,7 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this._curTourName)
                     _curTourName = value;
-                this.OnProbertyChanged(CurTourName);
+                this.OnProbertyChanged(nameof(CurTourName));
             }
         }
         public string CurDescription
@@ -36,16 +36,9 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this._curDescription)
                     _curDescription = value;
-                this.OnProbertyChanged(CurDescription);
+                this.OnProbertyChanged(nameof(CurDescription));
             }
         }
-        /* public override string ToString()
-         {
-             string returnString = string.Empty;
-             if (this._curTourName != string.Empty)
-                 returnString = String.Format(this._curTourName);
-             return returnString;
-         }*/
         private string selectedTourObject;
         public string SelectedTourObject
         {
@@ -54,7 +47,8 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this.selectedTourObject)
                     selectedTourObject = value;
-                this.OnProbertyChanged("SelectedTourObject");
+                CurTourName = selectedTourObject;
+                this.OnProbertyChanged(nameof(SelectedTourObject));
             }
         }
         private ObservableCollection<string> tourObjectCollection;
@@ -65,7 +59,7 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this.tourObjectCollection)
                     tourObjectCollection = value;
-                this.OnProbertyChanged("TourObjectCollection");
+                this.OnProbertyChanged(nameof(TourObjectCollection));
             }
         }
         public void setTours()
@@ -76,8 +70,8 @@ namespace TourPlanner.ViewModels
         }
         private Action<string> setTourObjectCollection()
         {
-            this.tourObjectCollection = new ObservableCollection<string>();
-            return f => this.tourObjectCollection.Add(f);
+            this.TourObjectCollection = new ObservableCollection<string>();
+            return f => this.TourObjectCollection.Add(f);
         }
 
     }
