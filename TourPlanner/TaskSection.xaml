@@ -58,8 +58,8 @@
         <Menu  Grid.Row="0" Grid.ColumnSpan="4" >
             <MenuItem Header="_Tour" >
                 <MenuItem Header="_New" Click="New_Tour"/>
-                <MenuItem Header="_Edit"/>
-                <MenuItem Header="_Delete" />
+                <MenuItem Header="_Edit" Click="Edit_Tour"/>
+                <MenuItem Header="_Delete" Click="Delete_Tour"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Program"/>
             </MenuItem>

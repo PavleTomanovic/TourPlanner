@@ -6,7 +6,7 @@
         xmlns:m="clr-namespace:TourPlanner.Models"
         xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         mc:Ignorable="d"
-        Title="NewTourWindow" Height="300" Width="300">
+        Title="Create Tour" Height="300" Width="300">
 
     <Window.Resources>
         <vm:TourChangesView x:Key="changesView"/>

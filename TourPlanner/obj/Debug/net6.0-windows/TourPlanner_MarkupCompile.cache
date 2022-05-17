@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\App.xaml
-3869084198
+4-1154816195
 
-28-2018291729
+30-1483763445
 217-1702110175
-MainWindow.xaml;NewTourWindow.xaml;TaskSection.xaml;
+EditTourWindow.xaml;MainWindow.xaml;NewTourWindow.xaml;TaskSection.xaml;
 
 False
 

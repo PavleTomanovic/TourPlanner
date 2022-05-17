@@ -110,3 +110,5 @@ C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\ob
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.baml

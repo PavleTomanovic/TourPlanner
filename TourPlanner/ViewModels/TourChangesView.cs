@@ -23,6 +23,7 @@ namespace TourPlanner.ViewModels
             this._description = "";
             this._transport = "";
             this.ParameterCommand = new ParameterCommand(this);
+            this.EditCommand = new EditCommand(this);
         }
         public void OnProbertyChanged(string name)
         {
@@ -87,15 +88,42 @@ namespace TourPlanner.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public ParameterCommand ParameterCommand { get; set; }
+        public EditCommand EditCommand { get; set; }
         public void CreateTourButton(object obj)
         {
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
             {
-                BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Description, Transport);
-                TaskSection.popup.Close();
-                MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created");
+                bool createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Description, Transport);
+                if (createTour)
+                {
+                    TaskSection.createPopup.Close();
+                    MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created");
+                }
+                else
+                {
+                    MessageBox.Show($"Tour with the name: {Tourname} already exists!", "Tour could not be created", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        public void EditTourButton(object obj)
+        {
+            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
+                MessageBox.Show("Please complete the form");
+            else
+            {
+                bool createTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Description, Transport, "4");
+                if (createTour)
+                {
+                    TaskSection.editPopup.Close();
+                    MessageBox.Show($"Tour: {Tourname} edited successfully!", "Tour Edit");
+                }
+                else
+                {
+                    MessageBox.Show($"Tour with the name: {Tourname} already exists!", "Tour could not be edited", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

@@ -17,45 +17,67 @@ namespace TourPlanner.BussinesLayer
     {
         private static BussinessLogic logicInstance = new BussinessLogic();
 
-        public void CreateRoute(string name, string from, string to, string transport, string description)
+        public bool CreateRoute(string name, string from, string to, string transport, string description)
         {
-            HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
-            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
+            List<string> routeNames = SelectAllRoutes();
 
-            httpDTO.From = from;
-            httpDTO.To = to;
+            if(routeNames.Contains(name))
+            {
+                return false;
+            }
+            else
+            {
+                HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
+                HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
-            httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
+                httpDTO.From = from;
+                httpDTO.To = to;
 
-            httpResponseDTO.Route.Name = name;
-            httpResponseDTO.Route.Description = description;
-            httpResponseDTO.Route.From = from;
-            httpResponseDTO.Route.To = to;
-            httpResponseDTO.Route.Transport = transport;
+                httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
+                httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
-            DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+                httpResponseDTO.Route.Name = name;
+                httpResponseDTO.Route.Description = description;
+                httpResponseDTO.Route.From = from;
+                httpResponseDTO.Route.To = to;
+                httpResponseDTO.Route.Transport = transport;
+
+                DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+
+                return true;
+            }
         }
 
-        public void ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
+        public bool ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
         {
-            HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
-            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
+            List<string> routeNames = SelectAllRoutes();
 
-            httpDTO.From = from;
-            httpDTO.To = to;
+            if (routeNames.Contains(name))
+            {
+                return false;
+            }
+            else
+            {
+                HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
+                HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
-            httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
+                httpDTO.From = from;
+                httpDTO.To = to;
 
-            httpResponseDTO.Route.Name = name;
-            httpResponseDTO.Route.Description = description;
-            httpResponseDTO.Route.From = from;
-            httpResponseDTO.Route.To = to;
-            httpResponseDTO.Route.Transport = transport;
-            httpResponseDTO.Route.Id = routeId;
+                httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
+                httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
-            DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+                httpResponseDTO.Route.Name = name;
+                httpResponseDTO.Route.Description = description;
+                httpResponseDTO.Route.From = from;
+                httpResponseDTO.Route.To = to;
+                httpResponseDTO.Route.Transport = transport;
+                httpResponseDTO.Route.Id = routeId;
+
+                DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+
+                return true;
+            }
         }
 
         public void DeleteRoute(string routeId)

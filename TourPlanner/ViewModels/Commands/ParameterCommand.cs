@@ -21,9 +21,5 @@ namespace TourPlanner.ViewModels.Commands
         {
             this.ChangesView.CreateTourButton(parameter);
         }
-
-
-
-
     }
 }
