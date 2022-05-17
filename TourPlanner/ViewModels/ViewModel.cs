@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using TourPlanner.BussinesLayer;
 using TourPlanner.Models;
 
@@ -16,6 +18,7 @@ namespace TourPlanner.ViewModels
         public ViewModel()
         {
             setTours();
+            setImage();
         }
         private string _curTourName = string.Empty;
         private string _curDescription = string.Empty;
@@ -74,5 +77,9 @@ namespace TourPlanner.ViewModels
             return f => this.TourObjectCollection.Add(f);
         }
 
+        public void setImage()
+        {
+            string image = BussinessLogic.LogicInstance.loadImage("5");
+        }
     }
 }

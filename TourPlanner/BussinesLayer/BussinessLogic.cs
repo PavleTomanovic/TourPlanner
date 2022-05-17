@@ -326,6 +326,20 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
+
+        public string loadImage(string routeId)
+        {
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+
+            string image = null;
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                image = row["TourImage"].ToString();
+            }
+            return image;
+        }
+
         public static BussinessLogic LogicInstance
         {
             get
