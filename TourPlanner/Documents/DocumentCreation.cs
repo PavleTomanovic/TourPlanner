@@ -50,7 +50,7 @@ namespace TourPlanner.BussinesLayer
             table.AddCell(HttpResponseDTO.Route.To);
             table.AddCell(HttpResponseDTO.Route.Transport);
             table.AddCell(HttpResponseDTO.Route.Distance);
-            table.AddCell(HttpResponseDTO.Route.FormattedTime);
+            table.AddCell(HttpResponseDTO.Route.Time);
             document.Add(table);
 
             Paragraph imageHeader = new Paragraph("Route Image")

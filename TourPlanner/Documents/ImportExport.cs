@@ -150,10 +150,10 @@ namespace TourPlanner.Documents
                 }
 
                 //Time Node
-                if (httpResponseDTO.Route.FormattedTime != null)
+                if (httpResponseDTO.Route.Time != null)
                 {
                     x.WriteStartElement("FormattedTime", null);
-                    x.WriteString((httpResponseDTO.Route.FormattedTime.ToString()));
+                    x.WriteString((httpResponseDTO.Route.Time.ToString()));
                     x.WriteEndElement(); //FormattedTime
                 }
                 else

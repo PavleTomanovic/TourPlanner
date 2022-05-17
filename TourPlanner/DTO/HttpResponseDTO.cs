@@ -23,8 +23,8 @@ namespace TourPlanner.DTO
         public string Transport { get; set; } = string.Empty;
         [JsonProperty("distance")]
         public string Distance { get; set; } = string.Empty;
-        [JsonProperty("formattedTime")]
-        public string FormattedTime { get; set; } = string.Empty;
+        [JsonProperty("time")]
+        public string Time { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
     }
 }

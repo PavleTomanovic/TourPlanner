@@ -140,7 +140,7 @@ namespace TourPlanner.BussinesLayer
                     httpResponseDTO.Route.To = row["TourTo"].ToString();
                     httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
                     httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
-                    httpResponseDTO.Route.FormattedTime = row["TourTime"].ToString();
+                    httpResponseDTO.Route.Time = row["TourTime"].ToString();
                     httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
 
                     DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
@@ -214,7 +214,7 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.To = row["TourTo"].ToString();
                 httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
                 httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
-                httpResponseDTO.Route.FormattedTime = row["TourTime"].ToString();
+                httpResponseDTO.Route.Time = row["TourTime"].ToString();
                 httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
 
                 ImportExport.Instance.ExportFile(filename, httpResponseDTO);

@@ -95,7 +95,7 @@ namespace TourPlanner.DataAccessLayer
                     command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
                     command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
-                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime.ToString());
+                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.Time.ToString());
                     command.Parameters.AddWithValue("@P8", HttpResponseDTO.Route.ImageUrl);
 
                     int result = command.ExecuteNonQuery();
@@ -130,7 +130,7 @@ namespace TourPlanner.DataAccessLayer
                     command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
                     command.Parameters.AddWithValue("@P6", HttpResponseDTO.Route.Distance);
-                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.FormattedTime);
+                    command.Parameters.AddWithValue("@P7", HttpResponseDTO.Route.Time);
                     command.Parameters.AddWithValue("@P8", HttpResponseDTO.Route.ImageUrl);
                     command.Parameters.AddWithValue("@P9", HttpResponseDTO.Route.Id);
 
