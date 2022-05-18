@@ -58,8 +58,8 @@
         <Menu  Grid.Row="0" Grid.ColumnSpan="4" >
             <MenuItem Header="_Tour" >
                 <MenuItem Header="_New" Click="New_Tour"/>
-                <MenuItem Header="_Edit" Click="Edit_Tour"/>
-                <MenuItem Header="_Delete" Click="Delete_Tour"/>
+                <MenuItem Header="_Edit" Click="Edit_Tour" Tag="{Binding CurTourId}"/>
+                <MenuItem Header="_Delete"  Tag="{Binding CurTourId}"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Program"/>
             </MenuItem>
@@ -87,7 +87,7 @@
         </Border>
         <Label   Grid.Column="2" Grid.Row="1"  >Route</Label>
         <Border  Grid.RowSpan="2" Grid.Column="2" Grid.Row="2" Style="{StaticResource box}">
-            <TextBlock TextWrapping = "Wrap"  Text=" Here comes the map!"/>
+            <Image Name="RouteImage" Source="{Binding CurImagePath}"/>
         </Border>
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Style="{StaticResource box}">
             <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding Record}" AutoGenerateColumns="False">

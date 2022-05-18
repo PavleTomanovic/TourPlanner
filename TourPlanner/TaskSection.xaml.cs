@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using TourPlanner.Models;
 using TourPlanner.ViewModels;
 using TourPlanner.BussinesLayer;
+using System.Collections;
 
 namespace TourPlanner
 {

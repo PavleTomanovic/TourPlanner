@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using TourPlanner.BussinesLayer;
 using TourPlanner.Models;
 
@@ -15,13 +10,28 @@ namespace TourPlanner.ViewModels
 
     public class ViewModel : MainWindowViewModel
     {
+        private string _curTourId = string.Empty;
+        private string _curTourName = string.Empty;
+        private string _curDescription = string.Empty;
+        private string _curImagePath = string.Empty;
         public ViewModel()
         {
             setTours();
+<<<<<<< Updated upstream
             //setImage();
+=======
+>>>>>>> Stashed changes
         }
-        private string _curTourName = string.Empty;
-        private string _curDescription = string.Empty;
+        public string CurTourId
+        {
+            get { return _curTourId; }
+            set
+            {
+                if (value != this._curTourId)
+                    _curTourId = value;
+                this.OnProbertyChanged(nameof(CurTourId));
+            }
+        }
         public string CurTourName
         {
             get { return _curTourName; }
@@ -42,6 +52,17 @@ namespace TourPlanner.ViewModels
                 this.OnProbertyChanged(nameof(CurDescription));
             }
         }
+        public string CurImagePath
+        {
+            get { return _curImagePath; }
+            set
+            {
+                if (value != this._curImagePath)
+                    _curImagePath = value;
+                this.OnProbertyChanged(nameof(CurImagePath));
+            }
+        }
+
         private TourPreview selectedTourObject;
         public TourPreview SelectedTourObject
         {
@@ -51,7 +72,9 @@ namespace TourPlanner.ViewModels
                 if (value != this.selectedTourObject)
                     selectedTourObject = value;
                 CurTourName = selectedTourObject.tourName;
-                CurDescription = "TourID: " + selectedTourObject.tourId;
+                CurTourId = selectedTourObject.tourId;
+                CurDescription = "TourID: " + CurTourId;
+                CurImagePath = setImage();
                 this.OnProbertyChanged(nameof(SelectedTourObject));
             }
         }
@@ -63,11 +86,9 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this.tourObjectCollection)
                     tourObjectCollection = value;
-
                 this.OnProbertyChanged(nameof(TourObjectCollection));
             }
         }
-
         public void setTours()
         {
             BussinessLogic bussinessLogic = new BussinessLogic();
@@ -80,9 +101,13 @@ namespace TourPlanner.ViewModels
             return f => this.TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
         }
 
-        public void setImage()
+        public string setImage()
         {
+<<<<<<< Updated upstream
             string image = BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId.ToString());
+=======
+            return BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId);
+>>>>>>> Stashed changes
         }
     }
 }

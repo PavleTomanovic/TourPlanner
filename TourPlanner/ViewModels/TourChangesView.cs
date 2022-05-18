@@ -9,6 +9,7 @@ namespace TourPlanner.ViewModels
 {
     public class TourChangesView //: INotifyPropertyChanged
     {
+
         private string _tourname;
         private string _from;
         private string _to;

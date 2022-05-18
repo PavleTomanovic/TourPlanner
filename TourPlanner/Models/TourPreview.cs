@@ -8,8 +8,8 @@ namespace TourPlanner.Models
 {
     public class TourPreview
     {
-        public string tourName { get; set; }
-        public int tourId { get; set; }
+        public string tourName { get; set; } = string.Empty;
+        public string tourId { get; set; } = string.Empty;
         public override string ToString()
         {
             //.FormatString(this string myString) is an extension.

@@ -117,7 +117,11 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
+<<<<<<< Updated upstream
         public List<TourPreview> SelectTourNameId()
+=======
+        public List<TourPreview> SelectAllRoutes()
+>>>>>>> Stashed changes
         {
             List<TourPreview> routeNameId = new List<TourPreview>();
 
@@ -130,7 +134,7 @@ namespace TourPlanner.BussinesLayer
                     {
                         //Check what is better here: TourName or TourId  => bouth :)
                         string routeName = row["TourName"].ToString();
-                        int routeId = (int)row["TourId"];
+                        string routeId = row["TourId"].ToString();
                         routeNameId.Add(new TourPreview { tourName = routeName, tourId = routeId });
                     }
                     catch (Exception e)
