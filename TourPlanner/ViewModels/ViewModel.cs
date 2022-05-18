@@ -71,7 +71,7 @@ namespace TourPlanner.ViewModels
         public void setTours()
         {
             BussinessLogic bussinessLogic = new BussinessLogic();
-            List<TourPreview> allTournameId = bussinessLogic.SelectAllRoutes();
+            List<TourPreview> allTournameId = bussinessLogic.SelectTourNameId();
             allTournameId.ForEach(setTourObjectCollection());
         }
         private Action<TourPreview> setTourObjectCollection()

@@ -20,7 +20,7 @@ namespace TourPlanner.BussinesLayer
 
         public bool CreateRoute(string name, string from, string to, string transport, string description)
         {
-            List<TourPreview> routeNames = SelectAllRoutes();
+            List<TourPreview> routeNames = SelectTourNameId();
 
             if (routeNames.Any(n => n.tourName == name)) //routeNames.Contains(name)
             {
@@ -51,7 +51,7 @@ namespace TourPlanner.BussinesLayer
 
         public bool ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
         {
-            List<TourPreview> routeNames = SelectAllRoutes();
+            List<TourPreview> routeNames = SelectTourNameId();
 
             if (routeNames.Any(n => n.tourName == name)) //routeNames.Contains(name)
             {
@@ -117,7 +117,7 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
-        public List<TourPreview> SelectAllRoutes()
+        public List<TourPreview> SelectTourNameId()
         {
             List<TourPreview> routeNameId = new List<TourPreview>();
 
