@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.Models
 {
-    internal class TourPreview
+    public class TourPreview
     {
+        public string tourName { get; set; }
+        public int tourId { get; set; }
+        public override string ToString()
+        {
+            //.FormatString(this string myString) is an extension.
+            string returnString = string.Empty;
+            if (this.tourName != string.Empty)
+                returnString = String.Format(this.tourName);
+            return returnString;
+        }
     }
 }

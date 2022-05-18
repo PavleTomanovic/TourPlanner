@@ -10,6 +10,7 @@ using TourPlanner.DataAccessLayer;
 using TourPlanner.DTO;
 using TourPlanner.Util;
 using TourPlanner.Documents;
+using TourPlanner.Models;
 
 namespace TourPlanner.BussinesLayer
 {
@@ -19,9 +20,9 @@ namespace TourPlanner.BussinesLayer
 
         public bool CreateRoute(string name, string from, string to, string transport, string description)
         {
-            List<string> routeNames = SelectAllRoutes();
+            List<TourPreview> routeNames = SelectAllRoutes();
 
-            if(routeNames.Contains(name))
+            if (routeNames.Any(n => n.tourName == name)) //routeNames.Contains(name)
             {
                 return false;
             }
@@ -50,9 +51,9 @@ namespace TourPlanner.BussinesLayer
 
         public bool ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
         {
-            List<string> routeNames = SelectAllRoutes();
+            List<TourPreview> routeNames = SelectAllRoutes();
 
-            if (routeNames.Contains(name))
+            if (routeNames.Any(n => n.tourName == name)) //routeNames.Contains(name)
             {
                 return false;
             }
@@ -116,9 +117,37 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
-        public List<String> SelectAllRoutes()
+        /*        public List<String> SelectAllRoutes()
+                {
+                    List<String> routeNames = new List<String>();
+
+                    try
+                    {
+                        DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            try
+                            {
+                                //Check what is better here: TourName or TourId
+                                string routeName = row["TourName"].ToString();
+                                routeNames.Add(routeName);
+                            }
+                            catch (Exception e)
+                            {
+                                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                            }
+                        }
+                        return routeNames;
+                    }
+                    catch (Exception e)
+                    {
+                        LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                        return routeNames;
+                    }
+                }*/
+        public List<TourPreview> SelectAllRoutes()
         {
-            List<String> routeNames = new List<String>();
+            List<TourPreview> routeNameId = new List<TourPreview>();
 
             try
             {
@@ -127,21 +156,22 @@ namespace TourPlanner.BussinesLayer
                 {
                     try
                     {
-                        //Check what is better here: TourName or TourId
+                        //Check what is better here: TourName or TourId  => bouth :)
                         string routeName = row["TourName"].ToString();
-                        routeNames.Add(routeName);
+                        int routeId = (int)row["TourId"];
+                        routeNameId.Add(new TourPreview { tourName = routeName, tourId = routeId });
                     }
                     catch (Exception e)
                     {
                         LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                     }
                 }
-                return routeNames;
+                return routeNameId;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
-                return routeNames;
+                return routeNameId;
             }
         }
 

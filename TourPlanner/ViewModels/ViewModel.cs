@@ -42,39 +42,42 @@ namespace TourPlanner.ViewModels
                 this.OnProbertyChanged(nameof(CurDescription));
             }
         }
-        private string selectedTourObject;
-        public string SelectedTourObject
+        private TourPreview selectedTourObject;
+        public TourPreview SelectedTourObject
         {
             get => selectedTourObject;
             set
             {
                 if (value != this.selectedTourObject)
                     selectedTourObject = value;
-                CurTourName = selectedTourObject;
+                CurTourName = selectedTourObject.tourName;
+                CurDescription = "TourID: " + selectedTourObject.tourId;
                 this.OnProbertyChanged(nameof(SelectedTourObject));
             }
         }
-        private ObservableCollection<string> tourObjectCollection;
-        public ObservableCollection<string> TourObjectCollection
+        private ObservableCollection<TourPreview> tourObjectCollection;
+        public ObservableCollection<TourPreview> TourObjectCollection
         {
             get { return tourObjectCollection; }
             set
             {
                 if (value != this.tourObjectCollection)
                     tourObjectCollection = value;
+
                 this.OnProbertyChanged(nameof(TourObjectCollection));
             }
         }
+
         public void setTours()
         {
             BussinessLogic bussinessLogic = new BussinessLogic();
-            List<string> allTournames = bussinessLogic.SelectAllRoutes();
-            allTournames.ForEach(setTourObjectCollection());
+            List<TourPreview> allTournameId = bussinessLogic.SelectAllRoutes();
+            allTournameId.ForEach(setTourObjectCollection());
         }
-        private Action<string> setTourObjectCollection()
+        private Action<TourPreview> setTourObjectCollection()
         {
-            this.TourObjectCollection = new ObservableCollection<string>();
-            return f => this.TourObjectCollection.Add(f);
+            this.TourObjectCollection = new ObservableCollection<TourPreview>();
+            return f => this.TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
         }
 
         public void setImage()
