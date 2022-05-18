@@ -26,5 +26,6 @@ namespace TourPlanner.DTO
         [JsonProperty("time")]
         public string Time { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
+        public string Favorite { get; set; } = string.Empty;
     }
 }

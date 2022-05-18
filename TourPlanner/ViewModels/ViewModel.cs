@@ -18,7 +18,7 @@ namespace TourPlanner.ViewModels
         public ViewModel()
         {
             setTours();
-            setImage();
+            //setImage();
         }
         private string _curTourName = string.Empty;
         private string _curDescription = string.Empty;
@@ -82,7 +82,7 @@ namespace TourPlanner.ViewModels
 
         public void setImage()
         {
-            string image = BussinessLogic.LogicInstance.loadImage("5");
+            string image = BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId.ToString());
         }
     }
 }

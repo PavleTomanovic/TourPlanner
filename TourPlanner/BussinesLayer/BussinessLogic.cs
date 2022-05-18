@@ -117,34 +117,6 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
-        /*        public List<String> SelectAllRoutes()
-                {
-                    List<String> routeNames = new List<String>();
-
-                    try
-                    {
-                        DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            try
-                            {
-                                //Check what is better here: TourName or TourId
-                                string routeName = row["TourName"].ToString();
-                                routeNames.Add(routeName);
-                            }
-                            catch (Exception e)
-                            {
-                                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
-                            }
-                        }
-                        return routeNames;
-                    }
-                    catch (Exception e)
-                    {
-                        LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
-                        return routeNames;
-                    }
-                }*/
         public List<TourPreview> SelectAllRoutes()
         {
             List<TourPreview> routeNameId = new List<TourPreview>();
@@ -177,31 +149,8 @@ namespace TourPlanner.BussinesLayer
 
         public void CreateRouteReport(string routeId)
         {
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                try
-                {
-                    HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
-
-                    httpResponseDTO.Route.Id = row["TourId"].ToString();
-                    httpResponseDTO.Route.Name = row["TourName"].ToString();
-                    httpResponseDTO.Route.Description = row["TourDescription"].ToString();
-                    httpResponseDTO.Route.From = row["TourFrom"].ToString();
-                    httpResponseDTO.Route.To = row["TourTo"].ToString();
-                    httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
-                    httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
-                    httpResponseDTO.Route.Time = row["TourTime"].ToString();
-                    httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
-
-                    DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
-                }
-                catch (Exception e)
-                {
-                    LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
-                }
-            }
+            HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
+            DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
         }
         public void CreateSummarizeReport(string routeId)
         {
@@ -251,14 +200,13 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public void ExportRouteToFile(string filename, string routeId)
+        public HttpResponseDTO SelectAllFromRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
             foreach (DataRow row in dataTable.Rows)
             {
-                HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
-
                 httpResponseDTO.Route.Id = row["TourId"].ToString();
                 httpResponseDTO.Route.Name = row["TourName"].ToString();
                 httpResponseDTO.Route.Description = row["TourDescription"].ToString();
@@ -268,9 +216,16 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
                 httpResponseDTO.Route.Time = row["TourTime"].ToString();
                 httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
-
-                ImportExport.Instance.ExportFile(filename, httpResponseDTO);
+                httpResponseDTO.Route.Favorite = row["TourFavorite"].ToString();
             }
+
+            return httpResponseDTO;
+        }
+
+        public void ExportRouteToFile(string filename, string routeId)
+        {
+            HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
+            ImportExport.Instance.ExportFile(filename, httpResponseDTO);
         }
 
         public void MakeRouteFavorite(string routeId)
