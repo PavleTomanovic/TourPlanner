@@ -18,6 +18,7 @@ namespace TourPlanner.ViewModels
         {
             setTours();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             //setImage();
 =======
 >>>>>>> Stashed changes
@@ -32,6 +33,19 @@ namespace TourPlanner.ViewModels
                 this.OnProbertyChanged(nameof(CurTourId));
             }
         }
+=======
+        }
+        public string CurTourId
+        {
+            get { return _curTourId; }
+            set
+            {
+                if (value != this._curTourId)
+                    _curTourId = value;
+                this.OnProbertyChanged(nameof(CurTourId));
+            }
+        }
+>>>>>>> Stashed changes
         public string CurTourName
         {
             get { return _curTourName; }
@@ -104,7 +118,11 @@ namespace TourPlanner.ViewModels
         public string setImage()
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             string image = BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId.ToString());
+=======
+            return BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId);
+>>>>>>> Stashed changes
 =======
             return BussinessLogic.LogicInstance.loadImage(selectedTourObject.tourId);
 >>>>>>> Stashed changes

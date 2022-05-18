@@ -118,8 +118,11 @@ namespace TourPlanner.BussinesLayer
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         public List<TourPreview> SelectTourNameId()
 =======
+=======
+>>>>>>> Stashed changes
         public List<TourPreview> SelectAllRoutes()
 >>>>>>> Stashed changes
         {
