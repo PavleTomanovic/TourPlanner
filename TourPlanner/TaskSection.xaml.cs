@@ -19,14 +19,21 @@ namespace TourPlanner
         {
             InitializeComponent();
         }
-        //Wir können das später in ein Command machen
+        //Wir können das später in ein Command machen. PT: passt bro! :)
         private void export_File(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text files (*.xml)|*.xml";
             saveFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\Export\";
             if (saveFileDialog.ShowDialog() == true)
-                BussinessLogic.LogicInstance.ExportRouteToFile(saveFileDialog.FileName, "1");
+            {
+                bool exportRoute = BussinessLogic.LogicInstance.ExportRouteToFile(saveFileDialog.FileName, "1");
+                if (exportRoute)
+                    MessageBox.Show("Tour successfully exported!", "Tour Export", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                    MessageBox.Show("Route is not exported, check log file for more!", "Tour Export", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+                
         }
         private void import_File(object sender, RoutedEventArgs e)
         {
@@ -40,13 +47,13 @@ namespace TourPlanner
                 switch(importRoute)
                 {
                     case "badFile":
-                        MessageBox.Show("Tour should be in .xml format", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Stop);
+                        MessageBox.Show("Tour should be in .xml format!", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Stop);
                         break;
                     case "nameExists":
-                        MessageBox.Show("Route with this name already exsits", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Route with this name already exsits!", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Warning);
                         break;
                     case "done":
-                        MessageBox.Show("Route successfully imported", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Route successfully imported!", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                 }
             }

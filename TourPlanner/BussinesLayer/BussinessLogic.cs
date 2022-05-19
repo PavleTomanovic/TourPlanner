@@ -222,10 +222,20 @@ namespace TourPlanner.BussinesLayer
             return httpResponseDTO;
         }
 
-        public void ExportRouteToFile(string filename, string routeId)
+        public bool ExportRouteToFile(string filename, string routeId)
         {
-            HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
-            ImportExport.Instance.ExportFile(filename, httpResponseDTO);
+            try
+            {
+                HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
+                ImportExport.Instance.ExportFile(filename, httpResponseDTO);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
         }
 
         public void MakeRouteFavorite(string routeId)
