@@ -20,11 +20,11 @@
         </Style>
         <Style  x:Key="addBtn"  TargetType="Button">
             <Setter Property="FontSize" Value="12"></Setter>
-            <Setter Property="Background" Value="CadetBlue" ></Setter>
+            <Setter Property="Background" Value="CornflowerBlue" ></Setter>
         </Style>
         <Style  x:Key="editBtn"  TargetType="Button">
             <Setter Property="FontSize" Value="12"></Setter>
-            <Setter Property="Background" Value="DimGray" ></Setter>
+            <Setter Property="Background" Value="Gray" ></Setter>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="20"></Setter>
@@ -106,9 +106,9 @@
             <Image Name="RouteImage" Source="{Binding CurImagePath}"/>
         </Border>
 
-        <Button Style="{StaticResource addBtn}"  Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0">New Log</Button>
-        <Button Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0">Delete Log</Button>
-        <Button Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" >Edit Log</Button>
+        <Button Content="New Log" Style="{StaticResource addBtn}"  Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0"/>
+        <Button Content="Delete Log" Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0"/>
+        <Button Content="Edit Log" Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" />
 
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{StaticResource box}">
             <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding Record}" AutoGenerateColumns="False">
