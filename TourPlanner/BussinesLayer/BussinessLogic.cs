@@ -301,17 +301,46 @@ namespace TourPlanner.BussinesLayer
             return result;
         }
 
-        public string loadImage(string routeId)
+        public List<HttpResponseDTO> PrepareListRouteForSearch()
         {
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
-
-            string image = null;
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
+            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
+            List<HttpResponseDTO> list = new List<HttpResponseDTO>();
 
             foreach (DataRow row in dataTable.Rows)
             {
-                image = row["TourImage"].ToString();
+                httpResponseDTO.Route.Name = row["TourName"].ToString();
+                httpResponseDTO.Route.Comment = row["TourComment"].ToString();
+                httpResponseDTO.Route.From = row["TourFrom"].ToString();
+                httpResponseDTO.Route.To = row["TourTo"].ToString();
+                httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
+                httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
+                httpResponseDTO.Route.Time = row["TourTime"].ToString();
+
+                list.Add(httpResponseDTO);
             }
-            return image;
+
+            return list;
+        }
+
+        public List<TourLogDTO> PrepareListLogForSearch()
+        {
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllLogs);
+            TourLogDTO tourLogDTO = new TourLogDTO();
+            List<TourLogDTO> list = new List<TourLogDTO>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                tourLogDTO.DateTime = row["DateTime"].ToString();
+                tourLogDTO.Difficulty = row["Difficulty"].ToString();
+                tourLogDTO.Comment = row["Comment"].ToString();
+                tourLogDTO.Rating = row["Rating"].ToString();
+                tourLogDTO.TotalTime = row["TotalTime"].ToString();
+
+                list.Add(tourLogDTO);
+            }
+
+            return list;
         }
 
         public static BussinessLogic LogicInstance

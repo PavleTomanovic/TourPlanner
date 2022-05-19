@@ -119,7 +119,7 @@ namespace TourPlanner.ViewModels
             CurTourId = selectedTourObject.tourId;
             var logic = BussinessLogic.LogicInstance;
             tourDTO = logic.SelectAllFromRoute(CurTourId);
-            CurImagePath = logic.loadImage(CurTourId);
+            CurImagePath = tourDTO.Route.ImageUrl;
             DataTable custTable = new DataTable();
             DataColumn dtColumn;
             DataRow myDataRow;
