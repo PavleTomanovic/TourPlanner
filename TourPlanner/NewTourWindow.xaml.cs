@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using TourPlanner.ViewModels;
 
 namespace TourPlanner
