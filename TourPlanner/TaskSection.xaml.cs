@@ -32,7 +32,7 @@ namespace TourPlanner
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML files (*.xml)|*.xml";
-            openFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\Export\";
+            openFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\TemplateInsert\";
             if (openFileDialog.ShowDialog() == true)
                 BussinessLogic.LogicInstance.ImportRouteFromFile(openFileDialog.FileName);
         }

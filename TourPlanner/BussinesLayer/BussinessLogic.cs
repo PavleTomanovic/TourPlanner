@@ -176,7 +176,7 @@ namespace TourPlanner.BussinesLayer
         {
             FileInfo file = new FileInfo(filename);
 
-            if (file.Extension != "xml")
+            if (file.Extension != ".xml")
             {
                 LoggerToFile.LogError("ImportFromFile: File is not in right format");
                 return false;

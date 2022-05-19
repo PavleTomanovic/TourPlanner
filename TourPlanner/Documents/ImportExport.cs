@@ -40,6 +40,7 @@ namespace TourPlanner.Documents
             httpResponseDTO.Route.From = xmlReader.getSingleNodeString("Route/From");
             httpResponseDTO.Route.To = xmlReader.getSingleNodeString("Route/To");
             httpResponseDTO.Route.Transport = xmlReader.getSingleNodeString("Route/Transport");
+            httpResponseDTO.Route.Favorite = "No";
 
             return httpResponseDTO;
         }
