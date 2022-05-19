@@ -116,10 +116,10 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, "4");
-                if (createTour)
+                bool editTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, "4");
+                if (editTour)
                 {
-                    TaskSection.editPopup.Close();
+                    OpenEditWindowCommand.createPopup.Close();
                     MessageBox.Show($"Tour: {Tourname} edited successfully!", "Tour Edit");
                 }
                 else

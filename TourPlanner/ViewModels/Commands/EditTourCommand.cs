@@ -9,6 +9,7 @@ namespace TourPlanner.ViewModels.Commands
         public EditTourCommand(TourChangesView changesView)
         {
             this.ChangesView = changesView;
+
         }
         public event EventHandler CanExecuteChanged;
 

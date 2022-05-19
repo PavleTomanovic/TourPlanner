@@ -19,11 +19,6 @@ namespace TourPlanner
         {
             InitializeComponent();
         }
-
-        private void Edit_Tour(object sender, RoutedEventArgs e)
-        {
-            editPopup.Show();
-        }
         private void Delete_Tour(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
