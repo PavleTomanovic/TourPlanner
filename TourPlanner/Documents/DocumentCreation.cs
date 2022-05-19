@@ -36,7 +36,7 @@ namespace TourPlanner.BussinesLayer
             Table table = new Table(UnitValue.CreatePercentArray(8)).UseAllAvailableWidth();
             table.AddHeaderCell(GetHeaderCell("Id"));
             table.AddHeaderCell(GetHeaderCell("Name"));
-            table.AddHeaderCell(GetHeaderCell("Description"));
+            table.AddHeaderCell(GetHeaderCell("Comment"));
             table.AddHeaderCell(GetHeaderCell("From"));
             table.AddHeaderCell(GetHeaderCell("To"));
             table.AddHeaderCell(GetHeaderCell("Transport"));
@@ -45,7 +45,7 @@ namespace TourPlanner.BussinesLayer
             table.SetFontSize(14).SetBackgroundColor(ColorConstants.WHITE);
             table.AddCell(HttpResponseDTO.Route.Id);
             table.AddCell(HttpResponseDTO.Route.Name);
-            table.AddCell(HttpResponseDTO.Route.Description);
+            table.AddCell(HttpResponseDTO.Route.Comment);
             table.AddCell(HttpResponseDTO.Route.From);
             table.AddCell(HttpResponseDTO.Route.To);
             table.AddCell(HttpResponseDTO.Route.Transport);

@@ -13,17 +13,11 @@ namespace TourPlanner
     /// </summary>
     public partial class TaskSection : Page
     {
-        public static NewTourWindow createPopup = new NewTourWindow();
         public static EditTourWindow editPopup = new EditTourWindow();
 
         public TaskSection()
         {
             InitializeComponent();
-        }
-
-        private void New_Tour(object sender, RoutedEventArgs e)
-        {
-            createPopup.Show();
         }
 
         private void Edit_Tour(object sender, RoutedEventArgs e)

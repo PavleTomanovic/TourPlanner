@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
-        Title="Tour Planner" MinHeight="600" MinWidth="820">
+        Title="Tour Planner" Height="600" Width="800" MinHeight="600" MinWidth="800">
 
     <Window.Resources>
         <Style TargetType="Grid">

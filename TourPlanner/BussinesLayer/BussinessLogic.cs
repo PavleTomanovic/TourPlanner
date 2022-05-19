@@ -18,7 +18,7 @@ namespace TourPlanner.BussinesLayer
     {
         private static BussinessLogic logicInstance = new BussinessLogic();
 
-        public bool CreateRoute(string name, string from, string to, string transport, string description)
+        public bool CreateRoute(string name, string from, string to, string transport, string comment)
         {
             List<TourPreview> routeNames = SelectTourNameId();
 
@@ -38,7 +38,7 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
                 httpResponseDTO.Route.Name = name;
-                httpResponseDTO.Route.Description = description;
+                httpResponseDTO.Route.Comment = comment;
                 httpResponseDTO.Route.From = from;
                 httpResponseDTO.Route.To = to;
                 httpResponseDTO.Route.Transport = transport;
@@ -49,7 +49,7 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public bool ModifyRoute(string from, string to, string name, string description, string transport, string routeId)
+        public bool ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
         {
             List<TourPreview> routeNames = SelectTourNameId();
 
@@ -69,7 +69,7 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
                 httpResponseDTO.Route.Name = name;
-                httpResponseDTO.Route.Description = description;
+                httpResponseDTO.Route.Comment = comment;
                 httpResponseDTO.Route.From = from;
                 httpResponseDTO.Route.To = to;
                 httpResponseDTO.Route.Transport = transport;
@@ -117,14 +117,7 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         public List<TourPreview> SelectTourNameId()
-=======
-=======
->>>>>>> Stashed changes
-        public List<TourPreview> SelectAllRoutes()
->>>>>>> Stashed changes
         {
             List<TourPreview> routeNameId = new List<TourPreview>();
 
@@ -216,7 +209,7 @@ namespace TourPlanner.BussinesLayer
             {
                 httpResponseDTO.Route.Id = row["TourId"].ToString();
                 httpResponseDTO.Route.Name = row["TourName"].ToString();
-                httpResponseDTO.Route.Description = row["TourDescription"].ToString();
+                httpResponseDTO.Route.Comment = row["TourComment"].ToString();
                 httpResponseDTO.Route.From = row["TourFrom"].ToString();
                 httpResponseDTO.Route.To = row["TourTo"].ToString();
                 httpResponseDTO.Route.Transport = row["TourTransport"].ToString();

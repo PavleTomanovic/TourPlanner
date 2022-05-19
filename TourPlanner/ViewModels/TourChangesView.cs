@@ -4,27 +4,27 @@ using System.Windows;
 using TourPlanner.Models;
 using TourPlanner.ViewModels.Commands;
 using TourPlanner.BussinesLayer;
+using System.Windows.Input;
 
 namespace TourPlanner.ViewModels
 {
-    public class TourChangesView //: INotifyPropertyChanged
+    public class TourChangesView
     {
-
+        public string _tourId;
         private string _tourname;
         private string _from;
         private string _to;
         private string _transport;
-        private string _description;
-
+        private string _comment;
         public TourChangesView()
         {
-            this._tourname = "";
-            this._from = "";
-            this._to = "";
-            this._description = "";
-            this._transport = "";
-            this.ParameterCommand = new ParameterCommand(this);
-            this.EditCommand = new EditCommand(this);
+            _tourname = "";
+            _from = "";
+            _to = "";
+            _comment = "";
+            _transport = "";
+            NewTourCommand = new CreateTourCommand(this);
+            EditTourCommand = new EditTourCommand(this);
         }
         public void OnProbertyChanged(string name)
         {
@@ -32,6 +32,7 @@ namespace TourPlanner.ViewModels
                 return;
             PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+
         public string Tourname
         {
             get => _tourname;
@@ -65,15 +66,15 @@ namespace TourPlanner.ViewModels
                 OnProbertyChanged(nameof(To));
             }
         }
-        public string Description
+        public string Comment
         {
-            get => _description;
+            get => _comment;
             set
             {
-                if (value == _description)
+                if (value == _comment)
                     return;
-                _description = value;
-                OnProbertyChanged(nameof(Description));
+                _comment = value;
+                OnProbertyChanged(nameof(Comment));
             }
         }
         public string Transport
@@ -88,18 +89,18 @@ namespace TourPlanner.ViewModels
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        public ParameterCommand ParameterCommand { get; set; }
-        public EditCommand EditCommand { get; set; }
+        public CreateTourCommand NewTourCommand { get; set; }
+        public EditTourCommand EditTourCommand { get; set; }
         public void CreateTourButton(object obj)
         {
-            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
+            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Description, Transport);
+                bool createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Transport, Comment);
                 if (createTour)
                 {
-                    TaskSection.createPopup.Close();
+                    OpenWindowCommand.createPopup.Close();
                     MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created");
                 }
                 else
@@ -111,11 +112,11 @@ namespace TourPlanner.ViewModels
 
         public void EditTourButton(object obj)
         {
-            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Transport))
+            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Description, Transport, "4");
+                bool createTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, "4");
                 if (createTour)
                 {
                     TaskSection.editPopup.Close();

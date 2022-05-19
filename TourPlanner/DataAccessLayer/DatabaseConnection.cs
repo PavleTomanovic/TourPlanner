@@ -90,7 +90,7 @@ namespace TourPlanner.DataAccessLayer
                     command.CommandText = query;
 
                     command.Parameters.AddWithValue("@P1", HttpResponseDTO.Route.Name);
-                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Description);
+                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Comment);
                     command.Parameters.AddWithValue("@P3", HttpResponseDTO.Route.From);
                     command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);
@@ -125,7 +125,7 @@ namespace TourPlanner.DataAccessLayer
                     command.CommandText = query;
 
                     command.Parameters.AddWithValue("@P1", HttpResponseDTO.Route.Name);
-                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Description);
+                    command.Parameters.AddWithValue("@P2", HttpResponseDTO.Route.Comment);
                     command.Parameters.AddWithValue("@P3", HttpResponseDTO.Route.From);
                     command.Parameters.AddWithValue("@P4", HttpResponseDTO.Route.To);
                     command.Parameters.AddWithValue("@P5", HttpResponseDTO.Route.Transport);

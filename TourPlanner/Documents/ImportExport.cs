@@ -36,7 +36,7 @@ namespace TourPlanner.Documents
 
             httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
             httpResponseDTO.Route.Name = xmlReader.getSingleNodeString("Route/Name");
-            httpResponseDTO.Route.Description = xmlReader.getSingleNodeString("Route/Description");
+            httpResponseDTO.Route.Comment = xmlReader.getSingleNodeString("Route/Comment");
             httpResponseDTO.Route.From = xmlReader.getSingleNodeString("Route/From");
             httpResponseDTO.Route.To = xmlReader.getSingleNodeString("Route/To");
             httpResponseDTO.Route.Transport = xmlReader.getSingleNodeString("Route/Transport");
@@ -84,17 +84,17 @@ namespace TourPlanner.Documents
                     x.WriteEndElement(); //Name
                 }
 
-                //Description Node
-                if (httpResponseDTO.Route.Description != null)
+                //Comment Node
+                if (httpResponseDTO.Route.Comment != null)
                 {
-                    x.WriteStartElement("Description", null);
-                    x.WriteString((httpResponseDTO.Route.Description.ToString()));
-                    x.WriteEndElement(); //Description
+                    x.WriteStartElement("Comment", null);
+                    x.WriteString((httpResponseDTO.Route.Comment.ToString()));
+                    x.WriteEndElement(); //Comment
                 }
                 else
                 {
-                    x.WriteStartElement("Description", null);
-                    x.WriteEndElement(); //Description
+                    x.WriteStartElement("Comment", null);
+                    x.WriteEndElement(); //Comment
                 }
 
                 //From Node

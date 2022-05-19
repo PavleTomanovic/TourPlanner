@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:vm="clr-namespace:TourPlanner.ViewModels"
     mc:Ignorable="d" 
-    d:DesignHeight="600" d:DesignWidth="800" >
+     >
     <Page.DataContext>
         <vm:ViewModel />
     </Page.DataContext>
@@ -51,15 +51,15 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition MinWidth="400"/>
             <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition MinWidth="100"/>
         </Grid.ColumnDefinitions>
 
         <Menu  Grid.Row="0" Grid.ColumnSpan="4" >
             <MenuItem Header="_Tour" >
-                <MenuItem Header="_New" Click="New_Tour"/>
-                <MenuItem Header="_Edit" Click="Edit_Tour" Tag="{Binding CurTourId}"/>
-                <MenuItem Header="_Delete"  Tag="{Binding CurTourId}"/>
+                <MenuItem Header="_New" Command="{Binding OpenWindowCommand}" CommandParameter="{Binding CurTourId}"  />
+                <MenuItem Header="_Edit" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
+                <MenuItem Header="_Delete"  Command="" Tag="{Binding CurTourId}"/>
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Program"/>
             </MenuItem>
@@ -83,7 +83,7 @@
         <Label  Grid.Column="1" Grid.Row="1" Margin="10,5" Content="{Binding CurTourName}"  AutomationProperties.IsColumnHeader="True"/>
 
         <Border  Grid.RowSpan="2" Grid.Column="1" Grid.Row="2" Style="{StaticResource box}">
-            <TextBlock TextWrapping = "Wrap" Text="{Binding CurDescription}" />
+            <DataGrid AutoGenerateColumns="True" Background="Transparent"   GridLinesVisibility="None" DataGrid.BorderThickness="0"  HeadersVisibility="None"  ItemsSource="{Binding DataGridDescription}" />
         </Border>
         <Label   Grid.Column="2" Grid.Row="1"  >Route</Label>
         <Border  Grid.RowSpan="2" Grid.Column="2" Grid.Row="2" Style="{StaticResource box}">
@@ -101,10 +101,10 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date and Time" Binding="{Binding Date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}" Width="150"/>
-                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="150"/>
-                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="150"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="150"/>
+                    <DataGridTextColumn Header="Date and Time" Binding="{Binding Date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}" Width="100"/>
+                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="100"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="100"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="100"/>
                     <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

@@ -17,7 +17,7 @@ namespace TourPlanner.DTO
     {
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string Comment { get; set; } = string.Empty;
         public string From { get; set; } = string.Empty;
         public string To { get; set; } = string.Empty;
         public string Transport { get; set; } = string.Empty;
