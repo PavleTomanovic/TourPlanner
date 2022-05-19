@@ -34,7 +34,23 @@ namespace TourPlanner
             openFileDialog.Filter = "XML files (*.xml)|*.xml";
             openFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\TemplateInsert\";
             if (openFileDialog.ShowDialog() == true)
-                BussinessLogic.LogicInstance.ImportRouteFromFile(openFileDialog.FileName);
+            {
+                string importRoute = BussinessLogic.LogicInstance.ImportRouteFromFile(openFileDialog.FileName);
+
+                switch(importRoute)
+                {
+                    case "badFile":
+                        MessageBox.Show("Tour should be in .xml format", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Stop);
+                        break;
+                    case "nameExists":
+                        MessageBox.Show("Route with this name already exsits", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        break;
+                    case "done":
+                        MessageBox.Show("Route successfully imported", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                }
+            }
+                
         }
         private void delete_Tour(object sender, RoutedEventArgs e)
         {

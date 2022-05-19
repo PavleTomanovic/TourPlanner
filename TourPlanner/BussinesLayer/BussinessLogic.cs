@@ -172,20 +172,31 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public bool ImportRouteFromFile(string filename)
+        public string ImportRouteFromFile(string filename)
         {
             FileInfo file = new FileInfo(filename);
 
             if (file.Extension != ".xml")
             {
                 LoggerToFile.LogError("ImportFromFile: File is not in right format");
-                return false;
+                return "badFile";
             }
             else
             {
                 HttpResponseDTO httpResponseDTO = ImportExport.Instance.ImportFile(filename);
-                DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
-                return true;
+
+                List<TourPreview> routeNames = SelectTourNameId();
+
+                if (routeNames.Any(n => n.tourName == httpResponseDTO.Route.Name))
+                {
+                    LoggerToFile.LogError("ImportFromFile: Route with this name already exsits!");
+                    return "nameExists";
+                }
+                else
+                {
+                    DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+                    return "done";
+                }
             }
         }
 
