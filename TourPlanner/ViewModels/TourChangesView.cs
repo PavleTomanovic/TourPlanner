@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
-using TourPlanner.Models;
-using TourPlanner.ViewModels.Commands;
 using TourPlanner.BussinesLayer;
-using System.Windows.Input;
+using TourPlanner.ViewModels.Commands;
 
 namespace TourPlanner.ViewModels
 {
@@ -23,7 +20,7 @@ namespace TourPlanner.ViewModels
             _to = "";
             _comment = "";
             _transport = "";
-            NewTourCommand = new CreateTourCommand(this);
+            NewTourCommand = new TourCommand(this);
             EditTourCommand = new EditTourCommand(this);
         }
         public void OnProbertyChanged(string name)
@@ -89,7 +86,7 @@ namespace TourPlanner.ViewModels
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        public CreateTourCommand NewTourCommand { get; set; }
+        public TourCommand NewTourCommand { get; set; }
         public EditTourCommand EditTourCommand { get; set; }
         public void CreateTourButton(object obj)
         {

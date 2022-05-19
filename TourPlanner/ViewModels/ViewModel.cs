@@ -20,12 +20,19 @@ namespace TourPlanner.ViewModels
         private DataTable _curDataGrid;
         public OpenWindowCommand OpenWindowCommand { get; set; }
         public OpenEditWindowCommand OpenEditWindowCommand { get; set; }
+        public ImportCommand ImportCommand { get; set; }
+        public ExportCommand ExportCommand { get; set; }
+        public DeleteCommand DeleteCommand { get; set; }
+
 
         public ViewModel()
         {
             setTours();
             OpenWindowCommand = new OpenWindowCommand();
             OpenEditWindowCommand = new OpenEditWindowCommand();
+            ImportCommand = new ImportCommand();
+            ExportCommand = new ExportCommand();
+            DeleteCommand = new DeleteCommand();
         }
         public string CurTourId
         {

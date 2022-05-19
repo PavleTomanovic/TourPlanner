@@ -56,12 +56,12 @@
         </Grid.ColumnDefinitions>
 
         <Menu  Grid.Row="0" Grid.ColumnSpan="4" >
-            <MenuItem Header="_Tour" >
-                <MenuItem Header="_New" Command="{Binding OpenWindowCommand}" CommandParameter="{Binding CurTourId}"  />
+            <MenuItem Header="Tour" >
+                <MenuItem Header="_New" Command="{Binding OpenWindowCommand}"/>
                 <MenuItem Header="_Edit" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
-                <MenuItem Header="_Delete"  />
-                <MenuItem Header="_Import" Click="import_File"/>
-                <MenuItem Header="_Export" Click="export_File"/>
+                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding CurTourId}" />
+                <MenuItem Header="_Import" Command="{Binding ImportCommand}" />
+                <MenuItem Header="_Export" Command="{Binding ExportCommand}" CommandParameter="{Binding CurTourId}"/>
 
                 <Separator />
                 <MenuItem Header="_Exit" Click="exit_Program"/>
@@ -79,7 +79,7 @@
         <Label  Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" >Tasks</Label>
         <TextBox Grid.Column="0" Grid.Row="2" Text="Search..." Style="{StaticResource searchbar}"/>
         <ListBox Name = "listbox" Grid.RowSpan="2" Grid.Column="0" Grid.Row="3" FontSize="14" Margin="20" BorderThickness="0"
-        ItemsSource="{Binding TourObjectCollection}" 
+        ItemsSource="{Binding TourObjectCollection, UpdateSourceTrigger=PropertyChanged}"
 		SelectedItem="{Binding SelectedTourObject}"
         />
 
