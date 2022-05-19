@@ -24,8 +24,8 @@ namespace TourPlanner.ViewModels
         public ViewModel()
         {
             setTours();
-            OpenWindowCommand = new OpenWindowCommand(CurTourId);
-            OpenEditWindowCommand = new OpenEditWindowCommand(CurTourId);
+            OpenWindowCommand = new OpenWindowCommand();
+            OpenEditWindowCommand = new OpenEditWindowCommand();
         }
         public string CurTourId
         {

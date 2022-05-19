@@ -45,15 +45,13 @@ namespace TourPlanner.Documents
         }
         public void ExportFile(string filename, HttpResponseDTO httpResponseDTO)
         {
-            string fullPath = BussinessFactory.Instance.DirectoryDTO.ExportPath + DateTime.Now.ToString("fffff") + filename + ".xml";
-
             XmlWriterSettings xmlWriterSettings = new XmlWriterSettings()
             {
                 Indent = true,
                 IndentChars = "\t"
             };
 
-            using (XmlWriter x = XmlWriter.Create(fullPath, xmlWriterSettings))
+            using (XmlWriter x = XmlWriter.Create(filename, xmlWriterSettings))
             {
                 x.WriteStartDocument();
                 x.WriteStartElement("Export"); // Export

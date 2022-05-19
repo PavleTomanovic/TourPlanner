@@ -8,10 +8,12 @@ namespace TourPlanner
     /// </summary>
     public partial class EditTourWindow : Window
     {
-        public EditTourWindow()
+        public EditTourWindow(string id)
         {
             InitializeComponent();
-            this.DataContext = new TourChangesView();
+            var tourChangesView = new TourChangesView();
+            tourChangesView.TourId = id;
+            this.DataContext = tourChangesView;
         }
     }
 }

@@ -5,6 +5,8 @@ using TourPlanner.Models;
 using TourPlanner.ViewModels;
 using TourPlanner.BussinesLayer;
 using System.Collections;
+using Microsoft.Win32;
+using System.IO;
 
 namespace TourPlanner
 {
@@ -13,13 +15,28 @@ namespace TourPlanner
     /// </summary>
     public partial class TaskSection : Page
     {
-        public static EditTourWindow editPopup = new EditTourWindow();
-
         public TaskSection()
         {
             InitializeComponent();
         }
-        private void Delete_Tour(object sender, RoutedEventArgs e)
+        //Wir können das später in ein Command machen
+        private void export_File(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.xml)|*.xml";
+            saveFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\Export\";
+            if (saveFileDialog.ShowDialog() == true)
+                BussinessLogic.LogicInstance.ExportRouteToFile(saveFileDialog.FileName, "1");
+        }
+        private void import_File(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml";
+            openFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\Export\";
+            if (openFileDialog.ShowDialog() == true)
+                BussinessLogic.LogicInstance.ImportRouteFromFile(openFileDialog.FileName);
+        }
+        private void delete_Tour(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
 
@@ -31,7 +48,7 @@ namespace TourPlanner
                     break;
             }
         }
-        private void Exit_Program(object sender, RoutedEventArgs e)
+        private void exit_Program(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

@@ -5,22 +5,12 @@ namespace TourPlanner.ViewModels.Commands
 {
     public class OpenWindowCommand : ICommand
     {
-        private string Id;
         public static NewTourWindow createPopup = new NewTourWindow();
-        public OpenWindowCommand(string id)
+        public OpenWindowCommand()
         {
-            this.Id = id;
         }
         public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            if (Id != null)
-                return true;
-            else
-                return false;
-        }
-
+        public bool CanExecute(object parameter) => true;
         public void Execute(object parameter)
         {
             createPopup.Show();
@@ -28,17 +18,14 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class OpenEditWindowCommand : ICommand
     {
-        private string Id;
-        public static EditTourWindow createPopup = new EditTourWindow();
-        public OpenEditWindowCommand(string id)
+        public OpenEditWindowCommand()
         {
-            this.Id = id;
         }
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            if (Id != null)
+            if (parameter != null)
                 return true;
             else
                 return false;
@@ -46,6 +33,7 @@ namespace TourPlanner.ViewModels.Commands
 
         public void Execute(object parameter)
         {
+            EditTourWindow createPopup = new EditTourWindow(parameter.ToString());
             createPopup.Show();
         }
     }

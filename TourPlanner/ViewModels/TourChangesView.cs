@@ -10,7 +10,7 @@ namespace TourPlanner.ViewModels
 {
     public class TourChangesView
     {
-        public string _tourId;
+        public string TourId { get; set; }
         private string _tourname;
         private string _from;
         private string _to;
@@ -116,16 +116,9 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool editTour = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, "4");
-                if (editTour)
-                {
-                    OpenEditWindowCommand.createPopup.Close();
-                    MessageBox.Show($"Tour: {Tourname} edited successfully!", "Tour Edit");
-                }
-                else
-                {
-                    MessageBox.Show($"Tour with the name: {Tourname} already exists!", "Tour could not be edited", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, TourId);
+                //OpenEditWindowCommand.createPopup.Close();
+                MessageBox.Show($"Tour: {Tourname} edited successfully!", "Tour Edit");
             }
         }
     }

@@ -60,11 +60,11 @@
                 <MenuItem Header="_New" Command="{Binding OpenWindowCommand}" CommandParameter="{Binding CurTourId}"  />
                 <MenuItem Header="_Edit" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
                 <MenuItem Header="_Delete"  />
-                <MenuItem Header="_Import" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
-                <MenuItem Header="_Export" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
+                <MenuItem Header="_Import" Click="import_File"/>
+                <MenuItem Header="_Export" Click="export_File"/>
 
                 <Separator />
-                <MenuItem Header="_Exit" Click="Exit_Program"/>
+                <MenuItem Header="_Exit" Click="exit_Program"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="Instructions" />
