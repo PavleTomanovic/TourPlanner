@@ -185,18 +185,20 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public void ImportRouteFromFile(string filename)
+        public bool ImportRouteFromFile(string filename)
         {
             FileInfo file = new FileInfo(filename);
 
             if (file.Extension != "xml")
             {
                 LoggerToFile.LogError("ImportFromFile: File is not in right format");
+                return false;
             }
             else
             {
                 HttpResponseDTO httpResponseDTO = ImportExport.Instance.ImportFile(filename);
                 DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+                return true;
             }
         }
 

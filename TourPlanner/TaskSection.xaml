@@ -59,7 +59,10 @@
             <MenuItem Header="_Tour" >
                 <MenuItem Header="_New" Command="{Binding OpenWindowCommand}" CommandParameter="{Binding CurTourId}"  />
                 <MenuItem Header="_Edit" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
-                <MenuItem Header="_Delete"  Command="" Tag="{Binding CurTourId}"/>
+                <MenuItem Header="_Delete"  />
+                <MenuItem Header="_Import" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
+                <MenuItem Header="_Export" Command="{Binding OpenEditWindowCommand}" CommandParameter="{Binding CurTourId}"/>
+
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Program"/>
             </MenuItem>

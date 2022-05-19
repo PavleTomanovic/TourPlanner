@@ -117,17 +117,9 @@ namespace TourPlanner.ViewModels
         {
             CurTourName = selectedTourObject.tourName;
             CurTourId = selectedTourObject.tourId;
-            tourDTO = BussinessLogic.LogicInstance.SelectAllFromRoute(CurTourId);
-            CurImagePath = BussinessLogic.LogicInstance.loadImage(CurTourId);
-            /*
-               CurDescription = "From: " + httpResponseDTO.Route.From
-               + "\nTo: " + httpResponseDTO.Route.To
-               + "\nTransport Type: " + httpResponseDTO.Route.Transport
-               + "\nDistance: " + httpResponseDTO.Route.Distance
-               + "\nTime: " + httpResponseDTO.Route.Time
-               + "\nComment: " + httpResponseDTO.Route.Comment;
-               Ich wollte das die Daten gut lesbar sind: eine Tabelle war das erste was mir einfiel...
-            */
+            var logic = BussinessLogic.LogicInstance;
+            tourDTO = logic.SelectAllFromRoute(CurTourId);
+            CurImagePath = logic.loadImage(CurTourId);
             DataTable custTable = new DataTable();
             DataColumn dtColumn;
             DataRow myDataRow;
@@ -166,6 +158,14 @@ namespace TourPlanner.ViewModels
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Comment: ";
             myDataRow["Two"] = tourDTO.Route.Comment;
+            custTable.Rows.Add(myDataRow);
+            myDataRow = custTable.NewRow();
+            myDataRow["One"] = "Popularity: ";
+            myDataRow["Two"] = logic.CheckRoutePopularity(CurTourId);
+            custTable.Rows.Add(myDataRow);
+            myDataRow = custTable.NewRow();
+            myDataRow["One"] = "Child friendly: ";
+            myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
             custTable.Rows.Add(myDataRow);
             DataGridDescription = custTable;
 
