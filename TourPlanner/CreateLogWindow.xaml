@@ -1,0 +1,36 @@
+﻿<Window x:Class="TourPlanner.CreateLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TourPlanner" xmlns:vm="clr-namespace:TourPlanner.ViewModels"
+        mc:Ignorable="d"
+        Title="Create Log" Height="300" Width="300">
+    <Window.Resources>
+        <vm:TourChangesView x:Key="changesView"/>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Label  Grid.Row="1" Content="Rating"/>
+        <TextBox  Grid.Row="1" Grid.Column="1" Margin="10,0,0,10" Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="2" Content="Difficulty"/>
+        <TextBox Grid.Row="2" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding DifficultyLog, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="3" Content="Total Time"/>
+        <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="4" Content="Comment"/>
+        <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding LogComment, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Create Log"  Command="{Binding CreateLogCommand}" />
+    </Grid>
+</Window>

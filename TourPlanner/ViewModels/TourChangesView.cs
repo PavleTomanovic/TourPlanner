@@ -8,11 +8,16 @@ namespace TourPlanner.ViewModels
     public class TourChangesView
     {
         public string TourId { get; set; }
+        public string LogID { get; set; }
         private string _tourname;
         private string _from;
         private string _to;
         private string _transport;
         private string _comment;
+        private string _logComment;
+        private string _difficulty;
+        private string _totalTime;
+        private string _rating;
         public TourChangesView()
         {
             _tourname = "";
@@ -20,8 +25,14 @@ namespace TourPlanner.ViewModels
             _to = "";
             _comment = "";
             _transport = "";
+            _logComment = "";
+            _difficulty = "";
+            _totalTime = "";
+            _rating = "";
             NewTourCommand = new TourCommand(this);
             EditTourCommand = new EditTourCommand(this);
+            EditLogCommand = new EditLogCommand(this);
+            CreateLogCommand = new CreateLogCommand(this);
         }
         public void OnProbertyChanged(string name)
         {
@@ -85,9 +96,60 @@ namespace TourPlanner.ViewModels
                 OnProbertyChanged(nameof(Transport));
             }
         }
+
+        public string LogComment
+        {
+            get => _logComment;
+            set
+            {
+                if (value == _logComment)
+                    return;
+                _logComment = value;
+                OnProbertyChanged(nameof(LogComment));
+            }
+        }
+
+        public string TotalTime
+        {
+            get => _totalTime;
+            set
+            {
+                if (value == _totalTime)
+                    return;
+                _totalTime = value;
+                OnProbertyChanged(nameof(TotalTime));
+            }
+        }
+
+        public string DifficultyLog
+        {
+            get => _difficulty;
+            set
+            {
+                if (value == _difficulty)
+                    return;
+                _difficulty = value;
+                OnProbertyChanged(nameof(DifficultyLog));
+            }
+        }
+
+        public string Rating
+        {
+            get => _rating;
+            set
+            {
+                if (value == _rating)
+                    return;
+                _rating = value;
+                OnProbertyChanged(nameof(Rating));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public TourCommand NewTourCommand { get; set; }
         public EditTourCommand EditTourCommand { get; set; }
+        public CreateLogCommand CreateLogCommand { get; set; }
+        public EditLogCommand EditLogCommand { get; set; }
         public void CreateTourButton(object obj)
         {
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
@@ -113,9 +175,56 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, TourId);
+                bool editRoute = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, TourId);
+                if (editRoute)
+                {
+                    OpenWindowCommand.createPopup.Close();
+                    MessageBox.Show($"Route edited successfully!", "Route Edit");
+                }
+                else
+                {
+                    MessageBox.Show($"Route could not be edited!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        public void CreateLogButton(object obj)
+        {
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
+                MessageBox.Show("Please complete the form");
+            else
+            {
+                bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, DifficultyLog, TotalTime, Rating, TourId);
+                if (createLog)
+                {
+                    OpenWindowCommand.createPopup.Close();
+                    MessageBox.Show($"Log created successfully!", "Log Creation");
+                }
+                else
+                {
+                    MessageBox.Show($"Log could not be created!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        public void EditLogButton(object obj)
+        {
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
+                MessageBox.Show("Please complete the form");
+            else
+            {
+                bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, DifficultyLog, TotalTime, Rating, LogID);
+
+                if (editLog)
+                {
+                    OpenWindowCommand.createPopup.Close();
+                    MessageBox.Show($"Log edited successfully!", "Log Edit");
+                }
+                else
+                {
+                    MessageBox.Show($"Log could not be edited!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 //OpenEditWindowCommand.createPopup.Close();
-                MessageBox.Show($"Tour: {Tourname} edited successfully!", "Tour Edit");
             }
         }
     }

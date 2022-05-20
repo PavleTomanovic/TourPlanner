@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="CreateLogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditLogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EditTourWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -13,6 +19,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CreateLogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditLogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditTourWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

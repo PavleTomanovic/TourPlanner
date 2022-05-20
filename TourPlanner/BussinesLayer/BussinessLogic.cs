@@ -49,23 +49,33 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public void ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
+        public bool ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
         {
-            HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
-            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
+            try
+            {
+                HttpDTO httpDTO = BussinessFactory.Instance.HttpDTO;
+                HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
 
-            httpDTO.From = from;
-            httpDTO.To = to;
-            httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
-            httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
-            httpResponseDTO.Route.Name = name;
-            httpResponseDTO.Route.Comment = comment;
-            httpResponseDTO.Route.From = from;
-            httpResponseDTO.Route.To = to;
-            httpResponseDTO.Route.Transport = transport;
-            httpResponseDTO.Route.Id = routeId;
+                httpDTO.From = from;
+                httpDTO.To = to;
+                httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
+                httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
+                httpResponseDTO.Route.Name = name;
+                httpResponseDTO.Route.Comment = comment;
+                httpResponseDTO.Route.From = from;
+                httpResponseDTO.Route.To = to;
+                httpResponseDTO.Route.Transport = transport;
+                httpResponseDTO.Route.Id = routeId;
 
-            DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+                DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+                return true;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
+
         }
 
         public void DeleteRoute(string routeId)
@@ -73,30 +83,50 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
         }
 
-        public void CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId)
+        public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId)
         {
-            TourLogDTO tourLogDTO = new TourLogDTO();
+            try
+            {
+                TourLogDTO tourLogDTO = new TourLogDTO();
 
-            tourLogDTO.DateTime = DateTime.Now.ToString();
-            tourLogDTO.Comment = comment;
-            tourLogDTO.Difficulty = difficulty;
-            tourLogDTO.TotalTime = totalTime;
-            tourLogDTO.Rating = rating;
+                tourLogDTO.DateTime = DateTime.Now.ToString();
+                tourLogDTO.Comment = comment;
+                tourLogDTO.Difficulty = difficulty;
+                tourLogDTO.TotalTime = totalTime;
+                tourLogDTO.Rating = rating;
 
-            DatabaseConnection.Instance.ExecuteInsertLog(BussinessFactory.Instance.SqlDTO.InsertLog, tourLogDTO, routeId);
+                DatabaseConnection.Instance.ExecuteInsertLog(BussinessFactory.Instance.SqlDTO.InsertLog, tourLogDTO, routeId);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
         }
 
-        public void ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId)
+        public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId)
         {
-            TourLogDTO tourLogDTO = new TourLogDTO();
+            try
+            {
+                TourLogDTO tourLogDTO = new TourLogDTO();
 
-            tourLogDTO.Comment = comment;
-            tourLogDTO.Difficulty = difficulty;
-            tourLogDTO.TotalTime = totalTime;
-            tourLogDTO.Rating = rating;
-            tourLogDTO.LogId = logId;
+                tourLogDTO.Comment = comment;
+                tourLogDTO.Difficulty = difficulty;
+                tourLogDTO.TotalTime = totalTime;
+                tourLogDTO.Rating = rating;
+                tourLogDTO.LogId = logId;
 
-            DatabaseConnection.Instance.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
+                DatabaseConnection.Instance.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
         }
 
         public void Deletelog(string logId)
