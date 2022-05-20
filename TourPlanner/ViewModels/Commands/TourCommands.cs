@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BussinesLayer;
@@ -34,6 +35,12 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class DeleteCommand : CommandBase
     {
+        private readonly ViewModel _viewModel;
+        public DeleteCommand(ViewModel viewModel)
+        {
+            _viewModel = viewModel;
+            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
         public override bool CanExecute(object parameter)
         {
             if (String.IsNullOrEmpty(parameter.ToString()))
@@ -51,6 +58,11 @@ namespace TourPlanner.ViewModels.Commands
                     MessageBox.Show("Route successfully deleted", "Delete Route", MessageBoxButton.OK);
                     break;
             }
+        }
+        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.CurTourName))
+                OnCanExecutedChanged();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using TourPlanner.ViewModels;
 
@@ -12,8 +13,11 @@ namespace TourPlanner
         public NewTourWindow()
         {
             InitializeComponent();
-            this.DataContext = new TourChangesView();
-            this.Closing += NewTourWindow_Closing; ;
+            TourChangesView tcv = new TourChangesView();
+            DataContext = tcv;
+            if (tcv.CloseAction == null)
+                tcv.CloseAction = new Action(this.Close);
+            Closing += NewTourWindow_Closing; ;
         }
 
         private void NewTourWindow_Closing(object? sender, CancelEventArgs e)

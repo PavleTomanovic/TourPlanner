@@ -28,18 +28,18 @@ namespace TourPlanner.ViewModels
         public DeleteLogCommand DeleteLogCommand { get; set; }
         public TourReportCommand TourReportCommand { get; set; }
         public SummarizeReportCommand SummarizeReportCommand { get; set; }
-        
+
 
         public ViewModel()
         {
             setTours();
             OpenWindowCommand = new OpenWindowCommand();
-            OpenEditWindowCommand = new OpenEditWindowCommand();
+            OpenEditWindowCommand = new OpenEditWindowCommand(this);
             ImportCommand = new ImportCommand();
-            ExportCommand = new ExportCommand();
+            ExportCommand = new ExportCommand(this);
             TourReportCommand = new TourReportCommand();
             SummarizeReportCommand = new SummarizeReportCommand();
-            DeleteCommand = new DeleteCommand();
+            DeleteCommand = new DeleteCommand(this);
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
             DeleteLogCommand = new DeleteLogCommand();

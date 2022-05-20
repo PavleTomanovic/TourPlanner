@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using TourPlanner.BussinesLayer;
 using TourPlanner.ViewModels.Commands;
@@ -18,6 +19,7 @@ namespace TourPlanner.ViewModels
         private string _difficulty;
         private string _totalTime;
         private string _rating;
+        public Action CloseAction { get; set; }
         public TourChangesView()
         {
             _tourname = "";
@@ -160,7 +162,7 @@ namespace TourPlanner.ViewModels
                 if (createTour)
                 {
                     MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //OpenWindowCommand.createPopup.Close();
+                    CloseAction();
                 }
                 else
                 {
@@ -179,7 +181,7 @@ namespace TourPlanner.ViewModels
                 if (editRoute)
                 {
                     MessageBox.Show($"Route edited successfully!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //OpenWindowCommand.createPopup.Close();
+                    CloseAction();
                 }
                 else
                 {
@@ -198,7 +200,7 @@ namespace TourPlanner.ViewModels
                 if (createLog)
                 {
                     MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //OpenWindowCommand.createPopup.Close();
+                    CloseAction();
                 }
                 else
                 {
@@ -218,13 +220,13 @@ namespace TourPlanner.ViewModels
                 if (editLog)
                 {
                     MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //OpenWindowCommand.createPopup.Close();
+                    CloseAction();
                 }
                 else
                 {
                     MessageBox.Show($"Log could not be edited!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                //OpenEditWindowCommand.createPopup.Close();
+                CloseAction();
             }
         }
     }

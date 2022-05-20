@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace TourPlanner.ViewModels.Commands
@@ -14,6 +15,13 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class OpenEditWindowCommand : CommandBase
     {
+        private readonly ViewModel _viewModel;
+        public OpenEditWindowCommand(ViewModel viewModel)
+        {
+            _viewModel = viewModel;
+            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
+
         public override bool CanExecute(object parameter)
         {
             if (String.IsNullOrEmpty(parameter.ToString()))
@@ -24,6 +32,11 @@ namespace TourPlanner.ViewModels.Commands
         {
             EditTourWindow createPopup = new EditTourWindow(parameter.ToString());
             createPopup.Show();
+        }
+        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.CurTourName))
+                OnCanExecutedChanged();
         }
     }
 

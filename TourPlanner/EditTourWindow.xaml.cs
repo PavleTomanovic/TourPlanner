@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using TourPlanner.ViewModels;
 
 namespace TourPlanner
@@ -11,9 +12,11 @@ namespace TourPlanner
         public EditTourWindow(string id)
         {
             InitializeComponent();
-            var tourChangesView = new TourChangesView();
-            tourChangesView.TourId = id;
-            this.DataContext = tourChangesView;
+            var tcv = new TourChangesView();
+            tcv.TourId = id;
+            this.DataContext = tcv;
+            if (tcv.CloseAction == null)
+                tcv.CloseAction = new Action(this.Close);
         }
     }
 }

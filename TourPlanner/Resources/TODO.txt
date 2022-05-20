@@ -10,7 +10,15 @@
 	TODO - Details
 
 	- Commands: OnCanExecutedChanged()
-	- Close popups after submit
+	- EditWindow seperate viewmodel because of default values?
+	- update view after submit
 	- Loading Mouse
 	- Log Records in own view?
+	- Menu in own view?
 	- Protocol
+
+	Done:
+	CommandBase
+	NewWindow hide : use multiple times
+	Menuitems recognize Changes 
+

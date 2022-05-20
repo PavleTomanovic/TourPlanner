@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BussinesLayer;
@@ -34,6 +35,12 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class ExportCommand : CommandBase
     {
+        private readonly ViewModel _viewModel;
+        public ExportCommand(ViewModel viewModel)
+        {
+            _viewModel = viewModel;
+            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
         public override bool CanExecute(object parameter)
         {
             if (String.IsNullOrEmpty(parameter.ToString()))
@@ -55,6 +62,11 @@ namespace TourPlanner.ViewModels.Commands
                     MessageBox.Show("Route is not exported, check log file for more!", "Tour Export", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
+        }
+        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.CurTourName))
+                OnCanExecutedChanged();
         }
     }
 }
