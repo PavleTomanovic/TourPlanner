@@ -1,23 +1,16 @@
 ﻿	
 	TODO - Angabe
 
-	1. tours are managed in a list   (Done, but check what is better RouteName or RouteId)
+	1. Unit Tests
 	2. tour logs are managed in a list
 	3. validated user-input
 	4. full-text search in tour- and tour-log data
 	
 	
-	TODO to finish :)
-	
-	1. MVVM use
-	2. Unit Tests
-	3. Connect logic and UI
-	4. Protocoll
-	5. ? implement at least one design pattern (and mention it in the protocol) ?
-	
-	
-	
-	Credentials to log on database:
-	Servername: tcp:DESKTOP-HGFN4B9,1433
-	username: t.samaha
-	password: tahasamaha
+	TODO - Details
+
+	- Commands: OnCanExecutedChanged()
+	- Close popups after submit
+	- Loading Mouse
+	- Log Records in own view?
+	- Protocol

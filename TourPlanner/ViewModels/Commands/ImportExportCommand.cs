@@ -6,12 +6,9 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class ImportCommand : ICommand
+    public class ImportCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
-        public bool CanExecute(object parameter) => true;
-
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML files (*.xml)|*.xml";
@@ -35,24 +32,23 @@ namespace TourPlanner.ViewModels.Commands
             }
         }
     }
-    public class ExportCommand : ICommand
+    public class ExportCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
-        public bool CanExecute(object? parameter)
+        public override bool CanExecute(object parameter)
         {
-            if (String.IsNullOrEmpty(parameter?.ToString()))
+            if (String.IsNullOrEmpty(parameter.ToString()))
                 return false;
             return true;
         }
 
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text files (*.xml)|*.xml";
             saveFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\Export\";
             if (saveFileDialog.ShowDialog() == true)
             {
-                bool exportRoute = BussinessLogic.LogicInstance.ExportRouteToFile(saveFileDialog.FileName, parameter?.ToString());
+                bool exportRoute = BussinessLogic.LogicInstance.ExportRouteToFile(saveFileDialog.FileName, parameter.ToString());
                 if (exportRoute)
                     MessageBox.Show("Tour successfully exported!", "Tour Export", MessageBoxButton.OK, MessageBoxImage.Information);
                 else

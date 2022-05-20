@@ -9,7 +9,7 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class CreateLogCommand : ICommand
+    public class CreateLogCommand : CommandBase
     {
         public TourChangesView ChangesView { get; set; }
         public CreateLogCommand(TourChangesView changesView)
@@ -17,57 +17,35 @@ namespace TourPlanner.ViewModels.Commands
             this.ChangesView = changesView;
         }
 
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             this.ChangesView.CreateLogButton(parameter);
         }
     }
 
-    public class EditLogCommand : ICommand
+    public class EditLogCommand : CommandBase
     {
         public TourChangesView ChangesView { get; set; }
         public EditLogCommand(TourChangesView changesView)
         {
             this.ChangesView = changesView;
         }
-
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             this.ChangesView.EditLogButton(parameter);
         }
     }
 
-    public class DeleteLogCommand : ICommand
+    public class DeleteLogCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
 
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    BussinessLogic.LogicInstance.Deletelog(parameter?.ToString());
+                    BussinessLogic.LogicInstance.Deletelog(parameter.ToString());
                     MessageBox.Show("Log successfully deleted", "Delete Route", MessageBoxButton.OK);
                     break;
             }

@@ -160,7 +160,7 @@ namespace TourPlanner.ViewModels
                 if (createTour)
                 {
                     MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
-                    OpenWindowCommand.createPopup.Close();
+                    //OpenWindowCommand.createPopup.Close();
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace TourPlanner.ViewModels
                 if (editRoute)
                 {
                     MessageBox.Show($"Route edited successfully!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Information);
-                    OpenWindowCommand.createPopup.Close();
+                    //OpenWindowCommand.createPopup.Close();
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace TourPlanner.ViewModels
                 if (createLog)
                 {
                     MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
-                    OpenWindowCommand.createPopup.Close();
+                    //OpenWindowCommand.createPopup.Close();
                 }
                 else
                 {
@@ -218,7 +218,7 @@ namespace TourPlanner.ViewModels
                 if (editLog)
                 {
                     MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);
-                    OpenWindowCommand.createPopup.Close();
+                    //OpenWindowCommand.createPopup.Close();
                 }
                 else
                 {

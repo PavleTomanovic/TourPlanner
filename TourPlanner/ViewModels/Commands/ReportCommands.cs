@@ -9,25 +9,23 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class TourReportCommand : ICommand
+    public class TourReportCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
+        public override bool CanExecute(object parameter)
         {
-            if (String.IsNullOrEmpty(parameter?.ToString()))
+            if (String.IsNullOrEmpty(parameter.ToString()))
                 return false;
             return true;
         }
 
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Report Creation", MessageBoxButton.YesNo);
 
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    bool createReport = BussinessLogic.LogicInstance.CreateRouteReport(parameter?.ToString());
+                    bool createReport = BussinessLogic.LogicInstance.CreateRouteReport(parameter.ToString());
                     if (createReport)
                         MessageBox.Show("TourReport successfully created!", "Report Creation", MessageBoxButton.OK, MessageBoxImage.Information);
                     else
@@ -37,25 +35,23 @@ namespace TourPlanner.ViewModels.Commands
         }
     }
 
-    public class SummarizeReportCommand : ICommand
+    public class SummarizeReportCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
+        public override bool CanExecute(object parameter)
         {
-            if (String.IsNullOrEmpty(parameter?.ToString()))
+            if (String.IsNullOrEmpty(parameter.ToString()))
                 return false;
             return true;
         }
 
-        public void Execute(object? parameter)
+        public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Report Creation", MessageBoxButton.YesNo);
 
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    bool createReport = BussinessLogic.LogicInstance.CreateSummarizeReport(parameter?.ToString());
+                    bool createReport = BussinessLogic.LogicInstance.CreateSummarizeReport(parameter.ToString());
                     if (createReport)
                         MessageBox.Show("SummarizeReport successfully created!", "Report Creation", MessageBoxButton.OK, MessageBoxImage.Information);
                     else

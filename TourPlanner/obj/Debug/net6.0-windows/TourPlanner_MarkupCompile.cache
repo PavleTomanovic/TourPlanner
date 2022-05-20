@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\
 TourPlanner
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\App.xaml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\App.xaml
 6-115828491
 
-34-1104401152
-217-1702110175
+35559142782
+217-411805455
 CreateLogWindow.xaml;EditLogWindow.xaml;EditTourWindow.xaml;MainWindow.xaml;NewTourWindow.xaml;TaskSection.xaml;
 
 False

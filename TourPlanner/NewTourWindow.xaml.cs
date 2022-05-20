@@ -13,7 +13,14 @@ namespace TourPlanner
         {
             InitializeComponent();
             this.DataContext = new TourChangesView();
+            this.Closing += NewTourWindow_Closing; ;
         }
+
+        private void NewTourWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            this.Hide();
+        }
+
 
     }
 }

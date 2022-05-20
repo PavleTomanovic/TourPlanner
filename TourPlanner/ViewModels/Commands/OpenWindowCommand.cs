@@ -3,55 +3,42 @@ using System.Windows.Input;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class OpenWindowCommand : ICommand
+    public class OpenWindowCommand : CommandBase
     {
-        public static NewTourWindow createPopup = new NewTourWindow();
-
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter) => true;
-        public void Execute(object parameter)
+        public NewTourWindow createPopup;
+        public override void Execute(object parameter)
         {
+            createPopup = new NewTourWindow();
             createPopup.Show();
         }
     }
-    public class OpenEditWindowCommand : ICommand
+    public class OpenEditWindowCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             if (String.IsNullOrEmpty(parameter.ToString()))
                 return false;
             return true;
         }
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             EditTourWindow createPopup = new EditTourWindow(parameter.ToString());
             createPopup.Show();
         }
     }
 
-    public class OpenInsertLogWindowCommand : ICommand
+    public class OpenInsertLogWindowCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             CreateLogWindow createPopup = new CreateLogWindow(parameter.ToString());
             createPopup.Show();
         }
     }
 
-    public class OpenEditLogWindowCommand : ICommand
+    public class OpenEditLogWindowCommand : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             EditLogWindow createPopup = new EditLogWindow(parameter.ToString());
             createPopup.Show();
