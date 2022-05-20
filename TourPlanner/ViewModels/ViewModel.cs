@@ -37,8 +37,8 @@ namespace TourPlanner.ViewModels
             OpenEditWindowCommand = new OpenEditWindowCommand(this);
             ImportCommand = new ImportCommand();
             ExportCommand = new ExportCommand(this);
-            TourReportCommand = new TourReportCommand();
-            SummarizeReportCommand = new SummarizeReportCommand();
+            TourReportCommand = new TourReportCommand(this);
+            SummarizeReportCommand = new SummarizeReportCommand(this);
             DeleteCommand = new DeleteCommand(this);
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand();

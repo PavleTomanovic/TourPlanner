@@ -9,7 +9,6 @@
 	
 	TODO - Details
 
-	- Commands: OnCanExecutedChanged()
 	- EditWindow seperate viewmodel because of default values?
 	- update view after submit
 	- Loading Mouse
@@ -17,8 +16,9 @@
 	- Menu in own view?
 	- Protocol
 
-	Done:
+	Changes Done:
 	CommandBase
 	NewWindow hide : use multiple times
 	Menuitems recognize Changes 
+	Gitignore files
 

@@ -9,15 +9,9 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class TourReportCommand : CommandBase
+    public class TourReportCommand : CommandBaseOnChange
     {
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter.ToString()))
-                return false;
-            return true;
-        }
-
+        public TourReportCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Report Creation", MessageBoxButton.YesNo);
@@ -35,19 +29,12 @@ namespace TourPlanner.ViewModels.Commands
         }
     }
 
-    public class SummarizeReportCommand : CommandBase
+    public class SummarizeReportCommand : CommandBaseOnChange
     {
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter.ToString()))
-                return false;
-            return true;
-        }
-
+        public SummarizeReportCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Report Creation", MessageBoxButton.YesNo);
-
             switch (result)
             {
                 case MessageBoxResult.Yes:

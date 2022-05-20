@@ -6,40 +6,21 @@ namespace TourPlanner.ViewModels.Commands
 {
     public class OpenWindowCommand : CommandBase
     {
-        public NewTourWindow createPopup;
         public override void Execute(object parameter)
         {
-            createPopup = new NewTourWindow();
+            NewTourWindow createPopup = new NewTourWindow();
             createPopup.Show();
         }
     }
-    public class OpenEditWindowCommand : CommandBase
+    public class OpenEditWindowCommand : CommandBaseOnChange
     {
-        private readonly ViewModel _viewModel;
-        public OpenEditWindowCommand(ViewModel viewModel)
-        {
-            _viewModel = viewModel;
-            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
-        }
-
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter.ToString()))
-                return false;
-            return true;
-        }
+        public OpenEditWindowCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             EditTourWindow createPopup = new EditTourWindow(parameter.ToString());
             createPopup.Show();
         }
-        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(ViewModel.CurTourName))
-                OnCanExecutedChanged();
-        }
     }
-
     public class OpenInsertLogWindowCommand : CommandBase
     {
         public override void Execute(object parameter)
@@ -48,7 +29,6 @@ namespace TourPlanner.ViewModels.Commands
             createPopup.Show();
         }
     }
-
     public class OpenEditLogWindowCommand : CommandBase
     {
         public override void Execute(object parameter)

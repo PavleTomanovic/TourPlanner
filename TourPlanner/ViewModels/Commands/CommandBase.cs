@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,27 @@ namespace TourPlanner.ViewModels.Commands
         protected void OnCanExecutedChanged()
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
+        }
+    }
+
+    public abstract class CommandBaseOnChange : CommandBase
+    {
+        private readonly ViewModel _viewModel;
+        public CommandBaseOnChange(ViewModel viewModel)
+        {
+            _viewModel = viewModel;
+            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
+        public override bool CanExecute(object parameter)
+        {
+            if (String.IsNullOrEmpty(parameter.ToString()))
+                return false;
+            return true;
+        }
+        public virtual void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.CurTourName))
+                OnCanExecutedChanged();
         }
     }
 }

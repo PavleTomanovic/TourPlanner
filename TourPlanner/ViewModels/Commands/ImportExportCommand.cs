@@ -33,21 +33,9 @@ namespace TourPlanner.ViewModels.Commands
             }
         }
     }
-    public class ExportCommand : CommandBase
+    public class ExportCommand : CommandBaseOnChange
     {
-        private readonly ViewModel _viewModel;
-        public ExportCommand(ViewModel viewModel)
-        {
-            _viewModel = viewModel;
-            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
-        }
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter.ToString()))
-                return false;
-            return true;
-        }
-
+        public ExportCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -61,12 +49,6 @@ namespace TourPlanner.ViewModels.Commands
                 else
                     MessageBox.Show("Route is not exported, check log file for more!", "Tour Export", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-        }
-        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(ViewModel.CurTourName))
-                OnCanExecutedChanged();
         }
     }
 }
