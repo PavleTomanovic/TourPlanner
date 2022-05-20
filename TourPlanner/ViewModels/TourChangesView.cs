@@ -159,8 +159,8 @@ namespace TourPlanner.ViewModels
                 bool createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Transport, Comment);
                 if (createTour)
                 {
+                    MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
                     OpenWindowCommand.createPopup.Close();
-                    MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created");
                 }
                 else
                 {
@@ -178,8 +178,8 @@ namespace TourPlanner.ViewModels
                 bool editRoute = BussinessLogic.LogicInstance.ModifyRoute(From, To, Tourname, Transport, Comment, TourId);
                 if (editRoute)
                 {
+                    MessageBox.Show($"Route edited successfully!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Information);
                     OpenWindowCommand.createPopup.Close();
-                    MessageBox.Show($"Route edited successfully!", "Route Edit");
                 }
                 else
                 {
@@ -197,8 +197,8 @@ namespace TourPlanner.ViewModels
                 bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, DifficultyLog, TotalTime, Rating, TourId);
                 if (createLog)
                 {
+                    MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
                     OpenWindowCommand.createPopup.Close();
-                    MessageBox.Show($"Log created successfully!", "Log Creation");
                 }
                 else
                 {
@@ -217,8 +217,8 @@ namespace TourPlanner.ViewModels
 
                 if (editLog)
                 {
+                    MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);
                     OpenWindowCommand.createPopup.Close();
-                    MessageBox.Show($"Log edited successfully!", "Log Edit");
                 }
                 else
                 {

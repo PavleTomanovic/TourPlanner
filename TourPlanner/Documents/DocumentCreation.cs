@@ -65,13 +65,13 @@ namespace TourPlanner.BussinesLayer
             document.Close();
         }
 
-        public void RouteSummarizeReportCreation(double time, double rating, string distance)
+        public void RouteSummarizeReportCreation(double time, double rating, string distance, string routeName)
         {
-            PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fffff") + "RouteSummarize" + ".pdf");
+            PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fffff") + "_SummarizeReport_" + routeName + ".pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            Paragraph tableHeader = new Paragraph("Report Table - Summarize Report")
+            Paragraph tableHeader = new Paragraph("Report Table - Summarize Report of " + routeName)
                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
                     .SetFontSize(18)
                     .SetBold()

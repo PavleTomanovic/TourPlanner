@@ -23,7 +23,12 @@ namespace TourPlanner.ViewModels
         public ImportCommand ImportCommand { get; set; }
         public ExportCommand ExportCommand { get; set; }
         public DeleteCommand DeleteCommand { get; set; }
-
+        public OpenInsertLogWindowCommand OpenInsertLogWindowCommand { get; set; }
+        public OpenEditLogWindowCommand OpenEditLogWindowCommand { get; set; }
+        public DeleteLogCommand DeleteLogCommand { get; set; }
+        public TourReportCommand TourReportCommand { get; set; }
+        public SummarizeReportCommand SummarizeReportCommand { get; set; }
+        
 
         public ViewModel()
         {
@@ -32,7 +37,12 @@ namespace TourPlanner.ViewModels
             OpenEditWindowCommand = new OpenEditWindowCommand();
             ImportCommand = new ImportCommand();
             ExportCommand = new ExportCommand();
+            TourReportCommand = new TourReportCommand();
+            SummarizeReportCommand = new SummarizeReportCommand();
             DeleteCommand = new DeleteCommand();
+            OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
+            OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
+            DeleteLogCommand = new DeleteLogCommand();
         }
         public string CurTourId
         {

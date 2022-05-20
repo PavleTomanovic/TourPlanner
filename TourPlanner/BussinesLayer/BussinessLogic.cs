@@ -164,12 +164,22 @@ namespace TourPlanner.BussinesLayer
             }
         }
 
-        public void CreateRouteReport(string routeId)
+        public bool CreateRouteReport(string routeId)
         {
-            HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
-            DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
+            try
+            {
+                HttpResponseDTO httpResponseDTO = SelectAllFromRoute(routeId);
+                DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
+                return true;
+            }
+            catch(Exception e)
+            {
+                LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                return false;
+            }
         }
-        public void CreateSummarizeReport(string routeId)
+
+        public bool CreateSummarizeReport(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
 
@@ -178,6 +188,7 @@ namespace TourPlanner.BussinesLayer
                 try
                 {
                     string distance = row["TourDistance"].ToString();
+                    string routeName = row["TourName"].ToString();
                     int avgTime = 0;
                     int avgRating = 0;
 
@@ -190,16 +201,25 @@ namespace TourPlanner.BussinesLayer
                         avgRating += Int32.Parse(row["Rating"].ToString());
                     }
 
-                    double finalTime = avgTime / totalRows;
-                    double finalRating = avgRating / totalRows;
+                    double finalTime = 0;
+                    double finalRating = 0;
 
-                    DocumentCreation.Instance.RouteSummarizeReportCreation(finalTime, finalRating, distance);
+                    if (totalRows > 0)
+                    {
+                        finalTime = avgTime / totalRows;
+                        finalRating = avgRating / totalRows;
+                    }
+
+                    DocumentCreation.Instance.RouteSummarizeReportCreation(finalTime, finalRating, distance, routeName);
                 }
                 catch (Exception e)
                 {
                     LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                    return false;
                 }
             }
+
+            return true;
         }
 
         public string ImportRouteFromFile(string filename)
