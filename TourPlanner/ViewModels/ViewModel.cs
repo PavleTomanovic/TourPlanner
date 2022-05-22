@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Linq;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -13,16 +14,18 @@ namespace TourPlanner.ViewModels
 
     public class ViewModel : ViewModelBase
     {
+
         private string _curTourId = string.Empty;
         private string _curTourName = "Please choose a Tour";
         private string _curImagePath = string.Empty;
+        HttpResponseDTO tourDTO = new HttpResponseDTO();
         private DataTable _curDataGrid;
-        public OpenWindowCommand OpenWindowCommand { get; set; }
+        public OpenWindowCommand OpenWindowCommand = new OpenWindowCommand();
         public OpenEditWindowCommand OpenEditWindowCommand { get; set; }
-        public ImportCommand ImportCommand { get; set; }
+        public ImportCommand ImportCommand = new ImportCommand();
         public ExportCommand ExportCommand { get; set; }
         public DeleteCommand DeleteCommand { get; set; }
-        public OpenInsertLogWindowCommand OpenInsertLogWindowCommand { get; set; }
+        public OpenInsertLogWindowCommand OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
         public OpenEditLogWindowCommand OpenEditLogWindowCommand { get; set; }
         public DeleteLogCommand DeleteLogCommand { get; set; }
         public TourReportCommand TourReportCommand { get; set; }
@@ -30,14 +33,11 @@ namespace TourPlanner.ViewModels
 
         public ViewModel()
         {
-            OpenWindowCommand = new OpenWindowCommand();
             OpenEditWindowCommand = new OpenEditWindowCommand(this);
-            ImportCommand = new ImportCommand();
             ExportCommand = new ExportCommand(this);
             TourReportCommand = new TourReportCommand(this);
             SummarizeReportCommand = new SummarizeReportCommand(this);
             DeleteCommand = new DeleteCommand(this);
-            OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
             DeleteLogCommand = new DeleteLogCommand();
             setTours(); //versuche es mit Button für update view : Notiz für Taha
@@ -63,6 +63,10 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string CurFrom;
+        public string CurTo;
+        public string CurTransport;
+        public string CurComment;
 
         public DataTable DataGridDescription
         {
@@ -84,7 +88,6 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        HttpResponseDTO tourDTO = new HttpResponseDTO();
         private TourPreview selectedTourObject;
         public TourPreview SelectedTourObject
         {
@@ -101,7 +104,12 @@ namespace TourPlanner.ViewModels
         public ObservableCollection<TourPreview> TourObjectCollection
         {
             get { return tourObjectCollection; }
-            set { SetProperty(ref tourObjectCollection, value); }
+            set
+            {
+                if (value != this.tourObjectCollection)
+                    tourObjectCollection = value;
+                OnPropertyChanged();
+            }
         }
         public void setTours()
         {
@@ -113,14 +121,20 @@ namespace TourPlanner.ViewModels
             tourObjectCollection = new ObservableCollection<TourPreview>();
             return f => tourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
         }
-        public void updateView()
+
+        private void updateView()
         {
-            //setTours();
-            CurTourName = selectedTourObject.tourName;
+            setTours();
             CurTourId = selectedTourObject.tourId;
             var logic = BussinessLogic.LogicInstance;
             tourDTO = logic.SelectAllFromRoute(CurTourId);
+            CurTourName = tourDTO.Route.Name;
+            CurFrom = tourDTO.Route.From;
+            CurTo = tourDTO.Route.To;
+            CurTransport = tourDTO.Route.Transport;
+            CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
+
             DataTable custTable = new DataTable();
             DataColumn dtColumn;
             DataRow myDataRow;
@@ -138,15 +152,15 @@ namespace TourPlanner.ViewModels
 
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "From: ";
-            myDataRow["Two"] = tourDTO.Route.From;
+            myDataRow["Two"] = CurFrom;
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "To: ";
-            myDataRow["Two"] = tourDTO.Route.To;
+            myDataRow["Two"] = CurTo;
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Transport: ";
-            myDataRow["Two"] = tourDTO.Route.Transport;
+            myDataRow["Two"] = CurTransport;
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Distance: ";
@@ -158,7 +172,7 @@ namespace TourPlanner.ViewModels
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Comment: ";
-            myDataRow["Two"] = tourDTO.Route.Comment;
+            myDataRow["Two"] = CurComment;
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Popularity: ";
@@ -169,6 +183,10 @@ namespace TourPlanner.ViewModels
             myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
             custTable.Rows.Add(myDataRow);
             DataGridDescription = custTable;
+
+            /*            var found = TourObjectCollection.FirstOrDefault(x => x.tourId == CurTourId);
+                        if (found != null)
+                            found.tourName = CurTourName;*/
         }
     }
 }
