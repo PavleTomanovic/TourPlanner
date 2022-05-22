@@ -15,7 +15,6 @@ namespace TourPlanner.ViewModels
     {
         private string _curTourId = string.Empty;
         private string _curTourName = "Please choose a Tour";
-        private string _curDescription = string.Empty;
         private string _curImagePath = string.Empty;
         private DataTable _curDataGrid;
         public OpenWindowCommand OpenWindowCommand { get; set; }
@@ -41,7 +40,7 @@ namespace TourPlanner.ViewModels
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
             DeleteLogCommand = new DeleteLogCommand();
-            setTours();
+            setTours(); //versuche es mit Button für update view : Notiz für Taha
         }
         public string CurTourId
         {
@@ -64,16 +63,7 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        public string CurDescription
-        {
-            get { return _curDescription; }
-            set
-            {
-                if (value != this._curDescription)
-                    _curDescription = value;
-                OnPropertyChanged();
-            }
-        }
+
         public DataTable DataGridDescription
         {
             get { return _curDataGrid; }

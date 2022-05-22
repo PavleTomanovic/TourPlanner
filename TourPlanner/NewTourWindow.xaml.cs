@@ -19,12 +19,9 @@ namespace TourPlanner
                 tcv.CloseAction = new Action(this.Close);
             Closing += NewTourWindow_Closing; ;
         }
-
         private void NewTourWindow_Closing(object? sender, CancelEventArgs e)
         {
             this.Hide();
         }
-
-
     }
 }

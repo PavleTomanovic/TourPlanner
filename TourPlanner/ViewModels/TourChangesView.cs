@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using TourPlanner.BussinesLayer;
 using TourPlanner.ViewModels.Commands;
 
@@ -140,14 +141,13 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         public TourCommand NewTourCommand { get; set; }
         public EditTourCommand EditTourCommand { get; set; }
         public CreateLogCommand CreateLogCommand { get; set; }
         public EditLogCommand EditLogCommand { get; set; }
         public void CreateTourButton(object obj)
         {
+            UIServices.SetBusyState();
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
@@ -167,6 +167,7 @@ namespace TourPlanner.ViewModels
 
         public void EditTourButton(object obj)
         {
+            UIServices.SetBusyState();
             if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
@@ -186,6 +187,7 @@ namespace TourPlanner.ViewModels
 
         public void CreateLogButton(object obj)
         {
+            UIServices.SetBusyState();
             if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
                 MessageBox.Show("Please complete the form");
             else
@@ -205,6 +207,7 @@ namespace TourPlanner.ViewModels
 
         public void EditLogButton(object obj)
         {
+            UIServices.SetBusyState();
             if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
                 MessageBox.Show("Please complete the form");
             else

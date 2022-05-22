@@ -10,11 +10,11 @@
 	TODO - Details
 
 	- update view after submit
-	- Loading Mouse
 	- EditWindow seperate viewmodel because of default values?
 	- Log Records in own view?
 	- Menu in own view?
 	- Protocol
 
 	Changes Done:
+	UIServices - whenever you want a loading mouse just call UIServices.SetBusyState();
 

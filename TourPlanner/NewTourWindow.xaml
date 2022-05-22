@@ -35,6 +35,6 @@
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Transport, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Comment"/>
         <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Create Tour"  Command="{Binding NewTourCommand}"/>
+        <Button x:Name="btn1" Grid.Row="5" Grid.Column="1" Width="100" Content="Create Tour"  Command="{Binding NewTourCommand}"/>
     </Grid>
 </Window>

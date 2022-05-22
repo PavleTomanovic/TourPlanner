@@ -14,10 +14,15 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class OpenEditWindowCommand : CommandBaseOnChange
     {
-        public OpenEditWindowCommand(ViewModel viewModel) : base(viewModel) { }
+        ViewModel vm;
+        public OpenEditWindowCommand(ViewModel viewModel) : base(viewModel)
+        {
+            vm = viewModel;
+        }
         public override void Execute(object parameter)
         {
-            EditTourWindow createPopup = new EditTourWindow(parameter.ToString());
+
+            EditTourWindow createPopup = new EditTourWindow(parameter.ToString(), vm.CurTourName);
             createPopup.Show();
         }
     }
