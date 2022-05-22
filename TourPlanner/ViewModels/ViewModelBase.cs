@@ -1,20 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using TourPlanner.Models;
 
 namespace TourPlanner.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
-        public void OnProbertyChanged(string name)
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (EqualityComparer<T>.Default.Equals(storage, value))
+                return false;
+            storage = value;
+            this.OnPropertyChanged(propertyName);
+            return true;
+        }
         /* public ObservableCollection<LogRecord> Record { get; set; }
 
          public MainWindowViewModel()

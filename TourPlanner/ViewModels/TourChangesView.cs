@@ -6,7 +6,7 @@ using TourPlanner.ViewModels.Commands;
 
 namespace TourPlanner.ViewModels
 {
-    public class TourChangesView
+    public class TourChangesView : ViewModelBase
     {
         public string TourId { get; set; }
         public string LogID { get; set; }
@@ -36,12 +36,6 @@ namespace TourPlanner.ViewModels
             EditLogCommand = new EditLogCommand(this);
             CreateLogCommand = new CreateLogCommand(this);
         }
-        public void OnProbertyChanged(string name)
-        {
-            if (PropertyChanged == null)
-                return;
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
 
         public string Tourname
         {
@@ -51,7 +45,7 @@ namespace TourPlanner.ViewModels
                 if (value == _tourname)
                     return;
                 _tourname = value;
-                OnProbertyChanged(nameof(Tourname));
+                OnPropertyChanged();
             }
         }
         public string From
@@ -62,7 +56,7 @@ namespace TourPlanner.ViewModels
                 if (value == _from)
                     return;
                 _from = value;
-                OnProbertyChanged(nameof(From));
+                OnPropertyChanged();
             }
         }
         public string To
@@ -73,7 +67,7 @@ namespace TourPlanner.ViewModels
                 if (value == _to)
                     return;
                 _to = value;
-                OnProbertyChanged(nameof(To));
+                OnPropertyChanged();
             }
         }
         public string Comment
@@ -84,7 +78,7 @@ namespace TourPlanner.ViewModels
                 if (value == _comment)
                     return;
                 _comment = value;
-                OnProbertyChanged(nameof(Comment));
+                OnPropertyChanged();
             }
         }
         public string Transport
@@ -95,7 +89,7 @@ namespace TourPlanner.ViewModels
                 if (value == _transport)
                     return;
                 _transport = value;
-                OnProbertyChanged(nameof(Transport));
+                OnPropertyChanged();
             }
         }
 
@@ -107,7 +101,7 @@ namespace TourPlanner.ViewModels
                 if (value == _logComment)
                     return;
                 _logComment = value;
-                OnProbertyChanged(nameof(LogComment));
+                OnPropertyChanged();
             }
         }
 
@@ -119,7 +113,7 @@ namespace TourPlanner.ViewModels
                 if (value == _totalTime)
                     return;
                 _totalTime = value;
-                OnProbertyChanged(nameof(TotalTime));
+                OnPropertyChanged();
             }
         }
 
@@ -131,7 +125,7 @@ namespace TourPlanner.ViewModels
                 if (value == _difficulty)
                     return;
                 _difficulty = value;
-                OnProbertyChanged(nameof(DifficultyLog));
+                OnPropertyChanged();
             }
         }
 
@@ -143,7 +137,7 @@ namespace TourPlanner.ViewModels
                 if (value == _rating)
                     return;
                 _rating = value;
-                OnProbertyChanged(nameof(Rating));
+                OnPropertyChanged();
             }
         }
 

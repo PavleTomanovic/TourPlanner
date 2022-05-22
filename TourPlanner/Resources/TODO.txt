@@ -9,16 +9,12 @@
 	
 	TODO - Details
 
-	- EditWindow seperate viewmodel because of default values?
 	- update view after submit
 	- Loading Mouse
+	- EditWindow seperate viewmodel because of default values?
 	- Log Records in own view?
 	- Menu in own view?
 	- Protocol
 
 	Changes Done:
-	CommandBase
-	NewWindow hide : use multiple times
-	Menuitems recognize Changes 
-	Gitignore files
 
