@@ -21,7 +21,8 @@ namespace TourPlanner.ViewModels
             //Create a new Task Record
             //Instatiate a new Task object and give it information
 
-            tourLogDTO = BussinessLogic.LogicInstance.PrepareListLogForSearch();
+
+            tourLogDTO = BussinessLogic.LogicInstance.SelectLogForSearch();
             LogGrid = new ObservableCollection<TourLogDTO>();
             tourLogDTO.ToList().ForEach(LogGrid.Add);
             /*    LogGrid = new ObservableCollection<LogRecord>()

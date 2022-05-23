@@ -411,6 +411,26 @@ namespace TourPlanner.BussinesLayer
             return list;
         }
 
+        public List<TourLogDTO> SelectLogForSearch(string routeId)
+        {
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+            TourLogDTO tourLogDTO = new TourLogDTO();
+            List<TourLogDTO> list = new List<TourLogDTO>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                tourLogDTO.DateTime = row["DateTime"].ToString();
+                tourLogDTO.Difficulty = row["Difficulty"].ToString();
+                tourLogDTO.Comment = row["Comment"].ToString();
+                tourLogDTO.Rating = row["Rating"].ToString();
+                tourLogDTO.TotalTime = row["TotalTime"].ToString();
+
+                list.Add(tourLogDTO);
+            }
+
+            return list;
+        }
+
         public static BussinessLogic LogicInstance
         {
             get
