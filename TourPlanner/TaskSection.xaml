@@ -3,6 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:TourPlanner"
 	xmlns:vm="clr-namespace:TourPlanner.ViewModels"
     mc:Ignorable="d" 
      >
@@ -114,25 +115,10 @@
         <Button Content="Delete Log" Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" Command="{Binding DeleteLogCommand}" CommandParameter="{Binding LogID}"/>
         <Button Content="Edit Log" Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding OpenEditLogWindowCommand}" CommandParameter="{Binding LogID}"/>
 
+
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{StaticResource box}">
-            <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding Record}" AutoGenerateColumns="False">
-                <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="#232323"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
-                        <Setter Property="BorderBrush" Value="White"/>
-                        <Setter Property="Foreground" Value="White"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date and Time" Binding="{Binding Date, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}" Width="100"/>
-                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="100"/>
-                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="100"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="100"/>
-                    <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <Frame Source="LogTable.xaml">
+            </Frame>
         </Border>
     </Grid>
 </Page>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\App.xaml
-6-115828491
+71612697391
 
-36-294200865
+38-933205950
 217-411805455
-CreateLogWindow.xaml;EditLogWindow.xaml;EditTourWindow.xaml;MainWindow.xaml;NewTourWindow.xaml;TaskSection.xaml;
+CreateLogWindow.xaml;EditLogWindow.xaml;EditTourWindow.xaml;LogTable.xaml;MainWindow.xaml;NewTourWindow.xaml;TaskSection.xaml;
 
 False
 
