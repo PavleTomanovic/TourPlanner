@@ -17,7 +17,6 @@
         }
         public override void Execute(object parameter)
         {
-
             EditTourWindow createPopup = new EditTourWindow(parameter.ToString(), vm.CurTourName, vm.CurFrom, vm.CurTo, vm.CurTransport, vm.CurComment);
             createPopup.Show();
         }

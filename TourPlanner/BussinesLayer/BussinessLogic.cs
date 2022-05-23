@@ -368,47 +368,53 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
-
-        public List<HttpResponseDTO> PrepareListRouteForSearch()
+        /*
+        public List<string> GetSearchResultsRoute(string searchText)
         {
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllRoutes);
-            HttpResponseDTO httpResponseDTO = new HttpResponseDTO();
-            List<HttpResponseDTO> list = new List<HttpResponseDTO>();
+            List<string> results = new List<string>();
+            DataTable routeTable = PrepareTableRouteForSearch();
 
+            foreach (DataRow row in routeTable.Rows)
+            {
+                List<string> routeInfo = new List<string>();
+
+                routeInfo.Add(row["TourName"].ToString());
+                routeInfo.Add(row["TourComment"].ToString());
+                routeInfo.Add(row["TourFrom"].ToString());
+                routeInfo.Add(row["TourTo"].ToString());
+                routeInfo.Add(row["TourTransport"].ToString());
+                routeInfo.Add(row["TourDistance"].ToString());
+                routeInfo.Add(row["TourTime"].ToString());
+
+                foreach (string route in routeInfo)
+                {
+                    if (route.Contains(searchText))
+                        results.Add(row["TourId"].ToString());
+                }
+            }
+            return results;
+        }
+        */
+        public List<string> PrepareTableRouteForSearch(string searchText)
+        {
+            List<string> result = new List<string>();
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughRoutes, searchText);
             foreach (DataRow row in dataTable.Rows)
             {
-                httpResponseDTO.Route.Name = row["TourName"].ToString();
-                httpResponseDTO.Route.Comment = row["TourComment"].ToString();
-                httpResponseDTO.Route.From = row["TourFrom"].ToString();
-                httpResponseDTO.Route.To = row["TourTo"].ToString();
-                httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
-                httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
-                httpResponseDTO.Route.Time = row["TourTime"].ToString();
-
-                list.Add(httpResponseDTO);
+                result.Add(row["TourId"].ToString());
             }
-
-            return list;
+            return result;
         }
 
-        public List<TourLogDTO> PrepareListLogForSearch()
+        public List<string> PrepareTableLogForSearch(string searchText, string query)
         {
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelectAllRoutes(BussinessFactory.Instance.SqlDTO.SelectAllLogs);
-            TourLogDTO tourLogDTO = new TourLogDTO();
-            List<TourLogDTO> list = new List<TourLogDTO>();
-
+            List<string> result = new List<string>();
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughLogs, searchText);
             foreach (DataRow row in dataTable.Rows)
             {
-                tourLogDTO.DateTime = row["DateTime"].ToString();
-                tourLogDTO.Difficulty = row["Difficulty"].ToString();
-                tourLogDTO.Comment = row["Comment"].ToString();
-                tourLogDTO.Rating = row["Rating"].ToString();
-                tourLogDTO.TotalTime = row["TotalTime"].ToString();
-
-                list.Add(tourLogDTO);
+                result.Add(row["TourId"].ToString());
             }
-
-            return list;
+            return result;
         }
 
         public List<TourLogDTO> SelectLogForSearch(string routeId)

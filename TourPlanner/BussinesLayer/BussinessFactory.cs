@@ -79,6 +79,8 @@ namespace TourPlanner.BussinesLayer
             SqlDTO.SelectLogReport = xmlReader.getSingleNodeString("SWEN/Sql/SelectLogReport");
             SqlDTO.SelectAllRoutes = xmlReader.getSingleNodeString("SWEN/Sql/SelectAllRoutes");
             SqlDTO.SelectAllLogs = xmlReader.getSingleNodeString("SWEN/Sql/SelectAllLogs");
+            SqlDTO.SearchThroughRoutes = xmlReader.getSingleNodeString("SWEN/Sql/SearchThroughRoutes");
+            SqlDTO.SearchThroughLogs = xmlReader.getSingleNodeString("SWEN/Sql/SearchThroughLogs");
         }
 
         private void ReadDirectory()
