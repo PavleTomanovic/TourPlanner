@@ -406,17 +406,6 @@ namespace TourPlanner.BussinesLayer
             return result;
         }
 
-        public List<string> PrepareTableLogForSearch(string searchText, string query)
-        {
-            List<string> result = new List<string>();
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughLogs, searchText);
-            foreach (DataRow row in dataTable.Rows)
-            {
-                result.Add(row["TourId"].ToString());
-            }
-            return result;
-        }
-
         public List<TourLogDTO> SelectLogForSearch(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
