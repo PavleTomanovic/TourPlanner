@@ -368,33 +368,6 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
-        /*
-        public List<string> GetSearchResultsRoute(string searchText)
-        {
-            List<string> results = new List<string>();
-            DataTable routeTable = PrepareTableRouteForSearch();
-
-            foreach (DataRow row in routeTable.Rows)
-            {
-                List<string> routeInfo = new List<string>();
-
-                routeInfo.Add(row["TourName"].ToString());
-                routeInfo.Add(row["TourComment"].ToString());
-                routeInfo.Add(row["TourFrom"].ToString());
-                routeInfo.Add(row["TourTo"].ToString());
-                routeInfo.Add(row["TourTransport"].ToString());
-                routeInfo.Add(row["TourDistance"].ToString());
-                routeInfo.Add(row["TourTime"].ToString());
-
-                foreach (string route in routeInfo)
-                {
-                    if (route.Contains(searchText))
-                        results.Add(row["TourId"].ToString());
-                }
-            }
-            return results;
-        }
-        */
         public List<string> PrepareTableRouteForSearch(string searchText)
         {
             List<string> result = new List<string>();
@@ -406,7 +379,7 @@ namespace TourPlanner.BussinesLayer
             return result;
         }
 
-        public List<TourLogDTO> SelectLogForSearch(string routeId)
+        public List<TourLogDTO> SelectLogForRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
             TourLogDTO tourLogDTO = new TourLogDTO();

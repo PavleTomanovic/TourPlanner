@@ -22,7 +22,7 @@ namespace TourPlanner.ViewModels
             //Instatiate a new Task object and give it information
 
 
-            tourLogDTO = BussinessLogic.LogicInstance.SelectLogForSearch("4");
+            tourLogDTO = BussinessLogic.LogicInstance.SelectLogForRoute("4");
             LogGrid = new ObservableCollection<TourLogDTO>();
             tourLogDTO.ToList().ForEach(LogGrid.Add);
             /*    LogGrid = new ObservableCollection<LogRecord>()
