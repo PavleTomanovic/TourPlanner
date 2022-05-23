@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -20,12 +19,12 @@ namespace TourPlanner.ViewModels
         private string _curImagePath = string.Empty;
         HttpResponseDTO tourDTO = new HttpResponseDTO();
         private DataTable _curDataGrid;
-        public OpenWindowCommand OpenWindowCommand = new OpenWindowCommand();
+        public OpenWindowCommand OpenWindowCommand { get; set; }
         public OpenEditWindowCommand OpenEditWindowCommand { get; set; }
-        public ImportCommand ImportCommand = new ImportCommand();
+        public ImportCommand ImportCommand { get; set; }
         public ExportCommand ExportCommand { get; set; }
         public DeleteCommand DeleteCommand { get; set; }
-        public OpenInsertLogWindowCommand OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
+        public OpenInsertLogWindowCommand OpenInsertLogWindowCommand { get; set; }
         public OpenEditLogWindowCommand OpenEditLogWindowCommand { get; set; }
         public DeleteLogCommand DeleteLogCommand { get; set; }
         public TourReportCommand TourReportCommand { get; set; }
@@ -33,6 +32,7 @@ namespace TourPlanner.ViewModels
 
         public ViewModel()
         {
+            OpenWindowCommand = new OpenWindowCommand();
             OpenEditWindowCommand = new OpenEditWindowCommand(this);
             ExportCommand = new ExportCommand(this);
             TourReportCommand = new TourReportCommand(this);
@@ -40,7 +40,9 @@ namespace TourPlanner.ViewModels
             DeleteCommand = new DeleteCommand(this);
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
             DeleteLogCommand = new DeleteLogCommand();
-            setTours(); //versuche es mit Button für update view : Notiz für Taha
+            ImportCommand = new ImportCommand();
+            OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
+            setTours();
         }
         public string CurTourId
         {
@@ -183,10 +185,6 @@ namespace TourPlanner.ViewModels
             myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
             custTable.Rows.Add(myDataRow);
             DataGridDescription = custTable;
-
-            /*            var found = TourObjectCollection.FirstOrDefault(x => x.tourId == CurTourId);
-                        if (found != null)
-                            found.tourName = CurTourName;*/
         }
     }
 }

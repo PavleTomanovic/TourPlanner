@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TourPlanner.DataAccessLayer;
-using TourPlanner.DTO;
-using TourPlanner.Util;
 using TourPlanner.Documents;
+using TourPlanner.DTO;
 using TourPlanner.Models;
+using TourPlanner.Util;
 
 namespace TourPlanner.BussinesLayer
 {
@@ -172,7 +169,7 @@ namespace TourPlanner.BussinesLayer
                 DocumentCreation.Instance.RouteReportCreation(httpResponseDTO);
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 return false;

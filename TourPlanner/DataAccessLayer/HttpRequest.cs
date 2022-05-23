@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Util;
-using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.DataAccessLayer
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Input;
-
-namespace TourPlanner.ViewModels.Commands
+﻿namespace TourPlanner.ViewModels.Commands
 {
     public class OpenWindowCommand : CommandBase
     {
