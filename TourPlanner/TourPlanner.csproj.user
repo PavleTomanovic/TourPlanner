@@ -14,9 +14,6 @@
     <Compile Update="NewTourWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="LogTable.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="TaskSection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,9 +29,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="NewTourWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="LogTable.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskSection.xaml">

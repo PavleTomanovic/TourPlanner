@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Linq;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -29,7 +30,6 @@ namespace TourPlanner.ViewModels
         public DeleteLogCommand DeleteLogCommand { get; set; }
         public TourReportCommand TourReportCommand { get; set; }
         public SummarizeReportCommand SummarizeReportCommand { get; set; }
-
         public ViewModel()
         {
             OpenWindowCommand = new OpenWindowCommand();
@@ -102,7 +102,7 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<TourPreview> tourObjectCollection;
+        private ObservableCollection<TourPreview> tourObjectCollection = new ObservableCollection<TourPreview>();
         public ObservableCollection<TourPreview> TourObjectCollection
         {
             get { return tourObjectCollection; }
@@ -115,18 +115,43 @@ namespace TourPlanner.ViewModels
         }
         public void setTours()
         {
-            List<TourPreview> allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
+            List<TourPreview> allTournameId = new List<TourPreview>();
+            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
             allTournameId.ForEach(setTourObjectCollection());
         }
         private Action<TourPreview> setTourObjectCollection()
         {
-            tourObjectCollection = new ObservableCollection<TourPreview>();
-            return f => tourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
+            TourObjectCollection = new ObservableCollection<TourPreview>();
+            return f => TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
+        }
+
+        TourLogDTO newTourLogDTO = new TourLogDTO();
+        public TourLogDTO NewTourLogDTO
+        {
+            get => newTourLogDTO;
+            set
+            {
+                if (value != this.newTourLogDTO)
+                    newTourLogDTO = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<TourLogDTO> _logGrid = new ObservableCollection<TourLogDTO>();
+        public ObservableCollection<TourLogDTO> LogGrid
+        {
+            get => _logGrid;
+            set
+            {
+                if (value != this._logGrid)
+                    _logGrid = value;
+                OnPropertyChanged();
+            }
         }
 
         private void updateView()
         {
-            setTours();
+            //setTours();
             CurTourId = selectedTourObject.tourId;
             var logic = BussinessLogic.LogicInstance;
             tourDTO = logic.SelectAllFromRoute(CurTourId);
@@ -136,6 +161,16 @@ namespace TourPlanner.ViewModels
             CurTransport = tourDTO.Route.Transport;
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
+
+            if (LogGrid != null)
+                LogGrid.Clear();
+            List<TourLogDTO> list = new List<TourLogDTO>();
+            list = BussinessLogic.LogicInstance.SelectLogForRoute(CurTourId);
+            foreach (var item in list)
+            {
+                LogGrid?.Add(item);
+                NewTourLogDTO = new TourLogDTO();
+            }
 
             DataTable custTable = new DataTable();
             DataColumn dtColumn;
@@ -185,6 +220,8 @@ namespace TourPlanner.ViewModels
             myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
             custTable.Rows.Add(myDataRow);
             DataGridDescription = custTable;
+
+
         }
     }
 }
