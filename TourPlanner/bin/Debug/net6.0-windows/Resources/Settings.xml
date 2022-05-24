@@ -38,9 +38,11 @@
 		<SelectAllLogs>SELECT * FROM [TourPlanner].[dbo].[Log_Table]</SelectAllLogs>
 		<SelectAllRoutes>SELECT * FROM [TourPlanner].[dbo].[Tour_Table]</SelectAllRoutes>
 		<SearchThroughRoutes>
-			SELECT [T].[*] FROM [TourPlanner].[dbo].[Tour_Table] INNER JOIN [TourPlanner].[dbo].[Log_Table] L
-			ON [T].[TourId] = [L].[RouteId]
-			WHERE [TourName] like '%@P1%' OR [TourComment] like '%@P1%' OR [TourFrom] like '%@P1%' OR [TourTo] like '%@P1%' OR [TourTransport] like '%@P1%'
+			SELECT * FROM [TourPlanner].[dbo].[Tour_Table] INNER JOIN [TourPlanner].[dbo].[Log_Table]
+			ON [TourId] = [RouteId] WHERE [TourName] like '%@P1%' OR [TourComment] like '%@P1%' OR [TourFrom] like '%@P1%' OR [TourTo] like '%@P1%' OR [TourTransport] like '%@P1%'
 		</SearchThroughRoutes>
+		SELECT [T].[*] FROM [TourPlanner].[dbo].[Tour_Table] INNER JOIN [TourPlanner].[dbo].[Log_Table] L
+		ON [T].[TourId] = [L].[RouteId]
+		WHERE [TourName] like '%@P1%' OR [TourComment] like '%@P1%' OR [TourFrom] like '%@P1%' OR [TourTo] like '%@P1%' OR [TourTransport] like '%@P1%'
 	</Sql>
 </SWEN>

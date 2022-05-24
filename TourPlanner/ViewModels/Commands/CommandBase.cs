@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace TourPlanner.ViewModels.Commands
@@ -12,6 +13,11 @@ namespace TourPlanner.ViewModels.Commands
         protected void OnCanExecutedChanged()
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
+        }
+
+        internal void OnStartup(StartupEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 

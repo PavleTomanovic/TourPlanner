@@ -45,7 +45,6 @@ namespace TourPlanner.BussinesLayer
                 return true;
             }
         }
-
         public bool ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
         {
             try
@@ -74,12 +73,10 @@ namespace TourPlanner.BussinesLayer
             }
 
         }
-
         public void DeleteRoute(string routeId)
         {
             DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
         }
-
         public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId)
         {
             try
@@ -102,7 +99,6 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-
         public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId)
         {
             try
@@ -125,12 +121,10 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-
         public void Deletelog(string logId)
         {
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
         }
-
         public List<TourPreview> SelectTourNameId()
         {
             List<TourPreview> routeNameId = new List<TourPreview>();
@@ -160,7 +154,6 @@ namespace TourPlanner.BussinesLayer
                 return routeNameId;
             }
         }
-
         public bool CreateRouteReport(string routeId)
         {
             try
@@ -175,7 +168,6 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-
         public bool CreateSummarizeReport(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
@@ -218,7 +210,6 @@ namespace TourPlanner.BussinesLayer
 
             return true;
         }
-
         public string ImportRouteFromFile(string filename)
         {
             FileInfo file = new FileInfo(filename);
@@ -246,7 +237,6 @@ namespace TourPlanner.BussinesLayer
                 }
             }
         }
-
         public HttpResponseDTO SelectAllFromRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
@@ -268,7 +258,6 @@ namespace TourPlanner.BussinesLayer
 
             return httpResponseDTO;
         }
-
         public bool ExportRouteToFile(string filename, string routeId)
         {
             try
@@ -284,17 +273,14 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-
         public void MakeRouteFavorite(string routeId)
         {
             DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
         }
-
         public void DeleteRouteFromFavorites(string routeId)
         {
             DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateNoFavorite, routeId);
         }
-
         public string CheckRoutePopularity(string routeId)
         {
             string result;
@@ -317,7 +303,6 @@ namespace TourPlanner.BussinesLayer
 
             return result;
         }
-
         public string CheckRouteChildFriendliness(string routeId)
         {
             string result = "No info";
@@ -385,7 +370,6 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
-
         public List<TourLogDTO> SelectLogForRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
@@ -404,7 +388,6 @@ namespace TourPlanner.BussinesLayer
 
             return list;
         }
-
         public static BussinessLogic LogicInstance
         {
             get

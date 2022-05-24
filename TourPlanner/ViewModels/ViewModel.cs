@@ -14,10 +14,11 @@ namespace TourPlanner.ViewModels
 
     public class ViewModel : ViewModelBase
     {
-
+        
         private string _curTourId = string.Empty;
         private string _curTourName = "Please choose a Tour";
         private string _curImagePath = string.Empty;
+        private string _searchText = string.Empty;
         HttpResponseDTO tourDTO = new HttpResponseDTO();
         private DataTable _curDataGrid;
         public OpenWindowCommand OpenWindowCommand { get; set; }
@@ -32,6 +33,7 @@ namespace TourPlanner.ViewModels
         public SummarizeReportCommand SummarizeReportCommand { get; set; }
         public FavoriteNoCommand FavoriteNoCommand { get; set; }
         public FavoriteYesCommand FavoriteYesCommand { get; set; }
+        public SearchCommand SearchCommand { get; set; }
         public ViewModel()
         {
             OpenWindowCommand = new OpenWindowCommand();
@@ -46,6 +48,7 @@ namespace TourPlanner.ViewModels
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
+            SearchCommand = new SearchCommand();
             setTours();
         }
         public DelegateCommand AddLogCommand
@@ -59,6 +62,17 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this._curTourId)
                     _curTourId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (value != this._searchText)
+                    _searchText = value;
                 OnPropertyChanged();
             }
         }
