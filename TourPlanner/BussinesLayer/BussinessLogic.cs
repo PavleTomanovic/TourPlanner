@@ -389,18 +389,17 @@ namespace TourPlanner.BussinesLayer
         public List<TourLogDTO> SelectLogForRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
-            TourLogDTO tourLogDTO = new TourLogDTO();
             List<TourLogDTO> list = new List<TourLogDTO>();
 
             foreach (DataRow row in dataTable.Rows)
             {
-                tourLogDTO.DateTime = row["DateTime"].ToString();
-                tourLogDTO.Difficulty = row["Difficulty"].ToString();
-                tourLogDTO.Comment = row["Comment"].ToString();
-                tourLogDTO.Rating = row["Rating"].ToString();
-                tourLogDTO.TotalTime = row["TotalTime"].ToString();
+                string dateTime = row["DateTime"].ToString();
+                string difficulty = row["Difficulty"].ToString();
+                string comment = row["Comment"].ToString();
+                string rating = row["Rating"].ToString();
+                string totalTime = row["TotalTime"].ToString();
 
-                list.Add(tourLogDTO);
+                list.Add(new TourLogDTO { DateTime = dateTime, Difficulty = difficulty, Comment = comment, Rating = rating, TotalTime = totalTime });
             }
 
             return list;
