@@ -84,6 +84,10 @@
                 <MenuItem Header="Tour Report" Command="{Binding TourReportCommand}" CommandParameter="{Binding CurTourId}" />
                 <MenuItem Header="Summarize Report" Command="{Binding SummarizeReportCommand}" CommandParameter="{Binding CurTourId}"/>
             </MenuItem>
+            <MenuItem Header="Favorite">
+                <MenuItem Header="Yes" Command="{Binding FavoriteYesCommand}" CommandParameter="{Binding CurTourId}" />
+                <MenuItem Header="No" Command="{Binding FavoriteNoCommand}" CommandParameter="{Binding CurTourId}"/>
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="Instructions" />
                 <MenuItem Header="Report Issue" />

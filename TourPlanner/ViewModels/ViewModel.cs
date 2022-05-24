@@ -30,6 +30,8 @@ namespace TourPlanner.ViewModels
         public DeleteLogCommand DeleteLogCommand { get; set; }
         public TourReportCommand TourReportCommand { get; set; }
         public SummarizeReportCommand SummarizeReportCommand { get; set; }
+        public FavoriteNoCommand FavoriteNoCommand { get; set; }
+        public FavoriteYesCommand FavoriteYesCommand { get; set; }
         public ViewModel()
         {
             OpenWindowCommand = new OpenWindowCommand();
@@ -42,6 +44,9 @@ namespace TourPlanner.ViewModels
             DeleteLogCommand = new DeleteLogCommand();
             ImportCommand = new ImportCommand();
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
+            FavoriteNoCommand = new FavoriteNoCommand();
+            FavoriteYesCommand = new FavoriteYesCommand();
+
             setTours();
         }
         public string CurTourId
@@ -69,6 +74,7 @@ namespace TourPlanner.ViewModels
         public string CurTo;
         public string CurTransport;
         public string CurComment;
+        public string CurFavorite;
 
         public DataTable DataGridDescription
         {
@@ -161,6 +167,7 @@ namespace TourPlanner.ViewModels
             CurTransport = tourDTO.Route.Transport;
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
+            CurFavorite = tourDTO.Route.Favorite;
 
             if (LogGrid != null)
                 LogGrid.Clear();
@@ -210,6 +217,10 @@ namespace TourPlanner.ViewModels
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Comment: ";
             myDataRow["Two"] = CurComment;
+            custTable.Rows.Add(myDataRow);
+            myDataRow = custTable.NewRow();
+            myDataRow["One"] = "Favorite: ";
+            myDataRow["Two"] = CurFavorite;
             custTable.Rows.Add(myDataRow);
             myDataRow = custTable.NewRow();
             myDataRow["One"] = "Popularity: ";

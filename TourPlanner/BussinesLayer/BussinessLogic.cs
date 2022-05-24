@@ -290,6 +290,11 @@ namespace TourPlanner.BussinesLayer
             DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
         }
 
+        public void DeleteRouteFromFavorites(string routeId)
+        {
+            DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateNoFavorite, routeId);
+        }
+
         public string CheckRoutePopularity(string routeId)
         {
             string result;
