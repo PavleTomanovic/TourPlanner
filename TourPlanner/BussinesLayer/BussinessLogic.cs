@@ -373,13 +373,15 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
-        public List<string> PrepareTableRouteForSearch(string searchText)
+        public List<TourPreview> PrepareListRouteForSearch(string searchText)
         {
-            List<string> result = new List<string>();
+            List<TourPreview> result = new List<TourPreview>();
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughRoutes, searchText);
             foreach (DataRow row in dataTable.Rows)
             {
-                result.Add(row["TourId"].ToString());
+                string tourName = row["TourName"].ToString();
+                string tourId = row["TourId"].ToString();
+                result.Add(new TourPreview { tourName = tourName, tourId = tourId});
             }
             return result;
         }
