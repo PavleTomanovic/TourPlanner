@@ -11,6 +11,7 @@ using TourPlanner.ViewModels.Commands;
 namespace TourPlanner.ViewModels
 {
     // View Model
+
     public class ViewModel : ViewModelBase
     {
 
@@ -31,11 +32,6 @@ namespace TourPlanner.ViewModels
         public SummarizeReportCommand SummarizeReportCommand { get; set; }
         public FavoriteNoCommand FavoriteNoCommand { get; set; }
         public FavoriteYesCommand FavoriteYesCommand { get; set; }
-        private TourPreview selectedTourObject;
-        private ObservableCollection<TourPreview> tourObjectCollection = new ObservableCollection<TourPreview>();
-        TourLogDTO newTourLogDTO = new TourLogDTO();
-        public ObservableCollection<TourLogDTO> _logGrid = new ObservableCollection<TourLogDTO>();
-
         public ViewModel()
         {
             OpenWindowCommand = new OpenWindowCommand();
@@ -50,8 +46,11 @@ namespace TourPlanner.ViewModels
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
-
             setTours();
+        }
+        public DelegateCommand AddLogCommand
+        {
+            get; set;
         }
         public string CurTourId
         {
@@ -79,16 +78,7 @@ namespace TourPlanner.ViewModels
         public string CurTransport;
         public string CurComment;
         public string CurFavorite;
-        public string CurImagePath
-        {
-            get { return _curImagePath; }
-            set
-            {
-                if (value != this._curImagePath)
-                    _curImagePath = value;
-                OnPropertyChanged();
-            }
-        }
+
         public DataTable DataGridDescription
         {
             get { return _curDataGrid; }
@@ -99,6 +89,17 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string CurImagePath
+        {
+            get { return _curImagePath; }
+            set
+            {
+                if (value != this._curImagePath)
+                    _curImagePath = value;
+                OnPropertyChanged();
+            }
+        }
+        private TourPreview selectedTourObject;
         public TourPreview SelectedTourObject
         {
             get => selectedTourObject;
@@ -110,16 +111,7 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        public TourLogDTO NewTourLogDTO
-        {
-            get => newTourLogDTO;
-            set
-            {
-                if (value != this.newTourLogDTO)
-                    newTourLogDTO = value;
-                OnPropertyChanged();
-            }
-        }
+        private ObservableCollection<TourPreview> tourObjectCollection = new ObservableCollection<TourPreview>();
         public ObservableCollection<TourPreview> TourObjectCollection
         {
             get { return tourObjectCollection; }
@@ -130,6 +122,31 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
+        public void setTours()
+        {
+            List<TourPreview> allTournameId = new List<TourPreview>();
+            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
+            allTournameId.ForEach(setTourObjectCollection());
+        }
+        private Action<TourPreview> setTourObjectCollection()
+        {
+            TourObjectCollection = new ObservableCollection<TourPreview>();
+            return f => TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
+        }
+
+        TourLogDTO newTourLogDTO = new TourLogDTO();
+        public TourLogDTO NewTourLogDTO
+        {
+            get => newTourLogDTO;
+            set
+            {
+                if (value != this.newTourLogDTO)
+                    newTourLogDTO = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<TourLogDTO> _logGrid = new ObservableCollection<TourLogDTO>();
         public ObservableCollection<TourLogDTO> LogGrid
         {
             get => _logGrid;
@@ -140,17 +157,7 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        private Action<TourPreview> setTourObjectCollection()
-        {
-            TourObjectCollection = new ObservableCollection<TourPreview>();
-            return f => TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
-        }
-        public void setTours()
-        {
-            List<TourPreview> allTournameId = new List<TourPreview>();
-            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
-            allTournameId.ForEach(setTourObjectCollection());
-        }
+
         private void updateView()
         {
             //setTours();
@@ -227,6 +234,8 @@ namespace TourPlanner.ViewModels
             myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
             custTable.Rows.Add(myDataRow);
             DataGridDescription = custTable;
+
+
         }
     }
 }
