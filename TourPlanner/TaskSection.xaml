@@ -64,7 +64,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="170"/>
             <ColumnDefinition MinWidth="200"/>
             <ColumnDefinition MinWidth="100"/>
         </Grid.ColumnDefinitions>
@@ -101,7 +101,7 @@
         <Label  Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" >Tasks</Label>
         <TextBox Grid.Column="0" Grid.Row="2" Text="{Binding SearchText}" Style="{StaticResource searchbar}"/>
         <Button Grid.Column="0" Grid.Row="3" Width="70" Height="30" VerticalAlignment="Top" Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding SearchText}"/>
-        <ListBox Name = "listbox" Grid.RowSpan="2" Grid.Column="0" Grid.Row="4" FontSize="14" Margin="20" BorderThickness="0"
+        <ListBox Name = "listbox" Grid.RowSpan="2" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" FontSize="14" Margin="20" BorderThickness="0"
         ItemsSource="{Binding TourObjectCollection}"
 		SelectedItem="{Binding SelectedTourObject}"
         />
