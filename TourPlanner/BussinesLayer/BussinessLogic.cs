@@ -194,8 +194,8 @@ namespace TourPlanner.BussinesLayer
 
                     foreach (DataRow rowLog in dataTableLogs.Rows)
                     {
-                        avgTime += Int32.Parse(row["TotalTime"].ToString());
-                        avgRating += Int32.Parse(row["Rating"].ToString());
+                        avgTime += Int32.Parse(rowLog["TotalTime"].ToString());
+                        avgRating += Int32.Parse(rowLog["Rating"].ToString());
                     }
 
                     double finalTime = 0;
