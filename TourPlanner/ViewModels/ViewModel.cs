@@ -46,8 +46,11 @@ namespace TourPlanner.ViewModels
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
-
             setTours();
+        }
+        public DelegateCommand AddLogCommand
+        {
+            get; set;
         }
         public string CurTourId
         {
