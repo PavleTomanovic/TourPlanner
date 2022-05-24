@@ -8,8 +8,9 @@ using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
 {
-    public class FavoriteYesCommand : CommandBase
+    public class FavoriteYesCommand : CommandBaseOnChange
     {
+        public FavoriteYesCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Favorite Route", MessageBoxButton.YesNo);
@@ -23,8 +24,9 @@ namespace TourPlanner.ViewModels.Commands
             }
         }
     }
-    public class FavoriteNoCommand : CommandBase
+    public class FavoriteNoCommand : CommandBaseOnChange
     {
+        public FavoriteNoCommand(ViewModel viewModel) : base(viewModel) { }
         public override void Execute(object parameter)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Favorite Route", MessageBoxButton.YesNo);
