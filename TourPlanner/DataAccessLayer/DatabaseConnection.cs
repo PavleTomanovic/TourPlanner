@@ -234,7 +234,7 @@ namespace TourPlanner.DataAccessLayer
             }
         }
 
-        public void ExecuteDeleteLog(string query, string logId)
+        public void ExecuteDeleteLog(string query, string routeId, string logId)
         {
             SqlCommand command = null;
 
@@ -245,7 +245,8 @@ namespace TourPlanner.DataAccessLayer
                     command.CommandType = CommandType.Text;
                     command.CommandText = query;
 
-                    command.Parameters.AddWithValue("@P1", logId);
+                    command.Parameters.AddWithValue("@P1", routeId);
+                    command.Parameters.AddWithValue("@P2", logId);
 
                     int result = command.ExecuteNonQuery();
                 }

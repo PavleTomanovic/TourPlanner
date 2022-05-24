@@ -2,6 +2,7 @@
 {
     public class TourLogDTO
     {
+        public string RouteId { get; set; }
         public string LogId { get; set; }
         public string DateTime { get; set; }
         public string Comment { get; set; }

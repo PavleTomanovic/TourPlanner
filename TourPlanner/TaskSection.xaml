@@ -117,13 +117,13 @@
         </Border>
 
         <Button Content="New Log" Style="{StaticResource addBtn}"  Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0" Command="{Binding OpenInsertLogWindowCommand}" CommandParameter="{Binding CurTourId}"/>
-        <Button Content="Delete Log" Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" Command="{Binding DeleteLogCommand}" CommandParameter="{Binding LogID}"/>
+        <Button Content="Delete Log" Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" Command="{Binding DeleteLogCommand}" CommandParameter="{Binding NewTourLogDTO}"/>
         <Button Content="Edit Log" Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding OpenEditLogWindowCommand}" CommandParameter="{Binding LogID}"/>
 
 
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{StaticResource box}">
 
-            <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding LogGrid}" >
+            <DataGrid x:Name="TourLogXAML" ItemsSource="{Binding LogGrid}" SelectedItem="{Binding NewTourLogDTO, Mode=TwoWay}" >
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="Transparent"/>
@@ -132,7 +132,8 @@
                         <Setter Property="GridLinesVisibility" Value="Horizontal"/>
                         <Setter Property="AutoGenerateColumns" Value="False"/>
                         <Setter Property="IsReadOnly" Value="True"/>
-                        <Setter Property="SelectionUnit" Value="Cell"/>
+                        <Setter Property="SelectionUnit" Value="FullRow"/>
+
                     </Style>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#8CB323"/>
@@ -141,14 +142,13 @@
                         <Setter Property="BorderBrush" Value="Black"/>
                         <Setter Property="Foreground" Value="#232323"/>
                     </Style>
-
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date and Time" Binding="{Binding DateTime}"  MaxWidth="100" />
+                    <DataGridTextColumn Header="Date and Time" Binding="{Binding DateTime}"  Width="100" />
                     <!--  StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}-->
-                    <DataGridTextColumn Header="Duration" Binding="{Binding TotalTime}" MaxWidth="55"/>
-                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" MaxWidth="55"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" MaxWidth="40"/>
+                    <DataGridTextColumn Header="Duration" Binding="{Binding TotalTime}" Width="55"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="55"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="40"/>
                     <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

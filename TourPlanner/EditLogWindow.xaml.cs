@@ -12,7 +12,7 @@ namespace TourPlanner
         public EditLogWindow(string id)
         {
             InitializeComponent();
-            var tcv = new TourChangesView();
+            var tcv = new LogChangesView();
             tcv.LogID = id;
             this.DataContext = tcv;
             if (tcv.CloseAction == null)

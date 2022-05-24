@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Windows;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -14,7 +15,7 @@ namespace TourPlanner.ViewModels
 
     public class ViewModel : ViewModelBase
     {
-        
+
         private string _curTourId = string.Empty;
         private string _curTourName = "Please choose a Tour";
         private string _curImagePath = string.Empty;
@@ -49,7 +50,7 @@ namespace TourPlanner.ViewModels
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
             SearchCommand = new SearchCommand();
-            setTours();
+            updateTourList();
         }
         public DelegateCommand AddLogCommand
         {
@@ -122,32 +123,21 @@ namespace TourPlanner.ViewModels
                 if (value != this.selectedTourObject)
                     selectedTourObject = value;
                 updateView();
+                updateLog();
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<TourPreview> tourObjectCollection = new ObservableCollection<TourPreview>();
+        private ObservableCollection<TourPreview> _tourObjectCollection = new ObservableCollection<TourPreview>();
         public ObservableCollection<TourPreview> TourObjectCollection
         {
-            get { return tourObjectCollection; }
+            get { return _tourObjectCollection; }
             set
             {
-                if (value != this.tourObjectCollection)
-                    tourObjectCollection = value;
+                if (value != this._tourObjectCollection)
+                    _tourObjectCollection = value;
                 OnPropertyChanged();
             }
         }
-        public void setTours()
-        {
-            List<TourPreview> allTournameId = new List<TourPreview>();
-            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
-            allTournameId.ForEach(setTourObjectCollection());
-        }
-        private Action<TourPreview> setTourObjectCollection()
-        {
-            TourObjectCollection = new ObservableCollection<TourPreview>();
-            return f => TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
-        }
-
         TourLogDTO newTourLogDTO = new TourLogDTO();
         public TourLogDTO NewTourLogDTO
         {
@@ -172,6 +162,20 @@ namespace TourPlanner.ViewModels
             }
         }
 
+
+        private void updateTourList()
+        {
+            if (TourObjectCollection != null)
+                TourObjectCollection.Clear();
+            List<TourPreview> allTournameId = new List<TourPreview>();
+            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
+            foreach (var item in allTournameId)
+            {
+                TourObjectCollection?.Add(item);
+                SelectedTourObject = new TourPreview();
+            }
+        }
+
         private void updateView()
         {
             //setTours();
@@ -185,16 +189,6 @@ namespace TourPlanner.ViewModels
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
             CurFavorite = tourDTO.Route.Favorite;
-
-            if (LogGrid != null)
-                LogGrid.Clear();
-            List<TourLogDTO> list = new List<TourLogDTO>();
-            list = BussinessLogic.LogicInstance.SelectLogForRoute(CurTourId);
-            foreach (var item in list)
-            {
-                LogGrid?.Add(item);
-                NewTourLogDTO = new TourLogDTO();
-            }
 
             DataTable custTable = new DataTable();
             DataColumn dtColumn;
@@ -251,5 +245,29 @@ namespace TourPlanner.ViewModels
 
 
         }
+        private void updateLog()
+        {
+            if (LogGrid != null)
+                LogGrid.Clear();
+            List<TourLogDTO> list = new List<TourLogDTO>();
+            list = BussinessLogic.LogicInstance.SelectLogForRoute(CurTourId);
+            foreach (var item in list)
+            {
+                LogGrid?.Add(item);
+                NewTourLogDTO = new TourLogDTO();
+            }
+        }
+        /* public void setTours()
+        {
+            List<TourPreview> allTournameId = new List<TourPreview>();
+            allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
+            allTournameId.ForEach(setTourObjectCollection());
+        }
+        private Action<TourPreview> setTourObjectCollection()
+        {
+            TourObjectCollection = new ObservableCollection<TourPreview>();
+            return f => TourObjectCollection.Add(new TourPreview { tourName = f.tourName, tourId = f.tourId });
+        }*/
+
     }
 }

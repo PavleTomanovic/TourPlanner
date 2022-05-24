@@ -121,9 +121,9 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public void Deletelog(string logId)
+        public void Deletelog(string routeId, string logId)
         {
-            DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, logId);
+            DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, routeId, logId);
         }
         public List<TourPreview> SelectTourNameId()
         {
@@ -376,12 +376,12 @@ namespace TourPlanner.BussinesLayer
                 foreach (DataRow rowTwo in thirdDataTable.Rows)
                 {
                     string tourId = rowTwo["TourId"].ToString();
-                    if(!routeIds.Contains(tourId))
+                    if (!routeIds.Contains(tourId))
                         routeIds.Add(tourId);
                 }
             }
 
-            foreach(string routeId in routeIds)
+            foreach (string routeId in routeIds)
             {
                 DataTable thirdDataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
                 foreach (DataRow rowTwo in thirdDataTable.Rows)
@@ -394,20 +394,22 @@ namespace TourPlanner.BussinesLayer
 
             return result;
         }
-        public List<TourLogDTO> SelectLogForRoute(string routeId)
+        public List<TourLogDTO> SelectLogForRoute(string tourId)
         {
-            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, tourId);
             List<TourLogDTO> list = new List<TourLogDTO>();
 
             foreach (DataRow row in dataTable.Rows)
             {
+                string routeId = row["RouteId"].ToString();
+                string logId = row["LogId"].ToString();
                 string dateTime = row["DateTime"].ToString();
                 string difficulty = row["Difficulty"].ToString();
                 string comment = row["Comment"].ToString();
                 string rating = row["Rating"].ToString();
                 string totalTime = row["TotalTime"].ToString();
 
-                list.Add(new TourLogDTO { DateTime = dateTime, Difficulty = difficulty, Comment = comment, Rating = rating, TotalTime = totalTime });
+                list.Add(new TourLogDTO { RouteId = routeId, LogId = logId, DateTime = dateTime, Difficulty = difficulty, Comment = comment, Rating = rating, TotalTime = totalTime });
             }
 
             return list;
