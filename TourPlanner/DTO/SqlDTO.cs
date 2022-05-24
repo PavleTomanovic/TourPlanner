@@ -16,5 +16,6 @@
         public string? SelectAllRoutes { get; set; }
         public string? SelectAllLogs { get; set; }
         public string? SearchThroughRoutes { get; set; }
+        public string? SearchThroughLogs { get; set; }
     }
 }

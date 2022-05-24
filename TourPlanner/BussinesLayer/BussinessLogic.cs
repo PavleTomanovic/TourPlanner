@@ -361,13 +361,37 @@ namespace TourPlanner.BussinesLayer
         public List<TourPreview> PrepareListRouteForSearch(string searchText)
         {
             List<TourPreview> result = new List<TourPreview>();
+            List<string> routeIds = new List<string>();
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughRoutes, searchText);
             foreach (DataRow row in dataTable.Rows)
             {
-                string tourName = row["TourName"].ToString();
                 string tourId = row["TourId"].ToString();
-                result.Add(new TourPreview { tourName = tourName, tourId = tourId});
+                routeIds.Add(tourId);
             }
+            DataTable secondDataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughLogs, searchText);
+            foreach (DataRow row in secondDataTable.Rows)
+            {
+                string routeId = row["RouteId"].ToString();
+                DataTable thirdDataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+                foreach (DataRow rowTwo in thirdDataTable.Rows)
+                {
+                    string tourId = rowTwo["TourId"].ToString();
+                    if(!routeIds.Contains(tourId))
+                        routeIds.Add(tourId);
+                }
+            }
+
+            foreach(string routeId in routeIds)
+            {
+                DataTable thirdDataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+                foreach (DataRow rowTwo in thirdDataTable.Rows)
+                {
+                    string tourId = rowTwo["TourId"].ToString();
+                    string tourName = rowTwo["TourName"].ToString();
+                    result.Add(new TourPreview { tourName = tourName, tourId = tourId });
+                }
+            }
+
             return result;
         }
         public List<TourLogDTO> SelectLogForRoute(string routeId)
