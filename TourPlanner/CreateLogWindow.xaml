@@ -6,10 +6,6 @@
         xmlns:local="clr-namespace:TourPlanner" xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         mc:Ignorable="d"
         Title="Create Log" Height="300" Width="300">
-    <Window.Resources>
-        <vm:TourChangesView x:Key="changesView"/>
-    </Window.Resources>
-
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -26,7 +22,7 @@
         <Label  Grid.Row="1" Content="Rating"/>
         <TextBox  Grid.Row="1" Grid.Column="1" Margin="10,0,0,10" Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="2" Content="Difficulty"/>
-        <TextBox Grid.Row="2" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding DifficultyLog, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Difficulty, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="3" Content="Total Time"/>
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Comment"/>

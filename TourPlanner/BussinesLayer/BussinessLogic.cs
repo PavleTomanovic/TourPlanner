@@ -99,20 +99,18 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId)
+        public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId, string routeId)
         {
             try
             {
                 TourLogDTO tourLogDTO = new TourLogDTO();
-
                 tourLogDTO.Comment = comment;
                 tourLogDTO.Difficulty = difficulty;
                 tourLogDTO.TotalTime = totalTime;
                 tourLogDTO.Rating = rating;
                 tourLogDTO.LogId = logId;
-
+                tourLogDTO.RouteId = routeId;
                 DatabaseConnection.Instance.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
-
                 return true;
             }
             catch (Exception e)

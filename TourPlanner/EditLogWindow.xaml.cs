@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using TourPlanner.DTO;
 using TourPlanner.ViewModels;
 
 namespace TourPlanner
@@ -9,14 +10,19 @@ namespace TourPlanner
     /// </summary>
     public partial class EditLogWindow : Window
     {
-        public EditLogWindow(string id)
+        public EditLogWindow(TourLogDTO tourLogDTO)
         {
             InitializeComponent();
-            var tcv = new LogChangesView();
-            tcv.LogID = id;
-            this.DataContext = tcv;
-            if (tcv.CloseAction == null)
-                tcv.CloseAction = new Action(this.Close);
+            var lcv = new LogChangesView();
+            lcv.TourID = tourLogDTO?.RouteId;
+            lcv.LogID = tourLogDTO?.LogId;
+            lcv.LogComment = tourLogDTO?.Comment;
+            lcv.Difficulty = tourLogDTO?.Difficulty;
+            lcv.TotalTime = tourLogDTO?.TotalTime;
+            lcv.Rating = tourLogDTO?.Rating;
+            this.DataContext = lcv;
+            if (lcv.CloseAction == null)
+                lcv.CloseAction = new Action(this.Close);
         }
     }
 }

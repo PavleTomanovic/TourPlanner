@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
@@ -12,26 +8,41 @@ namespace TourPlanner.ViewModels
 {
     public class LogChangesView : ViewModelBase
     {
-        public string LogID { get; set; }
-        private string _tourname;
-        private string _from;
-        private string _to;
-        private string _transport;
-        private string _comment;
+        private string _tourID;
+        private string _logID;
         private string _logComment;
         private string _difficulty;
         private string _totalTime;
         private string _rating;
+        public CreateLogCommand CreateLogCommand { get; set; }
+        public EditLogCommand EditLogCommand { get; set; }
         public Action CloseAction { get; set; }
-        public TourLogDTO TourLogDTO { get; set; }
         public LogChangesView()
         {
-            _logComment = "";
-            _difficulty = "";
-            _totalTime = "";
-            _rating = "";
             EditLogCommand = new EditLogCommand(this);
             CreateLogCommand = new CreateLogCommand(this);
+        }
+        public string TourID
+        {
+            get => _tourID;
+            set
+            {
+                if (value == _tourID)
+                    return;
+                _tourID = value;
+                OnPropertyChanged();
+            }
+        }
+        public string LogID
+        {
+            get => _logID;
+            set
+            {
+                if (value == _logID)
+                    return;
+                _logID = value;
+                OnPropertyChanged();
+            }
         }
         public string LogComment
         {
@@ -45,6 +56,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
+
         public string TotalTime
         {
             get => _totalTime;
@@ -57,7 +69,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public string DifficultyLog
+        public string Difficulty
         {
             get => _difficulty;
             set
@@ -80,17 +92,16 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        public CreateLogCommand CreateLogCommand { get; set; }
-        public EditLogCommand EditLogCommand { get; set; }
+
 
         public void CreateLogButton(object obj)
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, DifficultyLog, TotalTime, Rating, TourLogDTO.RouteId);
+                bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, Difficulty, TotalTime, Rating, TourID);
                 if (createLog)
                 {
                     MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -103,15 +114,14 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public void EditLogButton(object obj)
+        public void EditLogButton()
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(DifficultyLog) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, DifficultyLog, TotalTime, Rating, LogID);
-
+                bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, Difficulty, TotalTime, Rating, LogID, TourID);
                 if (editLog)
                 {
                     MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -121,7 +131,6 @@ namespace TourPlanner.ViewModels
                 {
                     MessageBox.Show($"Log could not be edited!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                CloseAction();
             }
         }
     }

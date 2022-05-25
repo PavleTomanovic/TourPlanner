@@ -1,4 +1,6 @@
-﻿namespace TourPlanner.ViewModels.Commands
+﻿using TourPlanner.DTO;
+
+namespace TourPlanner.ViewModels.Commands
 {
     public class OpenWindowCommand : CommandBase
     {
@@ -33,7 +35,9 @@
     {
         public override void Execute(object parameter)
         {
-            EditLogWindow createPopup = new EditLogWindow(parameter.ToString());
+            TourLogDTO tourLogDTO = new TourLogDTO();
+            tourLogDTO = (TourLogDTO)parameter;
+            EditLogWindow createPopup = new EditLogWindow(tourLogDTO);
             createPopup.Show();
         }
     }

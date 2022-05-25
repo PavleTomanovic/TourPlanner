@@ -118,7 +118,7 @@
 
         <Button Content="New Log" Style="{StaticResource addBtn}"  Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0" Command="{Binding OpenInsertLogWindowCommand}" CommandParameter="{Binding CurTourId}"/>
         <Button Content="Delete Log" Style="{StaticResource deleteBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,0,0,0" Command="{Binding DeleteLogCommand}" CommandParameter="{Binding NewTourLogDTO}"/>
-        <Button Content="Edit Log" Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding OpenEditLogWindowCommand}" CommandParameter="{Binding LogID}"/>
+        <Button Content="Edit Log" Style="{StaticResource editBtn}" Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding OpenEditLogWindowCommand}" CommandParameter="{Binding NewTourLogDTO}"/>
 
 
         <Border  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Style="{StaticResource box}">

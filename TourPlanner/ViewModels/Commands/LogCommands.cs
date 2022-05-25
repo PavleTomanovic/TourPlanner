@@ -27,17 +27,16 @@ namespace TourPlanner.ViewModels.Commands
         }
         public override void Execute(object parameter)
         {
-            this.LogChangesView.EditLogButton(parameter);
+            this.LogChangesView.EditLogButton();
         }
     }
 
     public class DeleteLogCommand : CommandBase
     {
-        private TourLogDTO tourLogDTO { get; set; }
-
         public override void Execute(object parameter)
         {
-            this.tourLogDTO = (TourLogDTO)parameter;
+            TourLogDTO tourLogDTO = new TourLogDTO();
+            tourLogDTO = (TourLogDTO)parameter;
             MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
 
             switch (result)
