@@ -225,3 +225,5 @@ project.lock.json
 *.cache
 *.editorconfig
 *.g.i.cs
+*.suo
+*.futdcache.v1
