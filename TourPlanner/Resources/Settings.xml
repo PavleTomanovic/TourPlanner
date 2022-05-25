@@ -32,7 +32,7 @@
 		<UpdateNoFavorite>UPDATE [TourPlanner].[dbo].[Tour_Table] SET [TourFavorite] = 'No' WHERE [TourId] = @P1</UpdateNoFavorite>
 		<InsertLog>INSERT INTO [TourPlanner].[dbo].[Log_Table] ([DateTime], [Comment], [Difficulty], [TotalTime], [Rating], [RouteId]) VALUES (@P1,@P2,@P3,@P4,@P5,@P6)</InsertLog>
 		<DeleteLog>DELETE FROM [TourPlanner].[dbo].[Log_Table] WHERE [RouteId] = @P1 AND [LogId] = @P2</DeleteLog>
-		<UpdateLog>UPDATE [TourPlanner].[dbo].[Log_Table] SET [Comment] = @P1, [Difficulty] = @P2, [TotalTime] = @P3, [Rating] = @P4 WHERE [LogId] = @P5 AND [RouteId] = @P6 AND [DateTime] = @P7</UpdateLog>
+		<UpdateLog>UPDATE [TourPlanner].[dbo].[Log_Table] SET [Comment] = @P1, [Difficulty] = @P2, [TotalTime] = @P3, [Rating] = @P4, [DateTime] = @P7 WHERE [LogId] = @P5 AND [RouteId] = @P6</UpdateLog>
 		<SelectRoute>SELECT * FROM [TourPlanner].[dbo].[Tour_Table] WHERE [TourId] = @P1</SelectRoute>
 		<SelectLogReport>SELECT * FROM [TourPlanner].[dbo].[Log_Table] WHERE [RouteId] = @P1</SelectLogReport>
 		<SelectAllLogs>SELECT * FROM [TourPlanner].[dbo].[Log_Table]</SelectAllLogs>

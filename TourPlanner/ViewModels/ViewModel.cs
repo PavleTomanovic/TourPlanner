@@ -16,10 +16,10 @@ namespace TourPlanner.ViewModels
     public class ViewModel : ViewModelBase
     {
 
-        private string _curTourId = string.Empty;
-        private string _curTourName = "Please choose a Tour";
-        private string _curImagePath = string.Empty;
-        private string _searchText = string.Empty;
+        private string _curTourId;
+        private string _curTourName;
+        private string _curImagePath;
+        private string _searchText;
         HttpResponseDTO tourDTO = new HttpResponseDTO();
         private DataTable _curDataGrid;
         public OpenWindowCommand OpenWindowCommand { get; set; }
@@ -37,6 +37,10 @@ namespace TourPlanner.ViewModels
         public SearchCommand SearchCommand { get; set; }
         public ViewModel()
         {
+            _curTourId = string.Empty;
+            _curTourName = "Please choose a Tour";
+            _curImagePath = string.Empty;
+            _searchText = string.Empty;
             OpenWindowCommand = new OpenWindowCommand();
             OpenEditWindowCommand = new OpenEditWindowCommand(this);
             ExportCommand = new ExportCommand(this);
@@ -189,60 +193,62 @@ namespace TourPlanner.ViewModels
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
             CurFavorite = tourDTO.Route.Favorite;
+            if (!string.IsNullOrEmpty(CurTourId))
+            {
 
-            DataTable custTable = new DataTable();
-            DataColumn dtColumn;
-            DataRow myDataRow;
+                DataTable custTable = new DataTable();
+                DataColumn dtColumn;
+                DataRow myDataRow;
 
-            dtColumn = new DataColumn();
-            dtColumn.DataType = typeof(string);
-            dtColumn.ColumnName = "One";
-            dtColumn.ReadOnly = true;
-            custTable.Columns.Add(dtColumn);
-            dtColumn = new DataColumn();
-            dtColumn.DataType = typeof(string);
-            dtColumn.ColumnName = "Two";
-            dtColumn.ReadOnly = true;
-            custTable.Columns.Add(dtColumn);
+                dtColumn = new DataColumn();
+                dtColumn.DataType = typeof(string);
+                dtColumn.ColumnName = "One";
+                dtColumn.ReadOnly = true;
+                custTable.Columns.Add(dtColumn);
+                dtColumn = new DataColumn();
+                dtColumn.DataType = typeof(string);
+                dtColumn.ColumnName = "Two";
+                dtColumn.ReadOnly = true;
+                custTable.Columns.Add(dtColumn);
 
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "From: ";
-            myDataRow["Two"] = CurFrom;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "To: ";
-            myDataRow["Two"] = CurTo;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Transport: ";
-            myDataRow["Two"] = CurTransport;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Distance: ";
-            myDataRow["Two"] = tourDTO.Route.Distance;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Time: ";
-            myDataRow["Two"] = tourDTO.Route.Time;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Comment: ";
-            myDataRow["Two"] = CurComment;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Favorite: ";
-            myDataRow["Two"] = CurFavorite;
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Popularity: ";
-            myDataRow["Two"] = logic.CheckRoutePopularity(CurTourId);
-            custTable.Rows.Add(myDataRow);
-            myDataRow = custTable.NewRow();
-            myDataRow["One"] = "Child friendly: ";
-            myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
-            custTable.Rows.Add(myDataRow);
-            DataGridDescription = custTable;
-
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "From: ";
+                myDataRow["Two"] = CurFrom;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "To: ";
+                myDataRow["Two"] = CurTo;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Transport: ";
+                myDataRow["Two"] = CurTransport;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Distance: ";
+                myDataRow["Two"] = tourDTO.Route.Distance;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Time: ";
+                myDataRow["Two"] = tourDTO.Route.Time;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Comment: ";
+                myDataRow["Two"] = CurComment;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Favorite: ";
+                myDataRow["Two"] = CurFavorite;
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Popularity: ";
+                myDataRow["Two"] = logic.CheckRoutePopularity(CurTourId);
+                custTable.Rows.Add(myDataRow);
+                myDataRow = custTable.NewRow();
+                myDataRow["One"] = "Child friendly: ";
+                myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
+                custTable.Rows.Add(myDataRow);
+                DataGridDescription = custTable;
+            }
 
         }
         private void updateLog()

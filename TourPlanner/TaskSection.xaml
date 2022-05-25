@@ -144,10 +144,10 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date and Time" Binding="{Binding DateTime}"  Width="100" />
-                    <DataGridTextColumn Header="Duration" Binding="{Binding TotalTime}" Width="55"/>
-                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="55"/>
-                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="40"/>
+                    <DataGridTextColumn Header="Date and Time" Binding="{Binding DateTime, StringFormat=\{0:dd.MM.yy HH:mm\}}"  Width="100" />
+                    <DataGridTextColumn Header="Duration" Binding="{Binding TotalTime}" Width="60"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="60"/>
+                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="45"/>
                     <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

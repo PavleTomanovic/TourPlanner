@@ -130,9 +130,7 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                DateTime dt = DateTime.Parse(Date.ToString("dd.MM.yyyy") + " " + Time);
-                string datetime = dt.ToString();
-
+                string datetime = DateTime.Parse(Date.ToString("dd.MM.yyyy") + " " + Time).ToString();
                 bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, Difficulty, TotalTime, Rating, TourID, datetime);
                 if (createLog)
                 {
@@ -153,7 +151,7 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                string datetime = Date.ToString() + " " + Time;
+                string datetime = DateTime.Parse(Date.ToString("dd.MM.yyyy") + " " + Time).ToString();
                 bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, Difficulty, TotalTime, Rating, LogID, TourID, datetime);
                 if (editLog)
                 {

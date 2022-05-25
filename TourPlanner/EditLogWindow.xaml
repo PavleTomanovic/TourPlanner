@@ -33,7 +33,7 @@
         <Label Grid.Row="3" Content="Total Time"/>
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Date"/>
-        <DatePicker Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10"  Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10"  SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="5" Content="Time"/>
         <TextBox Grid.Row="5" Grid.Column="1"  Margin="10,0,0,10"  Text="{Binding Time, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="6" Content="Comment"/>
