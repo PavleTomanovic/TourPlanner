@@ -32,6 +32,6 @@
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding TotalTime, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Comment"/>
         <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding LogComment, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Create Log"  Command="{Binding EditLogCommand}" />
+        <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Edit Log"  Command="{Binding EditLogCommand}" />
     </Grid>
 </Window>
