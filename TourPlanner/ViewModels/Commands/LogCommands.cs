@@ -35,16 +35,24 @@ namespace TourPlanner.ViewModels.Commands
     {
         public override void Execute(object parameter)
         {
+            
             TourLogDTO tourLogDTO = new TourLogDTO();
             tourLogDTO = (TourLogDTO)parameter;
-            MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
+            if(tourLogDTO.LogId != null)
+            { 
+                MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
 
-            switch (result)
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        BussinessLogic.LogicInstance.Deletelog(tourLogDTO.RouteId.ToString(), tourLogDTO.LogId.ToString());
+                        MessageBox.Show("Log successfully deleted!", "Delete Route", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                }
+            }
+            else
             {
-                case MessageBoxResult.Yes:
-                    BussinessLogic.LogicInstance.Deletelog(tourLogDTO.RouteId.ToString(), tourLogDTO.LogId.ToString());
-                    MessageBox.Show("Log successfully deleted", "Delete Route", MessageBoxButton.OK);
-                    break;
+                MessageBox.Show("Please select log to delete!", "Delete Route", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

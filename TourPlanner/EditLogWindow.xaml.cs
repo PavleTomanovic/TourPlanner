@@ -16,6 +16,7 @@ namespace TourPlanner
             var lcv = new LogChangesView();
             lcv.TourID = tourLogDTO?.RouteId;
             lcv.LogID = tourLogDTO?.LogId;
+            lcv.DateTimeLog = tourLogDTO?.DateTime;
             lcv.LogComment = tourLogDTO?.Comment;
             lcv.Difficulty = tourLogDTO?.Difficulty;
             lcv.TotalTime = tourLogDTO?.TotalTime;
