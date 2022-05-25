@@ -2,10 +2,10 @@
 	TODO - Angabe
 
 	1. Unit Tests
-	2. tour logs are managed in a list
-	3. validated user-input
-	4. full-text search in tour- and tour-log data
-	5. Protocol
+	2. validated user-input
+	3. full-text search in tour- and tour-log data
+	4. Protocol
+	5. Logging 
 
 	
 	TODO - Details

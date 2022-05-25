@@ -220,6 +220,7 @@ namespace TourPlanner.DataAccessLayer
                     command.Parameters.AddWithValue("@P4", tourLogDTO.Rating);
                     command.Parameters.AddWithValue("@P5", tourLogDTO.LogId);
                     command.Parameters.AddWithValue("@P6", tourLogDTO.RouteId);
+                    command.Parameters.AddWithValue("@P7", tourLogDTO.DateTime);
 
                     int result = command.ExecuteNonQuery();
                 }

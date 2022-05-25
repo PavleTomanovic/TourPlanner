@@ -77,13 +77,13 @@ namespace TourPlanner.BussinesLayer
         {
             DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
         }
-        public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId)
+        public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId, string dateTime)
         {
             try
             {
                 TourLogDTO tourLogDTO = new TourLogDTO();
 
-                tourLogDTO.DateTime = DateTime.Now.ToString();
+                tourLogDTO.DateTime = dateTime;
                 tourLogDTO.Comment = comment;
                 tourLogDTO.Difficulty = difficulty;
                 tourLogDTO.TotalTime = totalTime;
@@ -99,7 +99,7 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId, string routeId)
+        public bool ModifyLog(string comment, string difficulty, string totalTime, string rating, string logId, string routeId, string dateTime)
         {
             try
             {
@@ -110,6 +110,7 @@ namespace TourPlanner.BussinesLayer
                 tourLogDTO.Rating = rating;
                 tourLogDTO.LogId = logId;
                 tourLogDTO.RouteId = routeId;
+                tourLogDTO.DateTime = dateTime;
                 DatabaseConnection.Instance.ExecuteModifyLog(BussinessFactory.Instance.SqlDTO.UpdateLog, tourLogDTO);
                 return true;
             }
