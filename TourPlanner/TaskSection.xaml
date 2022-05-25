@@ -145,7 +145,6 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date and Time" Binding="{Binding DateTime}"  Width="100" />
-                    <!--  StringFormat='{}{0:MM/dd/yyyy a\\t h:mm}'}-->
                     <DataGridTextColumn Header="Duration" Binding="{Binding TotalTime}" Width="55"/>
                     <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="55"/>
                     <DataGridTextColumn Header="Rating" Binding="{Binding Rating}" Width="40"/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using TourPlanner.DTO;
 using TourPlanner.ViewModels;
@@ -16,7 +17,8 @@ namespace TourPlanner
             var lcv = new LogChangesView();
             lcv.TourID = tourLogDTO?.RouteId;
             lcv.LogID = tourLogDTO?.LogId;
-            lcv.DateTimeLog = tourLogDTO?.DateTime;
+            lcv.Date = DateTime.Parse(tourLogDTO?.DateTime);
+            lcv.Time = DateTime.Parse(tourLogDTO?.DateTime).ToString("HH:mm");
             lcv.LogComment = tourLogDTO?.Comment;
             lcv.Difficulty = tourLogDTO?.Difficulty;
             lcv.TotalTime = tourLogDTO?.TotalTime;

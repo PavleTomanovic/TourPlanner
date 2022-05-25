@@ -14,7 +14,9 @@ namespace TourPlanner.ViewModels
         private string _difficulty;
         private string _totalTime;
         private string _rating;
-        private string _dateTime;
+        private DateTime _date;
+        private string _time;
+
         public CreateLogCommand CreateLogCommand { get; set; }
         public EditLogCommand EditLogCommand { get; set; }
         public Action CloseAction { get; set; }
@@ -35,14 +37,28 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public string DateTimeLog
+        public DateTime Date
+
         {
-            get => _dateTime;
+            get => _date;
             set
             {
-                if (value == _dateTime)
+                if (value == _date)
                     return;
-                _dateTime = value;
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Time
+
+        {
+            get => _time;
+            set
+            {
+                if (value == _time)
+                    return;
+                _time = value;
                 OnPropertyChanged();
             }
         }
@@ -110,11 +126,14 @@ namespace TourPlanner.ViewModels
         public void CreateLogButton(object obj)
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating) || string.IsNullOrEmpty(DateTimeLog))
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating) || string.IsNullOrEmpty(Date.ToString()))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, Difficulty, TotalTime, Rating, TourID, DateTimeLog);
+                DateTime dt = DateTime.Parse(Date.ToString("dd.MM.yyyy") + " " + Time);
+                string datetime = dt.ToString();
+
+                bool createLog = BussinessLogic.LogicInstance.CreateLog(LogComment, Difficulty, TotalTime, Rating, TourID, datetime);
                 if (createLog)
                 {
                     MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -130,11 +149,12 @@ namespace TourPlanner.ViewModels
         public void EditLogButton()
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating) || string.IsNullOrEmpty(DateTimeLog))
+            if (string.IsNullOrEmpty(LogComment) || string.IsNullOrEmpty(Difficulty) || string.IsNullOrEmpty(TotalTime) || string.IsNullOrEmpty(Rating) || string.IsNullOrEmpty(Date.ToString()))
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, Difficulty, TotalTime, Rating, LogID, TourID, DateTimeLog);
+                string datetime = Date.ToString() + " " + Time;
+                bool editLog = BussinessLogic.LogicInstance.ModifyLog(LogComment, Difficulty, TotalTime, Rating, LogID, TourID, datetime);
                 if (editLog)
                 {
                     MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);

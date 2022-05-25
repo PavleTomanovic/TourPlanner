@@ -14,6 +14,8 @@ namespace TourPlanner
             InitializeComponent();
             var lcv = new LogChangesView();
             lcv.TourID = id;
+            lcv.Date = DateTime.Now.Date;
+            lcv.Time = DateTime.Now.ToString("HH:mm");
             this.DataContext = lcv;
             if (lcv.CloseAction == null)
                 lcv.CloseAction = new Action(this.Close);
