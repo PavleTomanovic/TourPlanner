@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Windows;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -55,10 +54,6 @@ namespace TourPlanner.ViewModels
             FavoriteYesCommand = new FavoriteYesCommand(this);
             SearchCommand = new SearchCommand();
             updateTourList();
-        }
-        public DelegateCommand AddLogCommand
-        {
-            get; set;
         }
         public string CurTourId
         {
@@ -199,7 +194,6 @@ namespace TourPlanner.ViewModels
                 DataTable custTable = new DataTable();
                 DataColumn dtColumn;
                 DataRow myDataRow;
-
                 dtColumn = new DataColumn();
                 dtColumn.DataType = typeof(string);
                 dtColumn.ColumnName = "One";
@@ -259,6 +253,7 @@ namespace TourPlanner.ViewModels
             list = BussinessLogic.LogicInstance.SelectLogForRoute(CurTourId);
             foreach (var item in list)
             {
+                item.DateTime = DateTime.Parse(item.DateTime).ToString("dd.MM.yyyy HH:mm");
                 LogGrid?.Add(item);
                 NewTourLogDTO = new TourLogDTO();
             }

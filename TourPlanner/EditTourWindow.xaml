@@ -33,7 +33,8 @@
         <Label Grid.Row="3" Content="Transport"/>
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Transport, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Comment"/>
-        <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+                TextWrapping="Wrap"/>
         <Button Grid.Row="5" Grid.Column="1" Width="100" Content="Edit Tour"  Command="{Binding EditTourCommand}" />
     </Grid>
 </Window>

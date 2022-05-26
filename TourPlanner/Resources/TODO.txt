@@ -5,16 +5,12 @@
 	2. validated user-input
 	3. full-text search in tour- and tour-log data
 	4. Protocol
-	5. Logging 
 
-	
 	TODO - Details
 
 	- update view after submit: Only List is not updating 
-	- Log Records in own view
-	- Menu in own view?
+	- enough space for comment : wrap text?
+	- datetime without seconds
 
 	Changes Done:
-	UIServices - whenever you want a loading mouse just call UIServices.SetBusyState();
-	Edit Window starts with default values
 
