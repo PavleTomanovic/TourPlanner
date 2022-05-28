@@ -1,4 +1,6 @@
-﻿using TourPlanner.DTO;
+﻿using System;
+using System.ComponentModel;
+using TourPlanner.DTO;
 
 namespace TourPlanner.ViewModels.Commands
 {
@@ -33,6 +35,23 @@ namespace TourPlanner.ViewModels.Commands
     }
     public class OpenEditLogWindowCommand : CommandBase
     {
+        private ViewModel viewModel;
+        public OpenEditLogWindowCommand(ViewModel viewModel)
+        {
+            viewModel = viewModel;
+            viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
+        public override bool CanExecute(object parameter)
+        {
+            if (String.IsNullOrEmpty(parameter?.ToString()))
+                return false;
+            return true;
+        }
+        public void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.NewTourLogDTO))
+                OnCanExecutedChanged();
+        }
         public override void Execute(object parameter)
         {
             TourLogDTO tourLogDTO = new TourLogDTO();

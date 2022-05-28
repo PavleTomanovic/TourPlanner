@@ -34,6 +34,8 @@ namespace TourPlanner.ViewModels
         public FavoriteNoCommand FavoriteNoCommand { get; set; }
         public FavoriteYesCommand FavoriteYesCommand { get; set; }
         public SearchCommand SearchCommand { get; set; }
+        public ReloadCommand ReloadCommand { get; set; }
+
         public ViewModel()
         {
             _curTourId = string.Empty;
@@ -46,14 +48,16 @@ namespace TourPlanner.ViewModels
             TourReportCommand = new TourReportCommand(this);
             SummarizeReportCommand = new SummarizeReportCommand(this);
             DeleteCommand = new DeleteCommand(this);
-            OpenEditLogWindowCommand = new OpenEditLogWindowCommand();
-            DeleteLogCommand = new DeleteLogCommand();
+            OpenEditLogWindowCommand = new OpenEditLogWindowCommand(this);
+            DeleteLogCommand = new DeleteLogCommand(this);
             ImportCommand = new ImportCommand();
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
             SearchCommand = new SearchCommand();
-            updateTourList();
+            ReloadCommand = new ReloadCommand(this);
+
+
         }
         public string CurTourId
         {
@@ -121,8 +125,11 @@ namespace TourPlanner.ViewModels
             {
                 if (value != this.selectedTourObject)
                     selectedTourObject = value;
-                updateView();
-                updateLog();
+                if (selectedTourObject != null)
+                {
+                    updateView();
+                    updateLog();
+                }
                 OnPropertyChanged();
             }
         }
@@ -162,7 +169,7 @@ namespace TourPlanner.ViewModels
         }
 
 
-        private void updateTourList()
+        public void updateTourList()
         {
             if (TourObjectCollection != null)
                 TourObjectCollection.Clear();
@@ -188,6 +195,7 @@ namespace TourPlanner.ViewModels
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
             CurFavorite = tourDTO.Route.Favorite;
+            NewTourLogDTO = null;
             if (!string.IsNullOrEmpty(CurTourId))
             {
 

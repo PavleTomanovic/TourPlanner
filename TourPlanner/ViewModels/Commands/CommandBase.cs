@@ -14,11 +14,6 @@ namespace TourPlanner.ViewModels.Commands
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
-
-        internal void OnStartup(StartupEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public abstract class CommandBaseOnChange : CommandBase

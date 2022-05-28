@@ -64,4 +64,19 @@ namespace TourPlanner.ViewModels.Commands
                 OnCanExecutedChanged();
         }
     }
+
+    public class ReloadCommand : CommandBase
+    {
+        public ViewModel ViewModel { get; set; }
+        public ReloadCommand(ViewModel viewModel)
+        {
+            this.ViewModel = viewModel;
+        }
+
+        public override void Execute(object parameter)
+        {
+            this.ViewModel.CurTourId = "";
+            this.ViewModel.updateTourList();
+        }
+    }
 }

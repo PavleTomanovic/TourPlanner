@@ -8,9 +8,12 @@
 
 	TODO - Details
 
-	- update view after submit: Only List is not updating 
+	- auto update view after submit
 	- enough space for comment : wrap text?
-	- datetime without seconds
+
 
 	Changes Done:
+	manually update view : Menu Tour -> reload 
+	datetime without seconds in log
+	Delete and Edit Button work only if log is selected
 

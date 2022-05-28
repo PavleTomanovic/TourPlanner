@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 
@@ -33,13 +35,30 @@ namespace TourPlanner.ViewModels.Commands
 
     public class DeleteLogCommand : CommandBase
     {
+        private ViewModel viewModel;
+        public DeleteLogCommand(ViewModel viewModel)
+        {
+            viewModel = viewModel;
+            viewModel.PropertyChanged += OnViewModelProbertyChanged;
+        }
+        public override bool CanExecute(object parameter)
+        {
+            if (String.IsNullOrEmpty(parameter?.ToString()))
+                return false;
+            return true;
+        }
+        public void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ViewModel.NewTourLogDTO))
+                OnCanExecutedChanged();
+        }
         public override void Execute(object parameter)
         {
-            
+
             TourLogDTO tourLogDTO = new TourLogDTO();
             tourLogDTO = (TourLogDTO)parameter;
-            if(tourLogDTO.LogId != null)
-            { 
+            if (tourLogDTO.LogId != null)
+            {
                 MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Route", MessageBoxButton.YesNo);
 
                 switch (result)
