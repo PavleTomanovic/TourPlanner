@@ -79,7 +79,6 @@
                 <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding CurTourId}" />
                 <MenuItem Header="_Import" Command="{Binding ImportCommand}" />
                 <MenuItem Header="_Export" Command="{Binding ExportCommand}" CommandParameter="{Binding CurTourId}"/>
-                <MenuItem Header="_Reload" Command="{Binding ReloadCommand}" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="exit_Program"/>
             </MenuItem>
@@ -91,6 +90,7 @@
                 <MenuItem Header="Yes" Command="{Binding FavoriteYesCommand}" CommandParameter="{Binding CurTourId}" />
                 <MenuItem Header="No" Command="{Binding FavoriteNoCommand}" CommandParameter="{Binding CurTourId}"/>
             </MenuItem>
+            <MenuItem Header="_Reload" Command="{Binding ReloadCommand}" />
             <MenuItem Header="_Help">
                 <MenuItem Header="Instructions" />
                 <MenuItem Header="Report Issue" />

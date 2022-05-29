@@ -35,7 +35,6 @@ namespace TourPlanner.ViewModels
         public FavoriteYesCommand FavoriteYesCommand { get; set; }
         public SearchCommand SearchCommand { get; set; }
         public ReloadCommand ReloadCommand { get; set; }
-
         public ViewModel()
         {
             _curTourId = string.Empty;
@@ -155,7 +154,6 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ObservableCollection<TourLogDTO> _logGrid = new ObservableCollection<TourLogDTO>();
         public ObservableCollection<TourLogDTO> LogGrid
         {
@@ -167,8 +165,6 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
         public void updateTourList()
         {
             if (TourObjectCollection != null)
@@ -182,7 +178,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        private void updateView()
+        public void updateView()
         {
             //setTours();
             CurTourId = selectedTourObject.tourId;
@@ -198,7 +194,6 @@ namespace TourPlanner.ViewModels
             NewTourLogDTO = null;
             if (!string.IsNullOrEmpty(CurTourId))
             {
-
                 DataTable custTable = new DataTable();
                 DataColumn dtColumn;
                 DataRow myDataRow;
@@ -253,7 +248,7 @@ namespace TourPlanner.ViewModels
             }
 
         }
-        private void updateLog()
+        public void updateLog()
         {
             if (LogGrid != null)
                 LogGrid.Clear();

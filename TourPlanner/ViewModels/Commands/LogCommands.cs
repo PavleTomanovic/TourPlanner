@@ -33,21 +33,15 @@ namespace TourPlanner.ViewModels.Commands
         }
     }
 
-    public class DeleteLogCommand : CommandBase
+    public class DeleteLogCommand : CommandBaseOnChange
     {
         private ViewModel viewModel;
-        public DeleteLogCommand(ViewModel viewModel)
+        public DeleteLogCommand(ViewModel viewModel) : base(viewModel)
         {
             viewModel = viewModel;
             viewModel.PropertyChanged += OnViewModelProbertyChanged;
         }
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter?.ToString()))
-                return false;
-            return true;
-        }
-        public void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        public override void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(ViewModel.NewTourLogDTO))
                 OnCanExecutedChanged();

@@ -75,7 +75,7 @@ namespace TourPlanner.ViewModels.Commands
 
         public override void Execute(object parameter)
         {
-            this.ViewModel.CurTourId = "";
+            this.ViewModel.DataGridDescription?.Reset();
             this.ViewModel.updateTourList();
         }
     }

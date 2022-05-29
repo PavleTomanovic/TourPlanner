@@ -26,7 +26,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public override bool CanExecute(object parameter)
         {
-            if (String.IsNullOrEmpty(parameter.ToString()))
+            if (String.IsNullOrEmpty(parameter?.ToString()))
                 return false;
             return true;
         }
