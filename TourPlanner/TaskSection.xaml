@@ -90,7 +90,6 @@
                 <MenuItem Header="Yes" Command="{Binding FavoriteYesCommand}" CommandParameter="{Binding CurTourId}" />
                 <MenuItem Header="No" Command="{Binding FavoriteNoCommand}" CommandParameter="{Binding CurTourId}"/>
             </MenuItem>
-            <MenuItem Header="_Reload" Command="{Binding ReloadCommand}" />
             <MenuItem Header="_Help">
                 <MenuItem Header="Instructions" />
                 <MenuItem Header="Report Issue" />

@@ -6,6 +6,11 @@ namespace TourPlanner.ViewModels.Commands
 {
     public class ImportCommand : CommandBase
     {
+        private ViewModel viewModel { get; set; }
+        public ImportCommand(ViewModel vm)
+        {
+            this.viewModel = vm;
+        }
         public override void Execute(object parameter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -13,6 +18,7 @@ namespace TourPlanner.ViewModels.Commands
             openFileDialog.InitialDirectory = @"C:\Temp\TourPlanner\TemplateInsert\";
             if (openFileDialog.ShowDialog() == true)
             {
+                UIServices.SetBusyState();
                 string importRoute = BussinessLogic.LogicInstance.ImportRouteFromFile(openFileDialog.FileName);
 
                 switch (importRoute)
@@ -25,6 +31,7 @@ namespace TourPlanner.ViewModels.Commands
                         break;
                     case "done":
                         MessageBox.Show("Route successfully imported!", "Tour Import", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.viewModel.updateTourList();
                         break;
                 }
             }

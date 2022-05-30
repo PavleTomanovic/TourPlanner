@@ -47,7 +47,7 @@ namespace TourPlanner.ViewModels
             DeleteCommand = new DeleteCommand(this);
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand(this);
             DeleteLogCommand = new DeleteLogCommand(this);
-            ImportCommand = new ImportCommand();
+            ImportCommand = new ImportCommand(this);
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand(this);
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
