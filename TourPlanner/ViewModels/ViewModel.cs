@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
 using TourPlanner.Models;
@@ -34,14 +33,13 @@ namespace TourPlanner.ViewModels
         public FavoriteNoCommand FavoriteNoCommand { get; set; }
         public FavoriteYesCommand FavoriteYesCommand { get; set; }
         public SearchCommand SearchCommand { get; set; }
-        public ReloadCommand ReloadCommand { get; set; }
         public ViewModel()
         {
             _curTourId = string.Empty;
             _curTourName = "Please choose a Tour";
             _curImagePath = string.Empty;
             _searchText = string.Empty;
-            OpenWindowCommand = new OpenWindowCommand();
+            OpenWindowCommand = new OpenWindowCommand(this);
             OpenEditWindowCommand = new OpenEditWindowCommand(this);
             ExportCommand = new ExportCommand(this);
             TourReportCommand = new TourReportCommand(this);
@@ -50,13 +48,11 @@ namespace TourPlanner.ViewModels
             OpenEditLogWindowCommand = new OpenEditLogWindowCommand(this);
             DeleteLogCommand = new DeleteLogCommand(this);
             ImportCommand = new ImportCommand();
-            OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand();
+            OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand(this);
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
             SearchCommand = new SearchCommand();
-            ReloadCommand = new ReloadCommand(this);
-
-
+            updateTourList();
         }
         public string CurTourId
         {
@@ -178,7 +174,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public void updateView()
+        private void updateView()
         {
             //setTours();
             CurTourId = selectedTourObject.tourId;

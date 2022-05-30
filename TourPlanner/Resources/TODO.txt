@@ -3,7 +3,7 @@
 
 	1. Unit Tests
 	2. validated user-input
-	3. full-text search in tour- and tour-log data
+	3. full-text search in tour - and tour-log data
 	4. Protocol
 
 	TODO - Details

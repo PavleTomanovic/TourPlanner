@@ -111,13 +111,13 @@
 
         <Label  Grid.Column="1" Grid.Row="1" Margin="10,5" Content="{Binding CurTourName}"  AutomationProperties.IsColumnHeader="True"/>
 
-        <Border  Grid.RowSpan="2" Grid.Column="1" Grid.Row="2" Style="{StaticResource box}">
+        <Border  Grid.RowSpan="2" Grid.Column="1" Grid.Row="2"  Style="{StaticResource box}">
             <DataGrid AutoGenerateColumns="True" Background="Transparent"   GridLinesVisibility="None" DataGrid.BorderThickness="0"  HeadersVisibility="None" ItemsSource="{Binding DataGridDescription}" >
             </DataGrid>
         </Border>
-        <Label   Grid.Column="2" Grid.Row="1"  >Route</Label>
-        <Border  Grid.RowSpan="2" Grid.Column="2" Grid.Row="2" Style="{StaticResource box}">
-            <Image Name="RouteImage" Source="{Binding CurImagePath}"/>
+        <Label   Grid.Column="2" Grid.Row="1">Route</Label>
+        <Border  Grid.RowSpan="2" Grid.Column="2" Grid.Row="2"  Style="{StaticResource box}">
+            <Image Name="RouteImage" Stretch="Fill" Source="{Binding CurImagePath}"/>
         </Border>
 
         <Button Content="New Log" Style="{StaticResource addBtn}"  Grid.Column="1" Grid.Row="4" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0" Command="{Binding OpenInsertLogWindowCommand}" CommandParameter="{Binding CurTourId}"/>

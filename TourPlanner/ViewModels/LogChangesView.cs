@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using TourPlanner.BussinesLayer;
-using TourPlanner.DTO;
 using TourPlanner.ViewModels.Commands;
 
 namespace TourPlanner.ViewModels
@@ -121,7 +120,7 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        public ViewModel viewModel;
 
         public void CreateLogButton(object obj)
         {
@@ -135,6 +134,7 @@ namespace TourPlanner.ViewModels
                 if (createLog)
                 {
                     MessageBox.Show($"Log created successfully!", "Log Creation", MessageBoxButton.OK, MessageBoxImage.Information);
+                    viewModel.updateLog();
                     CloseAction();
                 }
                 else
@@ -156,6 +156,7 @@ namespace TourPlanner.ViewModels
                 if (editLog)
                 {
                     MessageBox.Show($"Log edited successfully!", "Log Edit", MessageBoxButton.OK, MessageBoxImage.Information);
+                    viewModel.updateLog();
                     CloseAction();
                 }
                 else

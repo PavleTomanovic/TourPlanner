@@ -9,10 +9,11 @@ namespace TourPlanner
     /// </summary>
     public partial class EditTourWindow : Window
     {
-        public EditTourWindow(string id, string name, string from, string to, string transport, string comment)
+        public EditTourWindow(ViewModel vm, string id, string name, string from, string to, string transport, string comment)
         {
             InitializeComponent();
             var tcv = new TourChangesView();
+            tcv.viewModel = vm;
             tcv.TourId = id;
             tcv.Tourname = name;
             tcv.From = from;

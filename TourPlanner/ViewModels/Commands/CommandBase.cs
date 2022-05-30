@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 
 namespace TourPlanner.ViewModels.Commands

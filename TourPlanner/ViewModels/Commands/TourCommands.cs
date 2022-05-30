@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
@@ -32,19 +30,12 @@ namespace TourPlanner.ViewModels.Commands
             this.ChangesView.EditTourButton(parameter);
         }
     }
-    public class DeleteCommand : CommandBase
+    public class DeleteCommand : CommandBaseOnChange
     {
-        private readonly ViewModel _viewModel;
-        public DeleteCommand(ViewModel viewModel)
+        private ViewModel vm;
+        public DeleteCommand(ViewModel viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
-            _viewModel.PropertyChanged += OnViewModelProbertyChanged;
-        }
-        public override bool CanExecute(object parameter)
-        {
-            if (String.IsNullOrEmpty(parameter.ToString()))
-                return false;
-            return true;
+            vm = viewModel;
         }
         public override void Execute(object parameter)
         {
@@ -57,26 +48,23 @@ namespace TourPlanner.ViewModels.Commands
                     MessageBox.Show("Route successfully deleted", "Delete Route", MessageBoxButton.OK);
                     break;
             }
-        }
-        private void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(ViewModel.CurTourName))
-                OnCanExecutedChanged();
+            vm.updateTourList();
+            vm.DataGridDescription?.Reset();
         }
     }
 
-    public class ReloadCommand : CommandBase
-    {
-        public ViewModel ViewModel { get; set; }
-        public ReloadCommand(ViewModel viewModel)
-        {
-            this.ViewModel = viewModel;
-        }
+    /* public class ReloadCommand : CommandBase
+     {
+         public ViewModel ViewModel { get; set; }
+         public ReloadCommand(ViewModel viewModel)
+         {
+             this.ViewModel = viewModel;
+         }
 
-        public override void Execute(object parameter)
-        {
-            this.ViewModel.DataGridDescription?.Reset();
-            this.ViewModel.updateTourList();
-        }
-    }
+         public override void Execute(object parameter)
+         {
+             this.ViewModel.DataGridDescription?.Reset();
+             this.ViewModel.updateTourList();
+         }
+     }*/
 }

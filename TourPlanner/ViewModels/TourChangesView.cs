@@ -83,6 +83,7 @@ namespace TourPlanner.ViewModels
         }
         public TourCommand NewTourCommand { get; set; }
         public EditTourCommand EditTourCommand { get; set; }
+        public ViewModel viewModel { get; set; }
         public void CreateTourButton(object obj)
         {
             UIServices.SetBusyState();
@@ -95,6 +96,8 @@ namespace TourPlanner.ViewModels
                 {
                     MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
                     CloseAction();
+                    viewModel.updateTourList();
+                    viewModel.DataGridDescription?.Reset();
                 }
                 else
                 {
@@ -115,12 +118,15 @@ namespace TourPlanner.ViewModels
                 {
                     MessageBox.Show($"Route edited successfully!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Information);
                     CloseAction();
+                    viewModel.updateTourList();
+                    viewModel.DataGridDescription?.Reset();
                 }
                 else
                 {
                     MessageBox.Show($"Route could not be edited!", "Route Edit", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+
         }
 
     }

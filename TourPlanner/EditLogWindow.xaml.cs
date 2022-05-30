@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows;
 using TourPlanner.DTO;
 using TourPlanner.ViewModels;
@@ -11,10 +10,11 @@ namespace TourPlanner
     /// </summary>
     public partial class EditLogWindow : Window
     {
-        public EditLogWindow(TourLogDTO tourLogDTO)
+        public EditLogWindow(TourLogDTO tourLogDTO, ViewModel vm)
         {
             InitializeComponent();
             var lcv = new LogChangesView();
+            lcv.viewModel = vm;
             lcv.TourID = tourLogDTO?.RouteId;
             lcv.LogID = tourLogDTO?.LogId;
             lcv.Date = DateTime.Parse(tourLogDTO?.DateTime);
