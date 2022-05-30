@@ -3,18 +3,19 @@
 
 	1. Unit Tests
 	2. validated user-input
-	3. full-text search in tour - and tour-log data
-	4. Protocol
+	3. Protocol
+	4. Logging in Console
 
 	TODO - Details
 
 	- favortie virtualization 
-	- 
+	- return from search : x Button ?
 	- enough space for comment : wrap text?
 
 
 	Changes Done:
 	auto update view after every change
+	search
 
 
 	For loading Mouse:

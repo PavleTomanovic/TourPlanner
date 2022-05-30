@@ -51,7 +51,7 @@ namespace TourPlanner.ViewModels
             OpenInsertLogWindowCommand = new OpenInsertLogWindowCommand(this);
             FavoriteNoCommand = new FavoriteNoCommand(this);
             FavoriteYesCommand = new FavoriteYesCommand(this);
-            SearchCommand = new SearchCommand();
+            SearchCommand = new SearchCommand(this);
             updateTourList();
         }
         public string CurTourId

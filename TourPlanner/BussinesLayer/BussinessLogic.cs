@@ -361,6 +361,7 @@ namespace TourPlanner.BussinesLayer
         {
             List<TourPreview> result = new List<TourPreview>();
             List<string> routeIds = new List<string>();
+            searchText = '%' + searchText + '%';
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughRoutes, searchText);
             foreach (DataRow row in dataTable.Rows)
             {
