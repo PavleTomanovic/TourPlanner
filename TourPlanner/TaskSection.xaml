@@ -109,7 +109,7 @@
         />
 
         <Label  Grid.Column="1" Grid.Row="1" Margin="10,5" Content="{Binding CurTourName}"  AutomationProperties.IsColumnHeader="True"/>
-
+        <Image  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,50,0" Width="26" Source="{Binding CurFavorite}"/>
         <Border  Grid.RowSpan="2" Grid.Column="1" Grid.Row="2"  Style="{StaticResource box}">
             <DataGrid AutoGenerateColumns="True" Background="Transparent"   GridLinesVisibility="None" DataGrid.BorderThickness="0"  HeadersVisibility="None" ItemsSource="{Binding DataGridDescription}" >
             </DataGrid>

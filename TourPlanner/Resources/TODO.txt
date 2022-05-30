@@ -8,14 +8,15 @@
 
 	TODO - Details
 
-	- favortie virtualization 
-	- return from search : x Button ?
+	- return from search : x Button ? : empty search brings back
 	- enough space for comment : wrap text?
+	- Time calculation
 
 
 	Changes Done:
 	auto update view after every change
 	search
+	favortie virtualization : path?
 
 
 	For loading Mouse:

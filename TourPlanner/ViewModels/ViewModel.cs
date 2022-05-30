@@ -90,8 +90,18 @@ namespace TourPlanner.ViewModels
         public string CurTo;
         public string CurTransport;
         public string CurComment;
-        public string CurFavorite;
+        private string _curFavorite;
 
+        public string CurFavorite
+        {
+            get { return _curFavorite; }
+            set
+            {
+                if (value != this._curFavorite)
+                    _curFavorite = value;
+                OnPropertyChanged();
+            }
+        }
         public DataTable DataGridDescription
         {
             get { return _curDataGrid; }
@@ -174,7 +184,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        private void updateView()
+        public void updateView()
         {
             //setTours();
             CurTourId = selectedTourObject.tourId;
@@ -186,7 +196,6 @@ namespace TourPlanner.ViewModels
             CurTransport = tourDTO.Route.Transport;
             CurComment = tourDTO.Route.Comment;
             CurImagePath = tourDTO.Route.ImageUrl;
-            CurFavorite = tourDTO.Route.Favorite;
             NewTourLogDTO = null;
             if (!string.IsNullOrEmpty(CurTourId))
             {
@@ -229,10 +238,6 @@ namespace TourPlanner.ViewModels
                 myDataRow["Two"] = CurComment;
                 custTable.Rows.Add(myDataRow);
                 myDataRow = custTable.NewRow();
-                myDataRow["One"] = "Favorite: ";
-                myDataRow["Two"] = CurFavorite;
-                custTable.Rows.Add(myDataRow);
-                myDataRow = custTable.NewRow();
                 myDataRow["One"] = "Popularity: ";
                 myDataRow["Two"] = logic.CheckRoutePopularity(CurTourId);
                 custTable.Rows.Add(myDataRow);
@@ -241,6 +246,11 @@ namespace TourPlanner.ViewModels
                 myDataRow["Two"] = logic.CheckRouteChildFriendliness(CurTourId);
                 custTable.Rows.Add(myDataRow);
                 DataGridDescription = custTable;
+
+                if (tourDTO.Route.Favorite == "Yes")
+                    CurFavorite = @"C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\Util\star.png";
+                else
+                    CurFavorite = string.Empty;
             }
 
         }
