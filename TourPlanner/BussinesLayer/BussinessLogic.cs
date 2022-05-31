@@ -75,6 +75,17 @@ namespace TourPlanner.BussinesLayer
         }
         public void DeleteRoute(string routeId)
         {
+            /*
+            DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
+            
+            foreach(DataRow row in dataTable.Rows)
+            {
+                string imagePath = row["TourImage"].ToString();
+
+                File.Delete(imagePath);
+            }
+            */
+
             DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
         }
         public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId, string dateTime)

@@ -48,8 +48,8 @@ namespace TourPlanner.ViewModels.Commands
                     MessageBox.Show("Route successfully deleted", "Delete Route", MessageBoxButton.OK);
                     break;
             }
-            vm.updateTourList();
             vm.DataGridDescription?.Reset();
+            vm.updateTourList();
         }
     }
 
