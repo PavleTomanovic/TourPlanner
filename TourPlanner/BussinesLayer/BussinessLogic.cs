@@ -187,7 +187,8 @@ namespace TourPlanner.BussinesLayer
                 {
                     string distance = row["TourDistance"].ToString();
                     string routeName = row["TourName"].ToString();
-                    int avgTime = 0;
+                    double avgTime = 0;
+                    int avgTimeInt = 0;
                     double avgRating = 0;
 
                     DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
@@ -199,24 +200,27 @@ namespace TourPlanner.BussinesLayer
                         string avgRatingString = rowLog["Rating"].ToString();
                         avgTimeString = avgTimeString?.Replace(",", ".");
                         avgRatingString = avgRatingString?.Replace(",", ".");
-                        avgTime += Convert.ToInt32(avgTimeString);
+                        avgTime += Convert.ToDouble(avgTimeString);
+                        avgTimeInt += Convert.ToInt32(avgTimeString);
                         avgRating += Convert.ToDouble(avgRatingString);
                     }
-
-                    int finalTimeHours = 0;
-                    int finalTimeRest = 0;
-                    int finalTimeMinutes = 0;
+                    int hours = 0;
+                    double finalTimeHours = 0;
+                    double finalTimeRest = 0;
+                    double finalTimeMinutes = 0;
                     double finalRating = 0;
 
                     if (totalRows > 0)
                     {
                         finalTimeHours = avgTime / totalRows;
+                        avgTime = Convert.ToInt32(avgTime);
+                        hours = avgTimeInt / totalRows;
                         finalTimeRest = finalTimeHours % totalRows;
                         finalTimeMinutes = finalTimeRest * 60;
                         finalRating = Math.Round(avgRating / totalRows, 2);
                     }
 
-                    string finalTimeString = finalTimeHours.ToString() + ":" + finalTimeMinutes.ToString(); 
+                    string finalTimeString = hours.ToString() + ":" + finalTimeMinutes.ToString();
 
                     DocumentCreation.Instance.RouteSummarizeReportCreation(finalTimeString, finalRating, distance, routeName);
                 }
