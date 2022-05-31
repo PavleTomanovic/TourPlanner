@@ -177,16 +177,20 @@ namespace TourPlanner.BussinesLayer
                 {
                     string distance = row["TourDistance"].ToString();
                     string routeName = row["TourName"].ToString();
-                    int avgTime = 0;
-                    int avgRating = 0;
+                    double avgTime = 0;
+                    double avgRating = 0;
 
                     DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
                     int totalRows = dataTableLogs.Rows.Count;
 
                     foreach (DataRow rowLog in dataTableLogs.Rows)
                     {
-                        avgTime += Int32.Parse(rowLog["TotalTime"].ToString());
-                        avgRating += Int32.Parse(rowLog["Rating"].ToString());
+                        string avgTimeString = rowLog["TotalTime"].ToString();
+                        string avgRatingString = rowLog["Rating"].ToString();
+                        avgTimeString = avgTimeString?.Replace(",", ".");
+                        avgRatingString = avgRatingString?.Replace(",", ".");
+                        avgTime += Convert.ToDouble(avgTimeString);
+                        avgRating += Convert.ToDouble(avgRatingString);
                     }
 
                     double finalTime = 0;
@@ -311,27 +315,37 @@ namespace TourPlanner.BussinesLayer
             {
                 try
                 {
-                    int distance = Int32.Parse(row["TourDistance"].ToString());
-                    int avgTime = 0;
-                    int avgDifficulty = 0;
+                    string distanceString = row["TourDistance"].ToString();
+                    distanceString = distanceString?.Replace(".", ",");
+                    double distance = Convert.ToDouble(distanceString);
+                    double avgTime = 0;
+                    double avgDifficulty = 0;
+                    double finalTime = 0;
+                    double finalDifficulty = 0;
 
                     DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
-                    int totalRows = dataTableLogs.Rows.Count;
+                    double totalRows = dataTableLogs.Rows.Count;
 
                     foreach (DataRow rowLog in dataTableLogs.Rows)
                     {
-                        avgTime += Int32.Parse(row["TotalTime"].ToString());
-                        avgDifficulty += Int32.Parse(row["Difficulty"].ToString());
+                        string avgTimeString = rowLog["TotalTime"].ToString();
+                        string avgDifficultyString = rowLog["Difficulty"].ToString();
+                        avgTimeString = avgTimeString?.Replace(".", ",");
+                        avgDifficultyString = avgDifficultyString?.Replace(".", ",");
+                        avgTime += Convert.ToDouble(avgTimeString);
+                        avgDifficulty += Convert.ToDouble(avgDifficultyString);
+                    }
+                    if(totalRows > 0)
+                    {
+                        finalTime = avgTime / totalRows;
+                        finalDifficulty = avgDifficulty / totalRows;
                     }
 
-                    double finalTime = avgTime / totalRows;
-                    double finalDifficulty = avgDifficulty / totalRows;
-
-                    if (distance < 200)
+                    if (distance < 300)
                     {
-                        if (finalTime < 120)
+                        if (finalTime < 3)
                         {
-                            if (finalDifficulty < 5)
+                            if (finalDifficulty < 4)
                             {
                                 result = "Child-friendly";
                             }
