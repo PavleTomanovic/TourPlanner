@@ -40,17 +40,16 @@ namespace TourPlanner.BussinesLayer
         private void ReadDatabase()
         {
             DatabaseDTO = new DatabaseDTO();
-            
-            DatabaseDTO.Source = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Source"));
-            DatabaseDTO.InitialCatalog = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/InitialCatalog"));
-            DatabaseDTO.UserName = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/UserName"));
-            DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Password"));
-            /*
+
+            /*  DatabaseDTO.Source = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Source"));
+              DatabaseDTO.InitialCatalog = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/InitialCatalog"));
+              DatabaseDTO.UserName = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/UserName"));
+              DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Pavle/Password"));
+              */
             DatabaseDTO.Source = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Taha/Source"));
             DatabaseDTO.InitialCatalog = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Taha/InitialCatalog"));
             DatabaseDTO.UserName = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Taha/UserName"));
             DatabaseDTO.Password = Crypto.decrypt(xmlReader.getSingleNodeString("SWEN/Database_Taha/Password"));
-            */
 
         }
 

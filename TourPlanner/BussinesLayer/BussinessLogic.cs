@@ -251,6 +251,13 @@ namespace TourPlanner.BussinesLayer
                 }
             }
         }
+        private string calcTime(string time)
+        {
+            double dTime = Math.Round(Convert.ToDouble(time) / 3600, 2);
+            time = dTime.ToString();
+            return time;
+        }
+
         public HttpResponseDTO SelectAllFromRoute(string routeId)
         {
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectRoute, routeId);
@@ -265,7 +272,7 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO.Route.To = row["TourTo"].ToString();
                 httpResponseDTO.Route.Transport = row["TourTransport"].ToString();
                 httpResponseDTO.Route.Distance = row["TourDistance"].ToString();
-                httpResponseDTO.Route.Time = row["TourTime"].ToString();
+                httpResponseDTO.Route.Time = calcTime(row["TourTime"].ToString());
                 httpResponseDTO.Route.ImageUrl = row["TourImage"].ToString();
                 httpResponseDTO.Route.Favorite = row["TourFavorite"].ToString();
             }
@@ -346,7 +353,7 @@ namespace TourPlanner.BussinesLayer
                         avgTime += Convert.ToDouble(avgTimeString);
                         avgDifficulty += Convert.ToDouble(avgDifficultyString);
                     }
-                    if(totalRows > 0)
+                    if (totalRows > 0)
                     {
                         finalTime = avgTime / totalRows;
                         finalDifficulty = avgDifficulty / totalRows;
