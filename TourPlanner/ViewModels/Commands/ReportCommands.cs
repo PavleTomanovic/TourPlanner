@@ -13,6 +13,7 @@ namespace TourPlanner.ViewModels.Commands
             switch (result)
             {
                 case MessageBoxResult.Yes:
+                    UIServices.SetBusyState();
                     bool createReport = BussinessLogic.LogicInstance.CreateRouteReport(parameter.ToString());
                     if (createReport)
                         MessageBox.Show("TourReport successfully created!", "Report Creation", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -32,6 +33,7 @@ namespace TourPlanner.ViewModels.Commands
             switch (result)
             {
                 case MessageBoxResult.Yes:
+                    UIServices.SetBusyState();
                     bool createReport = BussinessLogic.LogicInstance.CreateSummarizeReport(parameter.ToString());
                     if (createReport)
                         MessageBox.Show("SummarizeReport successfully created!", "Report Creation", MessageBoxButton.OK, MessageBoxImage.Information);

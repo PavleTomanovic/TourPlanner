@@ -259,7 +259,8 @@ namespace TourPlanner.BussinesLayer
         {
             int intTime = Convert.ToInt32(time);
             int hours = intTime / 3600;
-            int minutes = intTime % 3600;
+            int seconds = intTime % 3600;
+            int minutes = seconds / 60;
             time = hours.ToString() + ":" + minutes.ToString();
             return time;
         }
