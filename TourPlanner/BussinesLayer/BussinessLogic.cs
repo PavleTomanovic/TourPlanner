@@ -209,10 +209,12 @@ namespace TourPlanner.BussinesLayer
                     if (totalRows > 0)
                     {
                         finalTime = avgTime / totalRows;
-                        finalRating = avgRating / totalRows;
+                        finalRating = Math.Round(avgRating / totalRows, 2);
                     }
+                    string finalTimeString = finalTime.ToString();
+                    finalTimeString = calcTime(finalTimeString);
 
-                    DocumentCreation.Instance.RouteSummarizeReportCreation(finalTime, finalRating, distance, routeName);
+                    DocumentCreation.Instance.RouteSummarizeReportCreation(finalTimeString, finalRating, distance, routeName);
                 }
                 catch (Exception e)
                 {

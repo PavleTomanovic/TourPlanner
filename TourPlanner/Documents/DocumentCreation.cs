@@ -65,7 +65,7 @@ namespace TourPlanner.BussinesLayer
             document.Close();
         }
 
-        public void RouteSummarizeReportCreation(double time, double rating, string distance, string routeName)
+        public void RouteSummarizeReportCreation(string time, double rating, string distance, string routeName)
         {
             PdfWriter writer = new PdfWriter(BussinessFactory.Instance.DirectoryDTO.ReportPath + DateTime.Now.ToString("fffff") + "_SummarizeReport_" + routeName + ".pdf");
             PdfDocument pdf = new PdfDocument(writer);
