@@ -253,8 +253,10 @@ namespace TourPlanner.BussinesLayer
         }
         private string calcTime(string time)
         {
-            double dTime = Math.Round(Convert.ToDouble(time) / 3600, 2);
-            time = dTime.ToString();
+            int intTime = Convert.ToInt32(time);
+            int hours = intTime / 3600;
+            int minutes = intTime % 3600;
+            time = hours.ToString() + ":" + minutes.ToString();
             return time;
         }
 
