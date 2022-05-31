@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using TourPlanner.BussinesLayer;
-using TourPlanner.Models;
+using TourPlanner.DTO;
 
 namespace TourPlanner.ViewModels.Commands
 {
@@ -13,7 +13,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public override void Execute(object parameter)
         {
-            List<TourPreview> searchResult = new List<TourPreview>();
+            List<TourPreviewDTO> searchResult = new List<TourPreviewDTO>();
             searchResult = BussinessLogic.LogicInstance.PrepareListRouteForSearch(parameter?.ToString());
             if (viewModel.TourObjectCollection != null)
                 viewModel.TourObjectCollection.Clear();

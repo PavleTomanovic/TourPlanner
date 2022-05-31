@@ -6,7 +6,6 @@ using System.Linq;
 using TourPlanner.DataAccessLayer;
 using TourPlanner.Documents;
 using TourPlanner.DTO;
-using TourPlanner.Models;
 using TourPlanner.Util;
 
 namespace TourPlanner.BussinesLayer
@@ -17,9 +16,9 @@ namespace TourPlanner.BussinesLayer
 
         public bool CreateRoute(string name, string from, string to, string transport, string comment)
         {
-            List<TourPreview> routeNames = SelectTourNameId();
+            List<TourPreviewDTO> routeNames = SelectTourNameId();
 
-            if (routeNames.Any(n => n.tourName == name)) //routeNames.Contains(name)
+            if (routeNames.Any(n => n.TourName == name)) //routeNames.Contains(name)
             {
                 return false;
             }
@@ -135,9 +134,9 @@ namespace TourPlanner.BussinesLayer
         {
             DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, routeId, logId);
         }
-        public List<TourPreview> SelectTourNameId()
+        public List<TourPreviewDTO> SelectTourNameId()
         {
-            List<TourPreview> routeNameId = new List<TourPreview>();
+            List<TourPreviewDTO> routeNameId = new List<TourPreviewDTO>();
 
             try
             {
@@ -149,7 +148,7 @@ namespace TourPlanner.BussinesLayer
                         //Check what is better here: TourName or TourId  => bouth :)
                         string routeName = row["TourName"].ToString();
                         string routeId = row["TourId"].ToString();
-                        routeNameId.Add(new TourPreview { tourName = routeName, tourId = routeId });
+                        routeNameId.Add(new TourPreviewDTO { TourName = routeName, TourId = routeId });
                     }
                     catch (Exception e)
                     {
@@ -237,9 +236,9 @@ namespace TourPlanner.BussinesLayer
             {
                 HttpResponseDTO httpResponseDTO = ImportExport.Instance.ImportFile(filename);
 
-                List<TourPreview> routeNames = SelectTourNameId();
+                List<TourPreviewDTO> routeNames = SelectTourNameId();
 
-                if (routeNames.Any(n => n.tourName == httpResponseDTO.Route.Name))
+                if (routeNames.Any(n => n.TourName == httpResponseDTO.Route.Name))
                 {
                     LoggerToFile.LogError("ImportFromFile: Route with this name already exsits!");
                     return "nameExists";
@@ -392,9 +391,9 @@ namespace TourPlanner.BussinesLayer
             }
             return result;
         }
-        public List<TourPreview> PrepareListRouteForSearch(string searchText)
+        public List<TourPreviewDTO> PrepareListRouteForSearch(string searchText)
         {
-            List<TourPreview> result = new List<TourPreview>();
+            List<TourPreviewDTO> result = new List<TourPreviewDTO>();
             List<string> routeIds = new List<string>();
             searchText = '%' + searchText + '%';
             DataTable dataTable = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SearchThroughRoutes, searchText);
@@ -423,7 +422,7 @@ namespace TourPlanner.BussinesLayer
                 {
                     string tourId = rowTwo["TourId"].ToString();
                     string tourName = rowTwo["TourName"].ToString();
-                    result.Add(new TourPreview { tourName = tourName, tourId = tourId });
+                    result.Add(new TourPreviewDTO { TourName = tourName, TourId = tourId });
                 }
             }
 

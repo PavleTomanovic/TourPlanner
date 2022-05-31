@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using TourPlanner.BussinesLayer;
 using TourPlanner.DTO;
-using TourPlanner.Models;
 using TourPlanner.ViewModels.Commands;
 
 namespace TourPlanner.ViewModels
@@ -122,8 +121,8 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        private TourPreview selectedTourObject;
-        public TourPreview SelectedTourObject
+        private TourPreviewDTO selectedTourObject;
+        public TourPreviewDTO SelectedTourObject
         {
             get => selectedTourObject;
             set
@@ -138,8 +137,8 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        private ObservableCollection<TourPreview> _tourObjectCollection = new ObservableCollection<TourPreview>();
-        public ObservableCollection<TourPreview> TourObjectCollection
+        private ObservableCollection<TourPreviewDTO> _tourObjectCollection = new ObservableCollection<TourPreviewDTO>();
+        public ObservableCollection<TourPreviewDTO> TourObjectCollection
         {
             get { return _tourObjectCollection; }
             set
@@ -175,19 +174,19 @@ namespace TourPlanner.ViewModels
         {
             if (TourObjectCollection != null)
                 TourObjectCollection.Clear();
-            List<TourPreview> allTournameId = new List<TourPreview>();
+            List<TourPreviewDTO> allTournameId = new List<TourPreviewDTO>();
             allTournameId = BussinessLogic.LogicInstance.SelectTourNameId();
             foreach (var item in allTournameId)
             {
                 TourObjectCollection?.Add(item);
-                SelectedTourObject = new TourPreview();
+                SelectedTourObject = new TourPreviewDTO();
             }
         }
 
         public void updateView()
         {
             //setTours();
-            CurTourId = selectedTourObject.tourId;
+            CurTourId = selectedTourObject.TourId;
             var logic = BussinessLogic.LogicInstance;
             tourDTO = logic.SelectAllFromRoute(CurTourId);
             CurTourName = tourDTO.Route.Name;
@@ -226,11 +225,11 @@ namespace TourPlanner.ViewModels
                 myDataRow["Two"] = CurTransport;
                 custTable.Rows.Add(myDataRow);
                 myDataRow = custTable.NewRow();
-                myDataRow["One"] = "Distance: ";
+                myDataRow["One"] = "Distance (km): ";
                 myDataRow["Two"] = tourDTO.Route.Distance;
                 custTable.Rows.Add(myDataRow);
                 myDataRow = custTable.NewRow();
-                myDataRow["One"] = "Time: ";
+                myDataRow["One"] = "Time (h): ";
                 myDataRow["Two"] = tourDTO.Route.Time;
                 custTable.Rows.Add(myDataRow);
                 myDataRow = custTable.NewRow();
