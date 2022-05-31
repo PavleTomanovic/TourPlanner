@@ -248,7 +248,7 @@ namespace TourPlanner.ViewModels
                 DataGridDescription = custTable;
 
                 if (tourDTO.Route.Favorite == "Yes")
-                    CurFavorite = @"C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\Util\star.png";
+                    CurFavorite = @"C:\Temp\TourPlanner\TourImages\star.png";
                 else
                     CurFavorite = string.Empty;
             }
