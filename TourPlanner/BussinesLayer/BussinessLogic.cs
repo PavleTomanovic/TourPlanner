@@ -187,7 +187,7 @@ namespace TourPlanner.BussinesLayer
                 {
                     string distance = row["TourDistance"].ToString();
                     string routeName = row["TourName"].ToString();
-                    double avgTime = 0;
+                    int avgTime = 0;
                     double avgRating = 0;
 
                     DataTable dataTableLogs = DatabaseConnection.Instance.ExecuteSelect(BussinessFactory.Instance.SqlDTO.SelectLogReport, routeId);
@@ -199,20 +199,24 @@ namespace TourPlanner.BussinesLayer
                         string avgRatingString = rowLog["Rating"].ToString();
                         avgTimeString = avgTimeString?.Replace(",", ".");
                         avgRatingString = avgRatingString?.Replace(",", ".");
-                        avgTime += Convert.ToDouble(avgTimeString);
+                        avgTime += Convert.ToInt32(avgTimeString);
                         avgRating += Convert.ToDouble(avgRatingString);
                     }
 
-                    double finalTime = 0;
+                    int finalTimeHours = 0;
+                    int finalTimeRest = 0;
+                    int finalTimeMinutes = 0;
                     double finalRating = 0;
 
                     if (totalRows > 0)
                     {
-                        finalTime = avgTime / totalRows;
+                        finalTimeHours = avgTime / totalRows;
+                        finalTimeRest = finalTimeHours % totalRows;
+                        finalTimeMinutes = finalTimeRest * 60;
                         finalRating = Math.Round(avgRating / totalRows, 2);
                     }
-                    string finalTimeString = finalTime.ToString();
-                    finalTimeString = calcTime(finalTimeString);
+
+                    string finalTimeString = finalTimeHours.ToString() + ":" + finalTimeMinutes.ToString(); 
 
                     DocumentCreation.Instance.RouteSummarizeReportCreation(finalTimeString, finalRating, distance, routeName);
                 }
