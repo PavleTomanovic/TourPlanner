@@ -7,6 +7,7 @@ namespace TourPlanner.ViewModels
 {
     public class LogChangesView : ViewModelBase
     {
+        public ViewModel viewModel;
         private string _tourID;
         private string _logID;
         private string _logComment;
@@ -21,7 +22,7 @@ namespace TourPlanner.ViewModels
         public Action CloseAction { get; set; }
         public LogChangesView()
         {
-            EditLogCommand = new EditLogCommand(this);
+            EditLogCommand = new EditLogCommand(this, viewModel);
             CreateLogCommand = new CreateLogCommand(this);
         }
         public string TourID
@@ -120,7 +121,6 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ViewModel viewModel;
 
         public void CreateLogButton(object obj)
         {

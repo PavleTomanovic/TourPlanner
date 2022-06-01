@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using TourPlanner.BussinesLayer;
 
 namespace TourPlanner.ViewModels.Commands
@@ -8,27 +9,29 @@ namespace TourPlanner.ViewModels.Commands
         public TourChangesView ChangesView { get; set; }
         public TourCommand(TourChangesView changesView)
         {
-            this.ChangesView = changesView;
+            ChangesView = changesView;
+            ChangesView.PropertyChanged += OnViewModelProbertyChanged;
         }
-
+        public override bool CanExecute(object parameter)
+        {
+            if (string.IsNullOrEmpty(ChangesView.Tourname) || string.IsNullOrEmpty(ChangesView.From) || string.IsNullOrEmpty(ChangesView.To))
+                return false;
+            return true;
+        }
         public override void Execute(object parameter)
         {
             this.ChangesView.CreateTourButton(parameter);
         }
+        public virtual void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ChangesView.Tourname) || e.PropertyName == nameof(ChangesView.From) || e.PropertyName == nameof(ChangesView.To))
+                OnCanExecutedChanged();
+        }
     }
-    public class EditTourCommand : CommandBase
+    public class EditTourCommand : TourCommand
     {
-        public TourChangesView ChangesView { get; set; }
-        public EditTourCommand(TourChangesView changesView)
-        {
-            this.ChangesView = changesView;
-
-        }
-
-        public override void Execute(object parameter)
-        {
-            this.ChangesView.EditTourButton(parameter);
-        }
+        public EditTourCommand(TourChangesView changesView) : base(changesView) { }
+        public override void Execute(object parameter) => this.ChangesView.EditTourButton(parameter);
     }
     public class DeleteCommand : CommandBaseOnChange
     {
@@ -52,19 +55,4 @@ namespace TourPlanner.ViewModels.Commands
             vm.updateTourList();
         }
     }
-
-    /* public class ReloadCommand : CommandBase
-     {
-         public ViewModel ViewModel { get; set; }
-         public ReloadCommand(ViewModel viewModel)
-         {
-             this.ViewModel = viewModel;
-         }
-
-         public override void Execute(object parameter)
-         {
-             this.ViewModel.DataGridDescription?.Reset();
-             this.ViewModel.updateTourList();
-         }
-     }*/
 }

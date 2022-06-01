@@ -11,11 +11,8 @@ namespace TourPlanner.ViewModels.Commands
             (this.canExecute, this.execute) = (canExecute, execute);
         public DelegateCommand(Action<object> execute) : this(null, execute) { }
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter) => true;
-        public void Execute(object parameter) { }
-        protected void OnCanExecutedChanged()
-        {
-            CanExecuteChanged?.Invoke(this, new EventArgs());
-        }
+        public bool CanExecute(object parameter) => this.canExecute(parameter);
+        public void Execute(object parameter) => this.execute?.Invoke(parameter);
+        protected void OnCanExecutedChanged() => this.CanExecuteChanged?.Invoke(this, new EventArgs());
     }
 }

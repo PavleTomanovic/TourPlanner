@@ -12,19 +12,20 @@ namespace TourPlanner.ViewModels.Commands
         {
             this.LogChangesView = logChangesView;
         }
-
         public override void Execute(object parameter)
         {
             this.LogChangesView.CreateLogButton(parameter);
         }
     }
 
-    public class EditLogCommand : CommandBase
+    public class EditLogCommand : DeleteLogCommand
     {
-        public LogChangesView LogChangesView { get; set; }
-        public EditLogCommand(LogChangesView logChangesView)
+        public LogChangesView LogChangesView;
+        public EditLogCommand(LogChangesView logChangesView, ViewModel vm) : base(vm)
         {
             this.LogChangesView = logChangesView;
+            viewModel = vm;
+            viewModel.PropertyChanged += OnViewModelProbertyChanged;
         }
         public override void Execute(object parameter)
         {
@@ -32,18 +33,19 @@ namespace TourPlanner.ViewModels.Commands
         }
     }
 
-    public class DeleteLogCommand : CommandBaseOnChange
+    public class DeleteLogCommand : CommandBase
     {
-        private ViewModel viewModel;
-        public DeleteLogCommand(ViewModel viewModel) : base(viewModel)
+        public ViewModel viewModel;
+        public DeleteLogCommand(ViewModel vm)
         {
-            viewModel = viewModel;
+            viewModel = vm;
             viewModel.PropertyChanged += OnViewModelProbertyChanged;
         }
-        public override void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        public override bool CanExecute(object parameter)
         {
-            if (e.PropertyName == nameof(ViewModel.NewTourLogDTO))
-                OnCanExecutedChanged();
+            if (string.IsNullOrEmpty(viewModel.NewTourLogDTO?.LogId))
+                return false;
+            return true;
         }
         public override void Execute(object parameter)
         {
@@ -66,6 +68,11 @@ namespace TourPlanner.ViewModels.Commands
             {
                 MessageBox.Show("Please select log to delete!", "Delete Route", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+        public void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(viewModel.NewTourLogDTO))
+                OnCanExecutedChanged();
         }
     }
 }

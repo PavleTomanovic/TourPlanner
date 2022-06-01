@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using TourPlanner.BussinesLayer;
+using TourPlanner.DTO;
 using TourPlanner.ViewModels.Commands;
 
 namespace TourPlanner.ViewModels
@@ -12,7 +13,7 @@ namespace TourPlanner.ViewModels
         private string _from;
         private string _to;
         private string _transport;
-        private string _comment;
+        private string _comment = string.Empty;
 
         public Action CloseAction { get; set; }
         public TourChangesView()
@@ -25,7 +26,6 @@ namespace TourPlanner.ViewModels
             NewTourCommand = new TourCommand(this);
             EditTourCommand = new EditTourCommand(this);
         }
-
         public string Tourname
         {
             get => _tourname;
@@ -81,13 +81,14 @@ namespace TourPlanner.ViewModels
                 OnPropertyChanged();
             }
         }
+        //public DelegateCommand ForwardCommand
         public TourCommand NewTourCommand { get; set; }
         public EditTourCommand EditTourCommand { get; set; }
         public ViewModel viewModel { get; set; }
         public void CreateTourButton(object obj)
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
+            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
             {
@@ -109,7 +110,7 @@ namespace TourPlanner.ViewModels
         public void EditTourButton(object obj)
         {
             UIServices.SetBusyState();
-            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Comment) || string.IsNullOrEmpty(Transport))
+            if (string.IsNullOrEmpty(Tourname) || string.IsNullOrEmpty(From) || string.IsNullOrEmpty(To) || string.IsNullOrEmpty(Transport))
                 MessageBox.Show("Please complete the form");
             else
             {
