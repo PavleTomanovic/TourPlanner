@@ -17,6 +17,8 @@ namespace TourPlanner.ViewModels
         private string _curTourName;
         private string _curImagePath;
         private string _searchText;
+        private string _curFavorite;
+
         HttpResponseDTO tourDTO = new HttpResponseDTO();
         private DataTable _curDataGrid;
         public OpenWindowCommand OpenWindowCommand { get; set; }
@@ -89,7 +91,6 @@ namespace TourPlanner.ViewModels
         public string CurTo;
         public string CurTransport;
         public string CurComment;
-        private string _curFavorite;
 
         public string CurFavorite
         {

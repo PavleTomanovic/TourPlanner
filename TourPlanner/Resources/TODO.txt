@@ -6,21 +6,28 @@
 	3. Protocol
 	4. Logging in Console
 
+	#########################################################
+
 	TODO - Details
 
 	- return from search : x Button ? : empty search brings back
-	- enough space for comment : wrap text?
-	- Time calculation
 
+	#########################################################
+
+	Optional: 
+	- enough space for comment : wrap text?
+
+	#########################################################
 
 	Changes Done:
-	auto update view after every change
-	search
-	favortie virtualization : path?
 
+	#########################################################
 
 	For loading Mouse:
 	UIServices.SetBusyState();
+
+	#########################################################
+
 
 
 
