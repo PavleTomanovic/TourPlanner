@@ -18,14 +18,12 @@ namespace TourPlanner.ViewModels.Commands
         }
     }
 
-    public class EditLogCommand : DeleteLogCommand
+    public class EditLogCommand : CommandBase
     {
         public LogChangesView LogChangesView;
-        public EditLogCommand(LogChangesView logChangesView, ViewModel vm) : base(vm)
+        public EditLogCommand(LogChangesView logChangesView)
         {
             this.LogChangesView = logChangesView;
-            viewModel = vm;
-            viewModel.PropertyChanged += OnViewModelProbertyChanged;
         }
         public override void Execute(object parameter)
         {
@@ -71,7 +69,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(viewModel.NewTourLogDTO))
+            if (e.PropertyName == nameof(ViewModel.NewTourLogDTO))
                 OnCanExecutedChanged();
         }
     }

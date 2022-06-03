@@ -10,7 +10,8 @@
 
 	TODO - Details
 
-	- return from search : x Button ? : empty search brings back
+	- DatabaseConnection line 94 : Problem when new or edit tour 
+	- Error Handling if Mapquest dont know the route... : Program crashes
 
 	#########################################################
 

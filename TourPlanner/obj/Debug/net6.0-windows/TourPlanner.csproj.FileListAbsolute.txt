@@ -1,25 +1,3 @@
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.exe
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.deps.json
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.runtimeconfig.json
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.dll
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.pdb
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.AssemblyReference.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\App.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.lref
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.baml
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.g.resources
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.GeneratedMSBuildEditorConfig.editorconfig
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfoInputs.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfo.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CoreCompileInputs.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.dll
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\refint\TourPlanner.dll
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.pdb
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.exe
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.deps.json
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.runtimeconfig.json
@@ -42,8 +20,6 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.pdb
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.baml
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
@@ -76,7 +52,20 @@ C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windo
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.g.cs
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.baml
+C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.exe
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Resources\Settings.xml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.deps.json
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.runtimeconfig.json
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.pdb
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.barcodes.dll
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\itext.forms.dll
@@ -105,20 +94,31 @@ C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bi
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.g.cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.baml
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.baml
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.g.cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.g.cs
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.baml
-C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.AssemblyReference.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.baml
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.g.cs
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.g.cs
-C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\CreateLogWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\App.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner_MarkupCompile.lref
 C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditLogWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\EditTourWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\NewTourWindow.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TaskSection.baml
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.g.resources
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfoInputs.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.AssemblyInfo.cs
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CoreCompileInputs.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.csproj.CopyComplete
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\refint\TourPlanner.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.pdb
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\TourPlanner.genruntimeconfig.cache
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net6.0-windows\ref\TourPlanner.dll

@@ -22,7 +22,7 @@ namespace TourPlanner.ViewModels
         public Action CloseAction { get; set; }
         public LogChangesView()
         {
-            EditLogCommand = new EditLogCommand(this, viewModel);
+            EditLogCommand = new EditLogCommand(this);
             CreateLogCommand = new CreateLogCommand(this);
         }
         public string TourID

@@ -54,7 +54,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public override bool CanExecute(object parameter)
         {
-            if (String.IsNullOrEmpty(parameter?.ToString()))
+            if (string.IsNullOrEmpty(viewModel.NewTourLogDTO?.LogId))
                 return false;
             return true;
         }
