@@ -14,13 +14,13 @@ namespace TourPlanner.BussinesLayer
     {
         private static BussinessLogic logicInstance = new BussinessLogic();
 
-        public bool CreateRoute(string name, string from, string to, string transport, string comment)
+        public string CreateRoute(string name, string from, string to, string transport, string comment)
         {
             List<TourPreviewDTO> routeNames = SelectTourNameId();
 
             if (routeNames.Any(n => n.TourName == name)) //routeNames.Contains(name)
             {
-                return false;
+                return "exists";
             }
             else
             {
@@ -33,15 +33,23 @@ namespace TourPlanner.BussinesLayer
                 httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
                 httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
 
-                httpResponseDTO.Route.Name = name;
-                httpResponseDTO.Route.Comment = comment;
-                httpResponseDTO.Route.From = from;
-                httpResponseDTO.Route.To = to;
-                httpResponseDTO.Route.Transport = transport;
+                if(httpResponseDTO.Route.Distance == "0")
+                {
+                    return "null";
+                }
+                else
+                {
+                    httpResponseDTO.Route.Name = name;
+                    httpResponseDTO.Route.Comment = comment;
+                    httpResponseDTO.Route.From = from;
+                    httpResponseDTO.Route.To = to;
+                    httpResponseDTO.Route.Transport = transport;
 
-                DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
+                    DatabaseConnection.Instance.ExecuteInsertRoute(BussinessFactory.Instance.SqlDTO.Insert, httpResponseDTO);
 
-                return true;
+                    return "done";
+                }
+                
             }
         }
         public bool ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
@@ -55,15 +63,23 @@ namespace TourPlanner.BussinesLayer
                 httpDTO.To = to;
                 httpResponseDTO = HttpRequest.Instance.GetRoutes(httpDTO);
                 httpResponseDTO.Route.ImageUrl = HttpRequest.Instance.GetRouteImage(httpDTO);
-                httpResponseDTO.Route.Name = name;
-                httpResponseDTO.Route.Comment = comment;
-                httpResponseDTO.Route.From = from;
-                httpResponseDTO.Route.To = to;
-                httpResponseDTO.Route.Transport = transport;
-                httpResponseDTO.Route.Id = routeId;
 
-                DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
-                return true;
+                if (httpResponseDTO.Route.Distance == "0")
+                {
+                    return false;
+                }
+                else
+                {
+                    httpResponseDTO.Route.Name = name;
+                    httpResponseDTO.Route.Comment = comment;
+                    httpResponseDTO.Route.From = from;
+                    httpResponseDTO.Route.To = to;
+                    httpResponseDTO.Route.Transport = transport;
+                    httpResponseDTO.Route.Id = routeId;
+
+                    DatabaseConnection.Instance.ExecuteUpdateRoute(BussinessFactory.Instance.SqlDTO.Update, httpResponseDTO);
+                    return true;
+                }
             }
             catch (Exception e)
             {

@@ -92,17 +92,22 @@ namespace TourPlanner.ViewModels
                 MessageBox.Show("Please complete the form");
             else
             {
-                bool createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Transport, Comment);
-                if (createTour)
+                string createTour = BussinessLogic.LogicInstance.CreateRoute(Tourname, From, To, Transport, Comment);
+
+                switch(createTour)
                 {
-                    MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
-                    CloseAction();
-                    viewModel.updateTourList();
-                    viewModel.DataGridDescription?.Reset();
-                }
-                else
-                {
-                    MessageBox.Show($"Tour with the name: {Tourname} already exists!", "Tour could not be created", MessageBoxButton.OK, MessageBoxImage.Error);
+                    case "exists":
+                        MessageBox.Show($"Tour with the name: {Tourname} already exists!", "Tour could not be created", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "null":
+                        MessageBox.Show($"The parameters inserted are not good!", "Tour could not be created", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case "done":
+                        MessageBox.Show($"Tour: {Tourname} created successfully!", "Tour Created", MessageBoxButton.OK, MessageBoxImage.Information);
+                        CloseAction();
+                        viewModel.updateTourList();
+                        viewModel.DataGridDescription?.Reset();
+                        break;
                 }
             }
         }
