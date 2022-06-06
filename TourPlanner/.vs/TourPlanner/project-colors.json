@@ -15,7 +15,12 @@
       "ProjectGuid": "60e81ab6-2dbf-4f81-8895-a410a65f4455",
       "DisplayName": "TourPlannerNUnitTest",
       "ColorIndex": 1
+    },
+    "29bb7541-f0ce-427e-85ac-880716ee2219": {
+      "ProjectGuid": "29bb7541-f0ce-427e-85ac-880716ee2219",
+      "DisplayName": "NUnit-TourPlanner",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

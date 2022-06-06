@@ -43,12 +43,56 @@ namespace TourPlanner.NUnitTests
             Assert.IsNotEmpty(response.Route.To);
         }
         [Test, Order(6)]
+        public void CreateRouteReport_Test()
+        {
+            bool response = DB.CreateRouteReport(TourId);
+            Assert.IsTrue(response);
+        }
+
+        [Test, Order(7)]
+        public void CreateSummarizeReport_Test()
+        {
+            bool response = DB.CreateSummarizeReport(TourId);
+            Assert.IsTrue(response);
+        }
+        [Test, Order(8)]
+        public void ExportRouteToFile_Test()
+        {
+            bool response = DB.ExportRouteToFile(@"C:\Temp\TourPlanner\Export\Test_Export.xml", TourId);
+            Assert.IsTrue(response);
+        }
+        [Test, Order(9)]
+        public void CheckRoutePopularity_Test()
+        {
+            var response = DB.CheckRoutePopularity(TourId);
+            Assert.AreEqual(response, "Not popular route");
+        }
+        [Test, Order(10)]
+        public void CheckRouteChildFriendliness_Test()
+        {
+            var response = DB.CheckRouteChildFriendliness(TourId);
+            Assert.AreNotEqual(response, "Child-friendly");
+            Assert.AreNotEqual(response, "Not child-friendly");
+        }
+        [Test, Order(11)]
+        public void MakeRouteFavorite_Test()
+        {
+            bool response = DB.MakeRouteFavorite(TourId);
+            Assert.IsTrue(response);
+        }
+        [Test, Order(12)]
+        public void DeleteRouteFromFavorites_Test()
+        {
+            bool response = DB.DeleteRouteFromFavorites(TourId);
+            Assert.IsTrue(response);
+        }
+        [Test, Order(13)]
         public void CreateLog_Test()
         {
             bool response = DB.CreateLog("Comment", "1", "4", "3", TourId, "05.05.2022 08:00:00");
             Assert.IsTrue(response);
         }
-        [Test, Order(7)]
+        [Test, Order(14)]
         public void SelectLogForRoute_Test()
         {
             List<TourLogDTO> list = DB.SelectLogForRoute(TourId);
@@ -56,24 +100,23 @@ namespace TourPlanner.NUnitTests
             LogId = tl.LogId;
             Assert.IsNotEmpty(LogId);
         }
-        [Test, Order(8)]
+        [Test, Order(15)]
         public void ModifyLog_Test()
         {
             bool response = DB.ModifyLog("New Comment", "1", "4", "3", LogId, TourId, "05.05.2022 08:00:00");
             Assert.IsTrue(response);
         }
-        [Test, Order(9)]
+        [Test, Order(16)]
         public void DeleteLog_Test()
         {
             bool response = DB.Deletelog(TourId, LogId);
             Assert.IsTrue(response);
         }
-        [Test, Order(10)]
+        [Test, Order(17)]
         public void DeleteRoute_Test()
         {
             bool result = DB.DeleteRoute(TourId);
             Assert.IsTrue(result);
         }
-
     }
 }

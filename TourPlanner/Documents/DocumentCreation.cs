@@ -24,7 +24,7 @@ namespace TourPlanner.BussinesLayer
                 return instance;
             }
         }
-        public void RouteReportCreation(HttpResponseDTO HttpResponseDTO)
+        public bool RouteReportCreation(HttpResponseDTO HttpResponseDTO)
         {
             try
             {
@@ -70,15 +70,18 @@ namespace TourPlanner.BussinesLayer
                 document.Close();
 
                 log.Debug("RouteReportCreation done");
+
+                return true;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("RouteReportCreation Error" + e.Message + " - " + e.StackTrace);
+                return false;
             }
         }
 
-        public void RouteSummarizeReportCreation(string time, double rating, string distance, string routeName)
+        public bool RouteSummarizeReportCreation(string time, double rating, string distance, string routeName)
         {
             try
             {
@@ -105,12 +108,16 @@ namespace TourPlanner.BussinesLayer
                 document.Close();
 
                 log.Debug("RouteSummarizeReportCreation done");
+
+                return true;
             }
 
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("RouteSummarizeReportCreation Error" + e.Message + " - " + e.StackTrace);
+                
+                return false;
             }
         }
 

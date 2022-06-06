@@ -387,30 +387,34 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public void MakeRouteFavorite(string routeId)
+        public bool MakeRouteFavorite(string routeId)
         {
             try
             {
                 DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateFavorite, routeId);
                 log.Debug("MakeRouteFavorite done");
+                return true;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("MakeRouteFavorite Error" + e.Message + " - " + e.StackTrace);
+                return false;
             }
         }
-        public void DeleteRouteFromFavorites(string routeId)
+        public bool DeleteRouteFromFavorites(string routeId)
         {
             try
             {
                 DatabaseConnection.Instance.ExecuteFavorite(BussinessFactory.Instance.SqlDTO.UpdateNoFavorite, routeId);
                 log.Debug("DeleteRouteFromFavorites done");
+                return true;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("DeleteRouteFromFavorites Error" + e.Message + " - " + e.StackTrace);
+                return false;
             }
         }
         public string CheckRoutePopularity(string routeId)
