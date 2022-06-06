@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using TourPlanner.BussinesLayer;
@@ -11,6 +12,7 @@ namespace TourPlanner.DataAccessLayer
     {
         private static DatabaseConnection instance = new DatabaseConnection();
         private SqlConnection connection;
+        ILog log = LogManager.GetLogger(typeof(App));
 
         public static DatabaseConnection Instance
         {
@@ -45,6 +47,7 @@ namespace TourPlanner.DataAccessLayer
             }
             catch (Exception ex)
             {
+                log.Error("Database Connection Error" + ex.Message + " - " + ex.StackTrace);
                 throw new Exception("Datenbankverbindung konnte nicht erstellt werden: \n" + ex.Message);
             }
         }
@@ -96,9 +99,11 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteInsertRoute done");
             }
             catch (Exception e)
             {
+                log.Error("ExecuteInsertRoute Error" + e.Message + " - " + e.StackTrace);
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
             }
             finally
@@ -132,10 +137,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteUpdateRoute done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteUpdateRoute Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {
@@ -159,10 +166,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteDeleteRoute done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteDeleteRoute Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {
@@ -191,10 +200,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteInsertLog done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteInsertLog Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {
@@ -224,10 +235,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteModifyLog done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteModifyLog Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {
@@ -252,10 +265,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteDeleteLog done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteDeleteLog Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {
@@ -276,11 +291,15 @@ namespace TourPlanner.DataAccessLayer
                 command = new SqlCommand(query, Instance.Connection());
                 reader = command.ExecuteReader();
                 results.Load(reader);
+
+                log.Debug("ExecuteSelectAllRoutes done");
+
                 return results;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteSelectAllRoutes Error" + e.Message + " - " + e.StackTrace);
                 return results;
             }
             finally
@@ -306,11 +325,17 @@ namespace TourPlanner.DataAccessLayer
                 command.Parameters.AddWithValue("@P1", id);
                 reader = command.ExecuteReader();
                 results.Load(reader);
+
+                log.Debug("ExecuteSelect done");
+
                 return results;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+
+                log.Error("ExecuteSelect Error" + e.Message + " - " + e.StackTrace);
+
                 return results;
             }
             finally
@@ -338,10 +363,12 @@ namespace TourPlanner.DataAccessLayer
 
                     int result = command.ExecuteNonQuery();
                 }
+                log.Debug("ExecuteFavorite done");
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
+                log.Error("ExecuteFavorite Error" + e.Message + " - " + e.StackTrace);
             }
             finally
             {

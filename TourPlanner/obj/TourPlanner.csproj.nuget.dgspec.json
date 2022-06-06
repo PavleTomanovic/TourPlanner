@@ -63,6 +63,10 @@
             "itext7": {
               "target": "Package",
               "version": "[7.2.2, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.14, )"
             }
           },
           "imports": [
