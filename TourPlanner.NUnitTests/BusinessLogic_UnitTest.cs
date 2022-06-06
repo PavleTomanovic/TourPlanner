@@ -71,8 +71,7 @@ namespace TourPlanner.NUnitTests
         public void CheckRouteChildFriendliness_Test()
         {
             var response = DB.CheckRouteChildFriendliness(TourId);
-            Assert.AreNotEqual(response, "Child-friendly");
-            Assert.AreNotEqual(response, "Not child-friendly");
+            Assert.AreNotEqual(response, "No-info");
         }
         [Test, Order(11)]
         public void MakeRouteFavorite_Test()
