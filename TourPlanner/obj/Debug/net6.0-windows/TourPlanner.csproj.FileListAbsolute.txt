@@ -125,3 +125,6 @@ C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\ob
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Log4Net.config
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.dll.config
 C:\Users\p.tomanovic\source\repos\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\log4net.dll
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\Log4Net.config
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\TourPlanner.dll.config
+C:\Taha\Computer Science\4.Semester\SWEN2\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net6.0-windows\log4net.dll

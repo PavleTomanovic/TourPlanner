@@ -62,7 +62,7 @@ namespace TourPlanner.BussinesLayer
                 log.Error("CreateRoute Error" + e.Message + " - " + e.StackTrace);
                 return "null";
             }
-            
+
         }
         public bool ModifyRoute(string from, string to, string name, string transport, string comment, string routeId)
         {
@@ -101,17 +101,19 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public void DeleteRoute(string routeId)
+        public bool DeleteRoute(string routeId)
         {
             try
             {
                 DatabaseConnection.Instance.ExecuteDeleteRoute(BussinessFactory.Instance.SqlDTO.Delete, routeId);
                 log.Debug("DeleteRoute done");
+                return true;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("DeleteRoute Error" + e.Message + " - " + e.StackTrace);
+                return false;
             }
         }
         public bool CreateLog(string comment, string difficulty, string totalTime, string rating, string routeId, string dateTime)
@@ -323,7 +325,7 @@ namespace TourPlanner.BussinesLayer
                 return "";
             }
         }
-        private string calcTime(string time)
+        public string calcTime(string time)
         {
             int intTime = Convert.ToInt32(time);
             int hours = intTime / 3600;
