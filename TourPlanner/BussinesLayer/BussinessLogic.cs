@@ -165,17 +165,19 @@ namespace TourPlanner.BussinesLayer
                 return false;
             }
         }
-        public void Deletelog(string routeId, string logId)
+        public bool Deletelog(string routeId, string logId)
         {
             try
             {
                 DatabaseConnection.Instance.ExecuteDeleteLog(BussinessFactory.Instance.SqlDTO.DeleteLog, routeId, logId);
                 log.Debug("Deletelog done");
+                return true;
             }
             catch (Exception e)
             {
                 LoggerToFile.LogError(e.Message + "\n" + e.StackTrace);
                 log.Error("Deletelog Error" + e.Message + " - " + e.StackTrace);
+                return false;
             }
         }
         public List<TourPreviewDTO> SelectTourNameId()

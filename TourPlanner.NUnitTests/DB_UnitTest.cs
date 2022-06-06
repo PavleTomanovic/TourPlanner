@@ -4,13 +4,12 @@ namespace TourPlanner.NUnitTests
     public class Tests
     {
         BussinessLogic DB = BussinessLogic.LogicInstance;
-
         public string TourId { get; set; }
+        public string LogId { get; set; }
         [SetUp]
         public void Setup()
         {
         }
-
         [Test, Order(1)]
         public void CreateTour_Test()
         {
@@ -32,18 +31,44 @@ namespace TourPlanner.NUnitTests
             Assert.IsTrue(result);
         }
         [Test, Order(4)]
-        public void SelectAllFromRoute_Test()
-        {
-            HttpResponseDTO response = DB.SelectAllFromRoute(TourId);
-            Assert.IsNotEmpty(response.Route.To);
-        }
-        [Test, Order(5)]
         public void calcTime_Test()
         {
             string response = DB.calcTime("13489");      //3:44 h
             Assert.AreEqual(response, "3:44");
         }
-        // [Test, Order(5)]
+        [Test, Order(5)]
+        public void SelectAllFromRoute_Test()
+        {
+            HttpResponseDTO response = DB.SelectAllFromRoute(TourId);
+            Assert.IsNotEmpty(response.Route.To);
+        }
+        [Test, Order(6)]
+        public void CreateLog_Test()
+        {
+            bool response = DB.CreateLog("Comment", "1", "4", "3", TourId, "05.05.2022 08:00:00");
+            Assert.IsTrue(response);
+        }
+        [Test, Order(7)]
+        public void SelectLogForRoute_Test()
+        {
+            List<TourLogDTO> list = DB.SelectLogForRoute(TourId);
+            TourLogDTO tl = list.Last();
+            LogId = tl.LogId;
+            Assert.IsNotEmpty(LogId);
+        }
+        [Test, Order(8)]
+        public void ModifyLog_Test()
+        {
+            bool response = DB.ModifyLog("New Comment", "1", "4", "3", LogId, TourId, "05.05.2022 08:00:00");
+            Assert.IsTrue(response);
+        }
+        [Test, Order(9)]
+        public void DeleteLog_Test()
+        {
+            bool response = DB.Deletelog(TourId, LogId);
+            Assert.IsTrue(response);
+        }
+        [Test, Order(10)]
         public void DeleteRoute_Test()
         {
             bool result = DB.DeleteRoute(TourId);
