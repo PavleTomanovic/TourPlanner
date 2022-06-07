@@ -14,7 +14,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public override bool CanExecute(object parameter)
         {
-            if (string.IsNullOrEmpty(ChangesView.Tourname) || string.IsNullOrEmpty(ChangesView.From) || string.IsNullOrEmpty(ChangesView.To))
+            if (string.IsNullOrEmpty(ChangesView.Tourname) || string.IsNullOrEmpty(ChangesView.From) || string.IsNullOrEmpty(ChangesView.To) || string.IsNullOrEmpty(ChangesView.Transport))
                 return false;
             return true;
         }
@@ -24,7 +24,7 @@ namespace TourPlanner.ViewModels.Commands
         }
         public virtual void OnViewModelProbertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(ChangesView.Tourname) || e.PropertyName == nameof(ChangesView.From) || e.PropertyName == nameof(ChangesView.To))
+            if (e.PropertyName == nameof(ChangesView.Tourname) || e.PropertyName == nameof(ChangesView.From) || e.PropertyName == nameof(ChangesView.To) || e.PropertyName == nameof(ChangesView.Transport))
                 OnCanExecutedChanged();
         }
     }

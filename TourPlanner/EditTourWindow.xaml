@@ -30,7 +30,7 @@
         <TextBox  Grid.Row="1" Grid.Column="1" Margin="10,0,0,10" Text="{Binding From, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="2" Content="Destination*"/>
         <TextBox Grid.Row="2" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding To, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label Grid.Row="3" Content="Transport"/>
+        <Label Grid.Row="3" Content="Transport*"/>
         <TextBox Grid.Row="3" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Transport, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Grid.Row="4" Content="Comment"/>
         <TextBox  Grid.Row="4" Grid.Column="1"  Margin="10,0,0,10" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
